@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\38762\\Desktop\\BeatuyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj": {}
+    "C:\\Users\\KORISNIK\\Desktop\\FIT\\RS1\\BeautyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\38762\\Desktop\\BeatuyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj": {
+    "C:\\Users\\KORISNIK\\Desktop\\FIT\\RS1\\BeautyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\38762\\Desktop\\BeatuyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj",
+        "projectUniqueName": "C:\\Users\\KORISNIK\\Desktop\\FIT\\RS1\\BeautyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj",
         "projectName": "BeautyNest",
-        "projectPath": "C:\\Users\\38762\\Desktop\\BeatuyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj",
-        "packagesPath": "C:\\Users\\38762\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\38762\\Desktop\\BeatuyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\obj\\",
+        "projectPath": "C:\\Users\\KORISNIK\\Desktop\\FIT\\RS1\\BeautyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\BeautyNest.csproj",
+        "packagesPath": "C:\\Users\\KORISNIK\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\KORISNIK\\Desktop\\FIT\\RS1\\BeautyNest\\webapp\\backend\\BeautyNest\\BeautyNest\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\38762\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\KORISNIK\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
