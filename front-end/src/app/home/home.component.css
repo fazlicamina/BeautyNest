@@ -1,0 +1,317 @@
+.hero-section {
+  height: 750px;
+  background-image: url('/assets/home-bg.jpg');
+  background-size: cover;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  background-position: center top -50px;
+  color: white;
+}
+
+.hero-section h1 {
+  font-weight: bold;
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+.container{
+  padding: 0;
+  margin: 10%;
+}
+
+/*filter*/
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.search-input,
+.search-city {
+  width: 480px;
+  margin-bottom: 20px;
+}
+
+.search-input input::placeholder {
+  color: white;
+}
+
+.search-input input,
+.search-city select {
+  width: 100%;
+  backdrop-filter: blur(20px);
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 4px 4px 10px 2px rgba(219, 142, 134, 0.20);
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.search-city select{
+  width: 60%;
+}
+
+/* Stil za Search dugme */
+.search-city button {
+  width: 37%;
+  padding: 10px;
+  border: none;
+  float: right;
+  border-radius: 25px;
+  background: #DBAEABFF;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Dodano za glatki prijelaz */
+  box-shadow: 4px 4px 10px 2px rgba(219, 142, 134, 0.20); /* Dodano za efekt dubine */
+}
+
+/* Hover i Active efekti */
+.search-input input:hover,
+.search-city select:hover,
+.search-input input:active,
+.search-city select:active {
+  border-color: white;
+  box-shadow: 4px 4px 10px 2px rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.search-city button:hover,
+.search-city button:active {
+  background: #b57f7bff; /* Potamnjeni efekt na hover i active */
+}
+
+/* Kategorije salona */
+
+h2 {
+  padding-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #DBAEABFF; /* Roza boja, možete prilagoditi prema potrebi */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+p {
+  text-align: center;
+  color: #666; /* Sivkasta boja, možete prilagoditi prema potrebi */
+  font-size: 18px; /* Prilagodite veličinu fonta prema potrebi */
+  line-height: 1.5; /* Prilagodite razmak između redova prema potrebi */
+  max-width: 800px; /* Prilagodite maksimalnu širinu prema potrebi */
+  margin: 0 auto 20px;
+  padding-bottom: 25px;
+}
+
+/* boksovi */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 80px;
+}
+
+.gallery .gradient-container {
+  flex: 0 1 calc(25% - 20px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.gallery .rounded-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.gallery .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #DBAEABFF, rgba(0, 0, 0, 0));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Početno stanje - nevidljiv overlay */
+  transition: opacity 0.3s ease; /* Dodajemo prijelaz za opacity svojstvo */
+}
+
+.gallery .category-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.gallery .gradient-container:hover .overlay {
+  opacity: 1; /* Prikazujemo overlay na hover-u */
+}
+
+.naslovi {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+/* Media query za ekran širine manje od 768px */
+@media screen and (max-width: 768px) {
+  .gallery .gradient-container {
+    flex: 0 1 calc(50% - 20px);
+  }
+}
+
+
+
+/* Banner */
+
+.banner-section {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+  background: linear-gradient(to right, rgba(210.37, 155.32, 151.65, 0.87) 0%, rgba(217, 217, 217, 0) 52%, rgba(216.37, 211.17, 210.82, 0.08) 82%, rgba(211.08, 161.85, 158.57, 0.78) 100%),
+  url('/assets/slatka-teta.jpeg') center top no-repeat;
+  background-size: cover;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.banner-section h1 {
+  font-weight: bold;
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+.button-registracija button {
+  width: 25%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background: #DBAEABFF;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 10px 2px rgba(219, 142, 134, 0.20);
+}
+
+.button-registracija button:hover,
+.button-registracija button:active {
+  background: #b57f7bff;
+}
+
+/*  omiljeni saloni */
+
+
+/* Postavljanje fleksibilnog kontejnera */
+#kartice-kontejner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 50px;
+}
+
+.card {
+  flex: 0 1 calc(25% - 20px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  margin-right: 0; /* Postavljanje margine na nulu */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.overlay-recenzije {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40%;
+  height: 15%;
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 4px 4px 10px 2px rgba(219, 142, 134, 0.20);
+  border-radius: 14px;
+  border: 1px rgba(255, 255, 255, 0.30) solid;
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+}
+
+.overlay-content {
+  margin: 0;
+  padding-left: 15px;
+  text-align: left;
+}
+
+.rating {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.reviews {
+  font-size: 12px;
+  color: #fff;
+}
+
+.card-body-custom {
+  text-align: left !important;
+}
+
+.card-body-custom .card-title,
+.card-body-custom .card-text {
+  text-align: left !important;
+}
+
+.button-omiljeni {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background: #DBAEABFF;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 10px 2px rgba(219, 142, 134, 0.20);
+}
+
+.button-omiljeni:hover,
+.button-omiljeni:active {
+  background: #b57f7bff;
+}
+
+h4 {
+  font-weight: bolder;
+}
+
+p.card-text {
+  margin-bottom: -5px;
+}
+
+/* Media query za ekran širine manje od 768px */
+@media screen and (max-width: 768px) {
+  .card {
+    flex: 0 1 calc(50% - 20px);
+    margin-right: 0; /* Postavljanje margine na nulu */
+  }
+}
+

@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --custom-pink: rgba(219, 174, 171);
+}
+
+.bg-custom-pink {
+  background-color: var(--custom-pink) !important;
+}
+
+*
+{font-family: 'Red Hat Display', sans-serif;}
