@@ -25,5 +25,6 @@
         public string NaslovnaFotografija { get; set; } = string.Empty;
 
         public List<KategorijaDto> Kategorije { get; set; } = new List<KategorijaDto>();
+        public List<KategorijaUslugeDto> KategorijeUsluga { get; set; } = new List<KategorijaUslugeDto>();
     }
 }

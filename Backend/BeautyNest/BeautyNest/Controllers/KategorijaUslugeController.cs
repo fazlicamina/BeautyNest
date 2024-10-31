@@ -30,7 +30,7 @@ namespace BeautyNest.Controllers
             var response = new KategorijaUslugeDto
             {
                 Id=kategorijaUsluge.Id,
-                Naziv=kategorijaUsluge.Naziv,
+                Naziv=kategorijaUsluge.Naziv
 
             };
 
@@ -45,7 +45,8 @@ namespace BeautyNest.Controllers
             var response = kategorijaUsluge.Select(k => new KategorijaUslugeDto
             {
                 Id = k.Id,
-                Naziv = k.Naziv
+                Naziv = k.Naziv,
+                SalonId=k.SalonId
             }).ToList();
 
             return Ok(response);

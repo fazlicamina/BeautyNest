@@ -22,6 +22,6 @@
 
         public List<int> Kategorije { get; set; } = new List<int>();
 
-
+        public List<CreateKategorijaUslugeRequestDto> KategorijeUsluga { get; set; } = new List<CreateKategorijaUslugeRequestDto>();
     }
 }

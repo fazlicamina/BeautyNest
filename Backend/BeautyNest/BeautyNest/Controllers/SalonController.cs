@@ -47,6 +47,16 @@ namespace BeautyNest.Controllers
                 }
             }
 
+            foreach (var kategorijaUsluge in request.KategorijeUsluga)
+            {
+                var novaKategorijaUsluge = new KategorijaUsluge
+                {
+                    Naziv = kategorijaUsluge.Naziv,
+                    Salon = salon
+                };
+                salon.KategorijeUsluga.Add(novaKategorijaUsluge);
+            }
+
             await salonRepository.CreateAsync(salon);
 
             var response = new SalonDto
@@ -67,6 +77,12 @@ namespace BeautyNest.Controllers
                     Id = k.Id,
                     Naziv = k.Naziv,
                     Slika = k.Slika
+                }).ToList(),
+                KategorijeUsluga = salon.KategorijeUsluga.Select(ku => new KategorijaUslugeDto
+                {
+                    Id = ku.Id,
+                    Naziv = ku.Naziv,
+                    SalonId = ku.SalonId
                 }).ToList()
             };
 
@@ -100,6 +116,12 @@ namespace BeautyNest.Controllers
                         Id = k.Id,
                         Naziv = k.Naziv,
                         Slika = k.Slika
+                    }).ToList(),
+                    KategorijeUsluga = salon.KategorijeUsluga.Select(ku => new KategorijaUslugeDto
+                    {
+                        Id = ku.Id,
+                        Naziv = ku.Naziv,
+                        SalonId = ku.SalonId
                     }).ToList()
                 });
             }
@@ -156,6 +178,12 @@ namespace BeautyNest.Controllers
                     Id = k.Id,
                     Naziv = k.Naziv,
                     Slika = k.Slika
+                }).ToList(),
+                KategorijeUsluga = salon.KategorijeUsluga.Select(ku => new KategorijaUslugeDto
+                {
+                    Id = ku.Id,
+                    Naziv = ku.Naziv,
+                    SalonId = ku.SalonId
                 }).ToList()
             };
             return Ok(response);

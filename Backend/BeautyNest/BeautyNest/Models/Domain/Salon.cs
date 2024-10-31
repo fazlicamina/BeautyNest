@@ -28,5 +28,7 @@ namespace BeautyNest.Models.Domain
         public string NaslovnaFotografija { get; set; } = string.Empty;
         public ICollection<Kategorija> Kategorije { get; set; }
 
+        public ICollection<KategorijaUsluge> KategorijeUsluga { get; set; } = new List<KategorijaUsluge>();
+
     }
 }
