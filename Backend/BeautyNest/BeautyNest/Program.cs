@@ -2,6 +2,7 @@ using BeautyNest.Data;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<ISalonRepository, SalonRepository>();
 builder.Services.AddScoped<IKategorijaRepository, KategorijaRepository>();
+builder.Services.AddScoped<IKategorijaUslugeRepository, KategorijaUslugeRepository>();
+builder.Services.AddScoped<IUslugaRepository, UslugaRepository>();
+
 
 var app = builder.Build();
 

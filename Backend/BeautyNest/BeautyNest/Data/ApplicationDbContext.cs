@@ -11,5 +11,10 @@ namespace BeautyNest.Data
 
         public DbSet<Salon> Saloni { get; set; }
         public DbSet<Kategorija> Kategorije{ get; set; }
+
+        public DbSet<KategorijaUsluge> KategorijeUsluga { get; set; }
+        public DbSet<Usluga> Usluge { get; set; }
+
+   
     }
 }

@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\repositories\\implementation\\salonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\repositories\\implementation\\salonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\kategorijauslugecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\kategorijauslugecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\uslugacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\uslugacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SalonRepository.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Repositories\\Implementation\\SalonRepository.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Repositories\\Implementation\\SalonRepository.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Repositories\\Implementation\\SalonRepository.cs",
-              "RelativeToolTip": "BeautyNest\\Repositories\\Implementation\\SalonRepository.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAwBcAAAAHAAAA",
+              "DocumentIndex": 2,
+              "Title": "UslugaDto.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UslugaDto.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\UslugaDto.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UslugaDto.cs",
+              "RelativeToolTip": "BeautyNest\\Models\\DTO\\UslugaDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T16:23:57.808Z",
+              "WhenOpened": "2024-10-31T11:56:30.479Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SalonController.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\SalonController.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Controllers\\SalonController.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\SalonController.cs",
-              "RelativeToolTip": "BeautyNest\\Controllers\\SalonController.cs",
-              "ViewState": "AQIAAIsAAAAAAAAAAAAowJ4AAAAbAAAA",
+              "Title": "UslugaController.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\UslugaController.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Controllers\\UslugaController.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\UslugaController.cs",
+              "RelativeToolTip": "BeautyNest\\Controllers\\UslugaController.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAwDoAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T15:38:24.99Z"
+              "WhenOpened": "2024-10-31T11:53:49.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KategorijaUslugeController.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\KategorijaUslugeController.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Controllers\\KategorijaUslugeController.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\KategorijaUslugeController.cs",
+              "RelativeToolTip": "BeautyNest\\Controllers\\KategorijaUslugeController.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAA+wEQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T11:50:54.011Z",
+              "EditorCaption": ""
             }
           ]
         }

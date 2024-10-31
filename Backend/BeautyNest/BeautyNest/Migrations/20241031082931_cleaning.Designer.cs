@@ -4,6 +4,7 @@ using BeautyNest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyNest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241031082931_cleaning")]
+    partial class cleaning
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,23 +44,6 @@ namespace BeautyNest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Kategorije");
-                });
-
-            modelBuilder.Entity("BeautyNest.Models.Domain.KategorijaUsluge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("KategorijeUsluga");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
@@ -109,34 +95,6 @@ namespace BeautyNest.Migrations
                     b.ToTable("Saloni");
                 });
 
-            modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Cijena")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("KategorijaUslugeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("Trajanje")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KategorijaUslugeId");
-
-                    b.ToTable("Usluge");
-                });
-
             modelBuilder.Entity("KategorijaSalon", b =>
                 {
                     b.Property<int>("KategorijeId")
@@ -152,17 +110,6 @@ namespace BeautyNest.Migrations
                     b.ToTable("KategorijaSalon");
                 });
 
-            modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
-                {
-                    b.HasOne("BeautyNest.Models.Domain.KategorijaUsluge", "KategorijaUsluge")
-                        .WithMany("Usluge")
-                        .HasForeignKey("KategorijaUslugeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("KategorijaUsluge");
-                });
-
             modelBuilder.Entity("KategorijaSalon", b =>
                 {
                     b.HasOne("BeautyNest.Models.Domain.Kategorija", null)
@@ -176,11 +123,6 @@ namespace BeautyNest.Migrations
                         .HasForeignKey("SaloniId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BeautyNest.Models.Domain.KategorijaUsluge", b =>
-                {
-                    b.Navigation("Usluge");
                 });
 #pragma warning restore 612, 618
         }
