@@ -1,26 +1,33 @@
-<div class="container">
-  <h1 class="text-center naslov">Kategorije salona</h1>
-  <p class="text-center">Istaknite svoju ljepotu u raznolikosti naših salona! Od lica do noktiju, tijela i kose, naši stručnjaci pružaju vrhunske usluge. Osjetite samopouzdanje na novoj razini - rezervirajte svoj tretman danas!</p>
-  <div class="row row-cols-1 row-cols-md-4 g-4">
+<header class="header">
+  <div class="search-bar">
+    <h1>Otkrij najbolje salone i usluge u blizini</h1>
+    <form class="form-inline" style="display: flex">
+      <input class="form-control mr-2" type="search" placeholder="Traži uslugu..." aria-label="Search">
 
-    <div class="col" *ngFor="let kategorija of kategorije$ | async">
-      <div class="card text-bg-dark" style="height: 120px;">
-        <img [src]="kategorija.slika" class="card-img" alt="{{ kategorija.naziv }}" style="height: 100%; width: auto; object-fit: cover;">
-        <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
-          <h5 class="card-title">{{ kategorija.naziv }}</h5>
-        </div>
-      </div>
-    </div>
+      <select class="form-control mr-2" aria-label="Select City">
+        <option value="" disabled selected>Izaberi grad</option>
+        <option value="sarajevo">Sarajevo</option>
+        <option value="mostar">Mostar</option>
+        <option value="banja-luka">Banja Luka</option>
+        <option value="zenica">Zenica</option>
+        <option value="tuzla">Tuzla</option>
+      </select>
 
+      <button class="btn btn-primary" type="submit">Pretraži</button>
+    </form>
   </div>
-</div>
+</header>
 
-<div class="container mt-4">
-  <h1 class="text-center naslov">Najbolje ocijenjeni (dodati filter)</h1>
+<div class="container">
+  <h2 class="naslov mt-5 mb-3">Najbolje ocijenjeni saloni ljepote</h2>
   <div class="row">
     <div *ngFor="let salon of saloni$ | async" class="col-md-3 mb-4">
       <div class="card h-100 d-flex flex-column">
+
+        <img [src]="salon.naslovnaFotografija" class="card-img-top" alt="{{ salon.naziv }}" style="height: 200px; object-fit: cover;">
+
         <div class="card-body flex-grow-1">
+
           <h5 class="card-title">{{salon.naziv}}</h5>
           <p class="card-text"><strong>Adresa:</strong> {{salon.adresa}}</p>
           <p class="card-text">{{salon.opis}}</p>
@@ -35,3 +42,23 @@
 
 
 
+<div class="container">
+
+  <h2 class="naslov mt-5 mb-3">Kategorije salona</h2>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+
+    <div class="col" *ngFor="let kategorija of kategorije$ | async">
+      <div class="card card-kategorije text-bg-dark" style="height: 120px;">
+        <img [src]="kategorija.slika" class="card-img" alt="{{ kategorija.naziv }}" style="height: 100%; width: auto; object-fit: cover;">
+        <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
+          <h5 class="card-title">{{ kategorija.naziv }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div style="margin-bottom: 200px"></div>
