@@ -7,5 +7,7 @@ namespace BeautyNest.Repositories.Interface
         Task<KategorijaUsluge> CreateAsync(KategorijaUsluge kategorijaUsluge);
         Task <IEnumerable<KategorijaUsluge>> GetAllAsync();
         Task<KategorijaUsluge?> GetByIdAsync(int id);
+
+        Task<IEnumerable<KategorijaUsluge>> GetKategorijeSaUslugamaZaSalon(int salonId);
     }
 }

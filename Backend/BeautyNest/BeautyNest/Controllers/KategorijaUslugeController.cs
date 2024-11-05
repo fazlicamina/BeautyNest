@@ -46,7 +46,16 @@ namespace BeautyNest.Controllers
             {
                 Id = k.Id,
                 Naziv = k.Naziv,
-                SalonId=k.SalonId
+                SalonId=k.SalonId,
+                Usluge = k.Usluge.Select(u => new UslugaDto
+                {
+                    Id = u.Id,
+                    Naziv = u.Naziv,
+                    Cijena = u.Cijena,
+                    Trajanje = u.Trajanje,
+                    KategorijaUslugeId = u.KategorijaUslugeId,
+                    KategorijaNaziv = u.KategorijaUsluge?.Naziv
+                }).ToList()
             }).ToList();
 
             return Ok(response);
@@ -78,5 +87,27 @@ namespace BeautyNest.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("{salonId:int}/kategorije-sa-uslugama")]
+        public async Task<IActionResult> GetKategorijeSaUslugamaZaSalon(int salonId)
+        {
+            var kategorijeSaUslugama = await kategorijaUslugeRepository.GetKategorijeSaUslugamaZaSalon(salonId);
+            var response = kategorijeSaUslugama.Select(k => new KategorijaUslugeDto
+            {
+                Id = k.Id,
+                Naziv = k.Naziv,
+                Usluge = k.Usluge.Select(u => new UslugaDto
+                {
+                    Id = u.Id,
+                    Naziv = u.Naziv,
+                    Cijena = u.Cijena,
+                    Trajanje = u.Trajanje,
+                    KategorijaUslugeId = u.KategorijaUslugeId
+                }).ToList()
+            });
+
+            return Ok(response);
+        }
+
     }
 }

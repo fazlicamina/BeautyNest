@@ -31,6 +31,52 @@
         </button>
       </div>
 
+      <!-- Ovdje ćemo prikazati usluge po kategorijama -->
+
+      <h1 style="margin-top: 40px">Nase usluge</h1>
+
+
+      <ul class="nav nav-tabs mt-3" role="tablist">
+        <li class="nav-item" *ngFor="let kategorija of kategorijeUsluga; let i = index">
+          <a class="nav-link"
+             [class.active]="activeTab === i"
+             (click)="setActiveTab(i)"
+             role="tab">
+            {{ kategorija.naziv }}
+          </a>
+        </li>
+      </ul>
+
+      <!-- Sadržaj za svaku karticu -->
+      <div class="tab-content">
+        <div class="tab-pane fade" [class.show]="activeTab === i" [class.active]="activeTab === i" role="tabpanel" *ngFor="let kategorija of kategorijeUsluga; let i = index">
+          <ul>
+
+
+            <div *ngFor="let usluga of kategorija.usluge">
+
+              <ul class="list-group" style="width: 100%; margin-left: -33px" >
+                <li class="list-group-item mt-3 d-flex justify-content-between align-items-start" >
+                  <div >
+                    <div class="fw-bold" >{{ usluga.naziv }}</div>
+                    {{usluga.trajanje}}
+                    <div class="fw-bold">{{usluga.cijena}} KM</div>
+                  </div>
+                  <input type="checkbox" class="btn-check" id="{{ usluga.naziv }}" autocomplete="off">
+                  <label class="btn" for="{{ usluga.naziv }}">Rezerviši</label>
+                </li>
+              </ul>
+
+            </div>
+
+
+
+          </ul>
+        </div>
+      </div>
+
+
+
     </div>
 
 

@@ -30,5 +30,14 @@ namespace BeautyNest.Repositories.Implementation
         {
             return await dbContext.KategorijeUsluga.Include(k => k.Usluge).FirstAsync(x => x.Id == id);
         }
+
+        public async Task<IEnumerable<KategorijaUsluge>> GetKategorijeSaUslugamaZaSalon(int salonId)
+        {
+            return await dbContext.KategorijeUsluga
+                .Where(k => k.SalonId == salonId)
+                .Include(k => k.Usluge) 
+                .ToListAsync();
+        }
+
     }
 }

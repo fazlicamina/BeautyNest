@@ -31,3 +31,40 @@
   z-index: 100;
 }
 
+
+/*kategorije tabs*/
+
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  color: #555;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #DBAEAB;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: rgba(219, 174, 171, 0.15); /* Boja na hover */
+  color: #555;
+  border: none;
+  border-radius: 5px;
+}
+
+.list-group-item {
+  list-style-type: none;
+}
+
+.btn-check:checked + .btn {
+  background-color: #DBAEAB; /* ili bilo koja druga boja koju želite */
+  color: white; /* boja teksta kada je označeno */
+}
+
+
+
