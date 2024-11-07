@@ -32,12 +32,12 @@ namespace BeautyNest.Repositories.Implementation
 
         public async Task<IEnumerable<Salon>> GetAllAsync()
         {
-           return await dbContext.Saloni.Include(x=>x.Kategorije).Include(x=>x.KategorijeUsluga).ToListAsync();
+           return await dbContext.Saloni.Include(x=>x.Kategorije).Include(x=>x.KategorijeUsluga).Include(x=>x.Grad).ToListAsync();
         }
 
         public async Task<Salon?> GetByIdAsync(int id)
         {
-            return await dbContext.Saloni.Include(x => x.Kategorije).Include(x => x.KategorijeUsluga).FirstAsync(x=>x.Id== id);
+            return await dbContext.Saloni.Include(x => x.Kategorije).Include(x => x.KategorijeUsluga).Include(x => x.Grad).FirstAsync(x=>x.Id== id);
         }
     }
 }

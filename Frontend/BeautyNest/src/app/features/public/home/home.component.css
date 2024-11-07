@@ -68,3 +68,7 @@ h2{
 .card:hover .card-img {
   opacity: 1;
 }
+
+select option:disabled {
+  display: none;
+}

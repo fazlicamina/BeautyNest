@@ -15,4 +15,6 @@ export interface Salon {
   naslovnaFotografija: string;
   kategorije: Kategorija[];
   kategorijeUsluga:KategorijaUsluge[];
+  gradId:number;
+  nazivGrada:string;
 }

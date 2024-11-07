@@ -4,15 +4,16 @@
       <div class="col-auto">
         <input type="text" class="form-control" placeholder="Pretraži salon ili uslugu" id="searchService">
       </div>
+
       <div class="col-auto">
-        <select class="form-select" id="searchCity">
-          <option value="">Odaberite grad</option>
-          <option value="Grad1">Grad 1</option>
-          <option value="Grad2">Grad 2</option>
+        <select [(ngModel)]="selectedGradId" name="gradId" class="form-control mr-2"  aria-label="Select City" style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+          <option  value="" disabled selected>Izaberi grad</option>
+          <option style="color: black" *ngFor="let grad of gradovi" [value]="grad.id" class="dropdown-item">{{grad.naziv}}</option>
         </select>
       </div>
+
       <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Pretraži</button>
+        <button (click)="applyFilter()" type="submit" class="btn btn-primary">Osvježi rezultate</button>
       </div>
     </form>
   </div>
@@ -32,8 +33,9 @@
           <h5 class="card-title">{{salon.naziv}}</h5>
           <p class="card-text"><strong>Adresa:</strong> {{salon.adresa}}</p>
           <p class="card-text">{{salon.opis}}</p>
-        </div>
 
+        </div>
+          <p style="font-size: large; color: #DBAEAB"><strong>{{salon.nazivGrada}}</strong></p>
         <div *ngFor="let kategorija of salon.kategorijeUsluga">
           <strong>{{ kategorija.naziv }}</strong>
 

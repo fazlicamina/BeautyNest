@@ -28,5 +28,6 @@
         public List<KategorijaUslugeDto> KategorijeUsluga { get; set; } = new List<KategorijaUslugeDto>();
 
         public int? GradId { get; set; }
+        public string NazivGrada {  get; set; } = string.Empty; 
     }
 }

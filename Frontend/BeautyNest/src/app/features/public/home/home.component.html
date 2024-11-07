@@ -1,22 +1,23 @@
 <header class="header">
   <div class="search-bar">
     <h1>Otkrij najbolje salone i usluge u blizini</h1>
-    <form class="form-inline" style="display: flex">
+    <form class="form-inline" style="display: flex" (ngSubmit)="onClickPretrazi()">
       <input class="form-control mr-2" type="search" placeholder="Traži salon ili uslugu..." aria-label="Search">
 
-      <select class="form-control mr-2" aria-label="Select City">
-        <option value="" disabled selected>Izaberi grad</option>
-        <option value="sarajevo">Sarajevo</option>
-        <option value="mostar">Mostar</option>
-        <option value="banja-luka">Banja Luka</option>
-        <option value="zenica">Zenica</option>
-        <option value="tuzla">Tuzla</option>
+      <select [(ngModel)]="selectedGradId" (ngModelChange)="onGradSelect()" name="GradId" class="form-control mr-2"  aria-label="Select GradId" style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+        <option [ngValue]="null" disabled selected>Izaberi grad</option>
+        <option style="color: black" *ngFor="let grad of gradovi" [value]="grad.id" class="dropdown-item">{{grad.naziv}}</option>
       </select>
+
+
+
 
       <button class="btn btn-primary" type="submit">Pretraži</button>
     </form>
   </div>
 </header>
+
+
 
 <div class="container">
   <h2 class="naslov mt-5 mb-3">Najbolje ocijenjeni saloni ljepote</h2>

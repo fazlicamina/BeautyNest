@@ -75,6 +75,7 @@ namespace BeautyNest.Controllers
                 SubotaRadna = salon.SubotaRadna,
                 NaslovnaFotografija = salon.NaslovnaFotografija,
                 GradId = salon.GradId,
+                NazivGrada = salon.Grad.Naziv,
                 Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                 {
                     Id = k.Id,
@@ -115,6 +116,7 @@ namespace BeautyNest.Controllers
                     SubotaRadna = salon.SubotaRadna,
                     NaslovnaFotografija = salon.NaslovnaFotografija,
                     GradId = salon.GradId,
+                    NazivGrada = salon.Grad.Naziv,
                     Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                     {
                         Id = k.Id,
@@ -154,7 +156,8 @@ namespace BeautyNest.Controllers
                 RadnoVrijemeDo = salon.RadnoVrijemeDo,
                 SubotaRadna = salon.SubotaRadna,
                 NaslovnaFotografija = salon.NaslovnaFotografija,
-                GradId = salon.GradId
+                GradId = salon.GradId,
+                NazivGrada = salon.Grad.Naziv
 
             };
             return Ok(response);
@@ -180,6 +183,7 @@ namespace BeautyNest.Controllers
                 SubotaRadna = salon.SubotaRadna,
                 NaslovnaFotografija = salon.NaslovnaFotografija,
                 GradId = salon.GradId,
+                NazivGrada = salon.Grad.Naziv,
                 Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                 {
                     Id = k.Id,

@@ -6,6 +6,7 @@ import {Salon} from '../models/salon';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {KategorijaUslugeService} from '../services/kategorija-usluge.service';
 import {KategorijaUsluge} from '../models/kategorija-usluge';
+import {Grad} from '../models/grad';
 
 @Component({
   selector: 'app-pregled-salona',
@@ -25,6 +26,7 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   paramsSubscription?:Subscription;
   salon$?:Observable<Salon>;
   kategorijeUsluga: KategorijaUsluge[] = [];
+
 
   activeTab: number = 0;
 
@@ -64,6 +66,9 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
       }
     );
   }
+
+
+
 
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();
