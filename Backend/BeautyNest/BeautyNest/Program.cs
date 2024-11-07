@@ -20,6 +20,7 @@ builder.Services.AddScoped<ISalonRepository, SalonRepository>();
 builder.Services.AddScoped<IKategorijaRepository, KategorijaRepository>();
 builder.Services.AddScoped<IKategorijaUslugeRepository, KategorijaUslugeRepository>();
 builder.Services.AddScoped<IUslugaRepository, UslugaRepository>();
+builder.Services.AddScoped<IGradRepository, GradRepository>();
 
 
 var app = builder.Build();

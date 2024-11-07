@@ -1,4 +1,5 @@
-﻿using BeautyNest.Data;
+﻿using Azure.Core;
+using BeautyNest.Data;
 using BeautyNest.Models.Domain;
 using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Interface;
@@ -35,6 +36,7 @@ namespace BeautyNest.Controllers
                 RadnoVrijemeDo = request.RadnoVrijemeDo,
                 SubotaRadna = request.SubotaRadna,
                 NaslovnaFotografija = request.NaslovnaFotografija,
+                GradId = request.GradId,
                 Kategorije = new List<Kategorija>()
             };
 
@@ -72,6 +74,7 @@ namespace BeautyNest.Controllers
                 RadnoVrijemeDo = salon.RadnoVrijemeDo,
                 SubotaRadna = salon.SubotaRadna,
                 NaslovnaFotografija = salon.NaslovnaFotografija,
+                GradId = salon.GradId,
                 Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                 {
                     Id = k.Id,
@@ -111,6 +114,7 @@ namespace BeautyNest.Controllers
                     RadnoVrijemeDo = salon.RadnoVrijemeDo,
                     SubotaRadna = salon.SubotaRadna,
                     NaslovnaFotografija = salon.NaslovnaFotografija,
+                    GradId = salon.GradId,
                     Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                     {
                         Id = k.Id,
@@ -149,7 +153,9 @@ namespace BeautyNest.Controllers
                 RadnoVrijemeOd = salon.RadnoVrijemeOd,
                 RadnoVrijemeDo = salon.RadnoVrijemeDo,
                 SubotaRadna = salon.SubotaRadna,
-                NaslovnaFotografija = salon.NaslovnaFotografija
+                NaslovnaFotografija = salon.NaslovnaFotografija,
+                GradId = salon.GradId
+
             };
             return Ok(response);
         }
@@ -173,6 +179,7 @@ namespace BeautyNest.Controllers
                 RadnoVrijemeDo = salon.RadnoVrijemeDo,
                 SubotaRadna = salon.SubotaRadna,
                 NaslovnaFotografija = salon.NaslovnaFotografija,
+                GradId = salon.GradId,
                 Kategorije = salon.Kategorije.Select(k => new KategorijaDto
                 {
                     Id = k.Id,

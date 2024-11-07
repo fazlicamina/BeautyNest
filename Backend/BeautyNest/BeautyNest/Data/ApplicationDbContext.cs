@@ -15,6 +15,7 @@ namespace BeautyNest.Data
         public DbSet<KategorijaUsluge> KategorijeUsluga { get; set; }
         public DbSet<Usluga> Usluge { get; set; }
 
+        public DbSet<Grad> Gradovi { get; set; }    
    
     }
 }

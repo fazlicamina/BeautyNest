@@ -26,5 +26,7 @@
 
         public List<KategorijaDto> Kategorije { get; set; } = new List<KategorijaDto>();
         public List<KategorijaUslugeDto> KategorijeUsluga { get; set; } = new List<KategorijaUslugeDto>();
+
+        public int? GradId { get; set; }
     }
 }

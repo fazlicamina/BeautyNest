@@ -1,4 +1,5 @@
 import {Kategorija} from '../../kategorija/models/kategorija';
+import {KategorijaUsluge} from './kategorija-usluge';
 
 export interface Salon {
   id: number;
@@ -13,4 +14,5 @@ export interface Salon {
   subotaRadna: boolean;
   naslovnaFotografija: string;
   kategorije: Kategorija[];
+  kategorijeUsluga:KategorijaUsluge[];
 }

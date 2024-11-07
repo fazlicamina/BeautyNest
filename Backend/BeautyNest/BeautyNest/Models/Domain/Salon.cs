@@ -30,5 +30,9 @@ namespace BeautyNest.Models.Domain
 
         public ICollection<KategorijaUsluge> KategorijeUsluga { get; set; } = new List<KategorijaUsluge>();
 
+     
+        public int? GradId { get; set; }
+        public Grad Grad { get; set; }
+
     }
 }

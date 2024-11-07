@@ -15,6 +15,9 @@ export class KategorijaUslugeService {
     return this.http.get<KategorijaUsluge[]>(`${environment.apiBaseUrl}api/KategorijaUsluge/${salonId}/kategorije-sa-uslugama`);
   }
 
+  getUslugeByKategorijaId(kategorijaId: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/KategorijaUsluge/${kategorijaId}/usluge`);
+  }
 
 
 
