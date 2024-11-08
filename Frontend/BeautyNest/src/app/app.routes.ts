@@ -7,6 +7,9 @@ import {PretragaComponent} from './features/public/pretraga/pretraga.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'saloni/:id', component: PregledSalonaComponent },
-  { path: 'pretraga', component: PretragaComponent },
-  { path: 'pretraga/:gradId', component: PretragaComponent }
+  { path: 'pretraga', component: PretragaComponent }
+  //{ path: 'pretraga/grad/:cityId', component: PretragaComponent },
+  //{ path: 'pretraga/kategorija/:kategorijaId', component: PretragaComponent }
+
+
 ];

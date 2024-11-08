@@ -4,11 +4,15 @@
     <form class="form-inline" style="display: flex" (ngSubmit)="onClickPretrazi()">
       <input class="form-control mr-2" type="search" placeholder="Traži salon ili uslugu..." aria-label="Search">
 
-      <select [(ngModel)]="selectedGradId" (ngModelChange)="onGradSelect()" name="GradId" class="form-control mr-2"  aria-label="Select GradId" style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+      <select [(ngModel)]="selectedGradId" name="GradId" class="form-control mr-2" aria-label="Select GradId">
         <option [ngValue]="null" disabled selected>Izaberi grad</option>
-        <option style="color: black" *ngFor="let grad of gradovi" [value]="grad.id" class="dropdown-item">{{grad.naziv}}</option>
+        <option style="color: dimgray" *ngFor="let grad of gradovi" [value]="grad.id">{{ grad.naziv }}</option>
       </select>
 
+      <select [(ngModel)]="selectedKategorijaId" name="KategorijaId" class="form-control mr-2" aria-label="Select KategorijaId">
+        <option [ngValue]="null" disabled selected>Izaberi kategoriju</option>
+        <option style="color: dimgray" *ngFor="let kategorija of kategorije$ | async" [value]="kategorija.id">{{ kategorija.naziv }}</option>
+      </select>
 
 
 
@@ -50,7 +54,7 @@
   <div class="row row-cols-1 row-cols-md-4 g-4">
 
     <div class="col" *ngFor="let kategorija of kategorije$ | async">
-      <div class="card card-kategorije text-bg-dark" style="height: 120px;">
+      <div (click)="onClickKategorija(kategorija.id)" class="card card-kategorije text-bg-dark" style="height: 120px;">
         <img [src]="kategorija.slika" class="card-img" alt="{{ kategorija.naziv }}" style="height: 100%; width: auto; object-fit: cover;">
         <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
           <h5 class="card-title">{{ kategorija.naziv }}</h5>

@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit{
   kategorije$?:Observable<Kategorija[]>;
   gradovi:Grad[]=[];
 
+  selectedKategorijaId: number | null = null;
   selectedGradId: number | null = null;
 
   constructor(private salonService:SalonService, private kategorijaService:KategorijaService,
@@ -51,11 +52,22 @@ export class HomeComponent implements OnInit{
     console.log('Selected city ID:', this.selectedGradId);
   }
 
-
   onClickPretrazi(): void {
+    const queryParams: any = {};
     if (this.selectedGradId) {
-      this.router.navigate(['/pretraga', { cityId: this.selectedGradId }]);
+      queryParams.cityId = this.selectedGradId;
     }
+    if (this.selectedKategorijaId) {
+      queryParams.kategorijaId = this.selectedKategorijaId;
+    }
+
+    this.router.navigate(['/pretraga'], { queryParams });
+  }
+
+  onClickKategorija(kategorijaId: number): void {
+    const queryParams: any = {};
+    queryParams.kategorijaId = kategorijaId;
+    this.router.navigate(['/pretraga'], { queryParams });
   }
 
 }

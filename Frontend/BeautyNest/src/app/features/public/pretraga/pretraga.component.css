@@ -2,3 +2,7 @@
   top: 80px;
   z-index: 1020;
 }
+
+select option:disabled {
+  display: none;
+}
