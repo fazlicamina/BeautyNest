@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit{
   saloni$?:Observable<Salon[]>;
   kategorije$?:Observable<Kategorija[]>;
   gradovi:Grad[]=[];
+  nazivSalona:string | null=null;
 
   selectedKategorijaId: number | null = null;
   selectedGradId: number | null = null;
@@ -54,6 +55,9 @@ export class HomeComponent implements OnInit{
 
   onClickPretrazi(): void {
     const queryParams: any = {};
+    if (this.nazivSalona) {
+      queryParams.naziv = this.nazivSalona;
+    }
     if (this.selectedGradId) {
       queryParams.cityId = this.selectedGradId;
     }

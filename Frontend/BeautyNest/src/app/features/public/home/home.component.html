@@ -2,7 +2,8 @@
   <div class="search-bar">
     <h1>Otkrij najbolje salone i usluge u blizini</h1>
     <form class="form-inline" style="display: flex" (ngSubmit)="onClickPretrazi()">
-      <input class="form-control mr-2" type="search" placeholder="Traži salon ili uslugu..." aria-label="Search">
+
+      <input [(ngModel)]="nazivSalona" name="naziv" class="form-control mr-2" type="search" placeholder="Traži salon..." aria-label="Search">
 
       <select [(ngModel)]="selectedGradId" name="GradId" class="form-control mr-2" aria-label="Select GradId">
         <option [ngValue]="null" disabled selected>Izaberi grad</option>
@@ -34,7 +35,9 @@
         <div class="card-body flex-grow-1">
 
           <h5 class="card-title">{{salon.naziv}}</h5>
-          <p class="card-text"><strong>Adresa:</strong> {{salon.adresa}}</p>
+          <p style="font-weight: bold; color: #DBAEAB">{{salon.nazivGrada}}<span style="font-weight: normal" class="card-text;">, {{salon.adresa}}</span></p>
+
+
           <p class="card-text">{{salon.opis}}</p>
         </div>
         <div class="card-footer mt-auto">
