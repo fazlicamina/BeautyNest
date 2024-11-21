@@ -5,7 +5,7 @@ Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implem
 # Getting Started
 
 Klonirati repozitorij:
-git clone https://github.com/tvoj-repozitorij/beautynest.git  
+<br>git clone https://github.com/tvoj-repozitorij/beautynest.git  
 cd beautynest  
 
 **Backend (ASP.NET Core):**
