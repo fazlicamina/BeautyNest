@@ -22,6 +22,24 @@ namespace BeautyNest.Migrations
                 {
                     table.PrimaryKey("PK_KategorijeUsluga", x => x.Id);
                 });
+
+            migrationBuilder.Sql(@"
+                INSERT INTO KategorijeUsluga (Naziv) 
+                VALUES 
+                ('Šišanje'),
+                ('Feniranje'),
+                ('Farbanje'),
+                ('Pramenovi'),
+                ('Manikir'),
+                ('Pedikir'),
+                ('Nadogranja noktiju'),
+                ('Frizura'),
+                ('Manikura'),
+                ('Kozmetički tretmani'),
+                ('Tretman lica'),
+                ('Masaža'),
+                ('Masaža')
+            ");
         }
 
         /// <inheritdoc />

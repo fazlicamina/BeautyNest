@@ -40,6 +40,62 @@ namespace BeautyNest.Migrations
                 column: "GradId",
                 principalTable: "Gradovi",
                 principalColumn: "Id");
+
+            migrationBuilder.Sql(@"
+    INSERT INTO Gradovi (Naziv) VALUES
+    ('Sarajevo'),
+    ('Banja Luka'),
+    ('Mostar'),
+    ('Zenica'),
+    ('Tuzla'),
+    ('Bijeljina'),
+    ('Brcko'),
+    ('Bihac'),
+    ('Gradacac'),
+    ('Doboj'),
+    ('Livno'),
+    ('Jajce'),
+    ('Trebinje'),
+    ('Kakanj'),
+    ('Capljina'),
+    ('Zavidovici'),
+    ('Cazin'),
+    ('Maglaj'),
+    ('Novi Travnik'),
+    ('Fojnica'),
+    ('Bosanska Krupa'),
+    ('Vitez'),
+    ('Tešanj'),
+    ('Bugojno'),
+    ('Visoko'),
+    ('Prijedor'),
+    ('Zvornik'),
+    ('Foca'),
+    ('Laktaši'),
+    ('Gradiška'),
+    ('Nevesinje'),
+    ('Bratunac'),
+    ('Teslic');
+");
+
+            migrationBuilder.Sql(@"
+                UPDATE Saloni
+                SET GradId = 1
+                WHERE Id = 1;
+
+                UPDATE Saloni
+                SET GradId = 5
+                WHERE Id = 2;
+
+                UPDATE Saloni
+                SET GradId = 3
+                WHERE Id = 3;
+
+                UPDATE Saloni
+                SET GradId = 3
+                WHERE Id = 4; 
+            ");
+
         }
 
         /// <inheritdoc />

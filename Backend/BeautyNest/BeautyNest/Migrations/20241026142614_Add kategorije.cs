@@ -38,6 +38,19 @@ namespace BeautyNest.Migrations
                 name: "IX_KategorijaSalon_SaloniId",
                 table: "KategorijaSalon",
                 column: "SaloniId");
+
+            migrationBuilder.Sql(@"
+                INSERT INTO KategorijaSalon (SaloniId, KategorijeId) VALUES
+                (1, 1),
+                (1, 2),
+                (2, 3),
+                (2, 4),
+                (3, 1),
+                (3, 2),
+                (3, 3),
+                (4, 4),
+                (4, 2);
+            ");
         }
 
         /// <inheritdoc />

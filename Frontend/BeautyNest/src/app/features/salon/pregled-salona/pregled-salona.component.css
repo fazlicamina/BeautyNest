@@ -27,7 +27,7 @@
 
 .fixed-column {
   position: sticky;
-  top: 80px;
+  top: 100px;
   z-index: 100;
 }
 

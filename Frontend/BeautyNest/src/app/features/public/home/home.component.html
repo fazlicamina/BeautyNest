@@ -38,7 +38,11 @@
           <p style="font-weight: bold; color: #DBAEAB">{{salon.nazivGrada}}<span style="font-weight: normal" class="card-text;">, {{salon.adresa}}</span></p>
 
 
-          <p class="card-text">{{salon.opis}}</p>
+          <p class="card-text">
+            {{ salon.opis.length > 200 ? salon.opis.substring(0, salon.opis.substring(0, 150).lastIndexOf(' ')) + '...' : salon.opis }}
+          </p>
+
+
         </div>
         <div class="card-footer mt-auto">
           <a href="#" class="btn btn-primary w-100" [routerLink]="['/saloni',salon.id]">Pregledaj</a>

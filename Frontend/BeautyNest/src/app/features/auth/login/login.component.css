@@ -1,0 +1,16 @@
+
+.btn-primary {
+  background-color: rgb(203, 153, 149) !important;
+  border: none !important;
+  font-size: large !important;
+}
+
+.btn-primary:hover {
+  background-color: #DBAEAB !important;
+}
+
+.btn-primary:active {
+  background-color: rgb(203, 153, 149);
+  outline: none;
+  box-shadow: none;
+}
