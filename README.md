@@ -13,20 +13,19 @@ Pokrenuti BeautyNest.sln u Visual Studiu.
 
 Pokrenuti sljedeće komande u Package Manager Console za migracije:
 <br>`Update-Database -Context "ApplicationDbContext"`
-`Update-Database -Context "AuthDbContext"`
+<br>`Update-Database -Context "AuthDbContext"`
 
 Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
 
 **Frontend (Angular):**
 
 Instalirati Node.js s nodejs.org.
-Idi u direktorij Frontend:
 
 Instalirati potrebne pakete:
-`npm install`  
+<br>`npm install`  
 
 Pokrenuti razvojni server:
-`ng serve`
+<br>`ng serve`
 
 Aplikacija će biti dostupna na http://localhost:4200.
 
