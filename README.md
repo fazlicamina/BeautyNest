@@ -12,7 +12,7 @@ Klonirati repozitorij:
 Pokrenuti BeautyNest.sln u Visual Studiu.
 
 Pokrenuti sljedeće komande u Package Manager Console za migracije:
-`Update-Database -Context "ApplicationDbContext"`
+<br>`Update-Database -Context "ApplicationDbContext"`
 `Update-Database -Context "AuthDbContext"`
 
 Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
