@@ -5,16 +5,15 @@ Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implem
 # Getting Started
 
 Klonirati repozitorij:
-<br>git clone https://github.com/tvoj-repozitorij/beautynest.git  
-cd beautynest  
+<br>git clone `https://github.com/tvoj-repozitorij/beautynest.git` 
 
 **Backend (ASP.NET Core):**
 
 Pokrenuti BeautyNest.sln u Visual Studiu.
 
 Pokrenuti sljedeće komande u Package Manager Console za migracije:
-Update-Database -Context "ApplicationDbContext"
-Update-Database -Context "AuthDbContext"
+`Update-Database -Context "ApplicationDbContext"`
+`Update-Database -Context "AuthDbContext"`
 
 Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
 
@@ -24,10 +23,10 @@ Instalirati Node.js s nodejs.org.
 Idi u direktorij Frontend:
 
 Instalirati potrebne pakete:
-npm install  
+`npm install`  
 
 Pokrenuti razvojni server:
-ng serve  
+`ng serve`
 
 Aplikacija će biti dostupna na http://localhost:4200.
 
