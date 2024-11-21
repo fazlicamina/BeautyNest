@@ -1,12 +1,33 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+## Getting Started
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Klonirati repozitorij:
+git clone https://github.com/tvoj-repozitorij/beautynest.git  
+cd beautynest  
+Backend (ASP.NET Core):
+
+Instaliraj Visual Studio ili Visual Studio Code.
+Pokreni Backend/BeautyNest/BeautyNest.sln u Visual Studio.
+Pokreni sljedeće komande u Package Manager Console za migracije:
+bash
+Copy code
+update-database  
+Pokreni aplikaciju pomoću IIS Express ili Kestrel.
+Frontend (Angular):
+
+Instaliraj Node.js s nodejs.org.
+Idi u direktorij Frontend:
+bash
+Copy code
+cd Frontend/BeautyNest  
+Instaliraj potrebne pakete:
+bash
+Copy code
+npm install  
+Pokreni razvojni server:
+bash
+Copy code
+ng serve  
+Aplikacija će biti dostupna na http://localhost:4200.
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
