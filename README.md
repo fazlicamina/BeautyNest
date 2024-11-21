@@ -8,7 +8,7 @@ Klonirati repozitorij:
 git clone https://github.com/tvoj-repozitorij/beautynest.git  
 cd beautynest  
 
-###Backend (ASP.NET Core):
+**Backend (ASP.NET Core):**
 
 Pokrenuti BeautyNest.sln u Visual Studiu.
 
@@ -18,7 +18,7 @@ Update-Database -Context "AuthDbContext"
 
 Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
 
-###Frontend (Angular):
+**Frontend (Angular):**
 
 Instalirati Node.js s nodejs.org.
 Idi u direktorij Frontend:
@@ -32,5 +32,5 @@ ng serve
 Aplikacija će biti dostupna na http://localhost:4200.
 
 **Pristupni podaci za default korisnika**:  
-- **Korisničko ime**: `fazlicamina02`  
-- **Šifra**: `Amina123!`
+Korisničko ime: `fazlicamina02`  
+Šifra: `Amina123!`
