@@ -4,9 +4,6 @@ Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implem
 
 # Getting Started
 
-Klonirati repozitorij:
-<br>git clone `https://github.com/tvoj-repozitorij/beautynest.git` 
-
 **Backend (ASP.NET Core):**
 
 Pokrenuti BeautyNest.sln u Visual Studiu.
