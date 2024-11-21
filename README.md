@@ -1,41 +1,36 @@
-## Getting Started
+# BeautyNest
+
+Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implementacija pokazuje osnovne funkcionalnosti kao što su rukovanje sa **Repository pattern**-om, korištenje API-ja i pisanje backend-a. Iako aplikacija trenutno ne sadrži formu za registraciju korisnika, korisnici se mogu registrovati putem API-ja. Na frontend-u, za funkcionalnosti koje još nisu implementirane, koriste se **placeholder-i**. Aplikacija trenutno nema mnogo funkcionalnosti, ali će biti nadograđena u budućim fazama razvoja, s ciljem implementacije svih predviđenih opcija za klijente, vlasnike i uposlenike salona ljepote.
+
+# Getting Started
 
 Klonirati repozitorij:
 git clone https://github.com/tvoj-repozitorij/beautynest.git  
 cd beautynest  
-Backend (ASP.NET Core):
 
-Instaliraj Visual Studio ili Visual Studio Code.
-Pokreni Backend/BeautyNest/BeautyNest.sln u Visual Studio.
-Pokreni sljedeće komande u Package Manager Console za migracije:
-bash
-Copy code
-update-database  
-Pokreni aplikaciju pomoću IIS Express ili Kestrel.
-Frontend (Angular):
+###Backend (ASP.NET Core):
 
-Instaliraj Node.js s nodejs.org.
+Pokrenuti BeautyNest.sln u Visual Studiu.
+
+Pokrenuti sljedeće komande u Package Manager Console za migracije:
+Update-Database -Context "ApplicationDbContext"
+Update-Database -Context "AuthDbContext"
+
+Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
+
+###Frontend (Angular):
+
+Instalirati Node.js s nodejs.org.
 Idi u direktorij Frontend:
-bash
-Copy code
-cd Frontend/BeautyNest  
-Instaliraj potrebne pakete:
-bash
-Copy code
+
+Instalirati potrebne pakete:
 npm install  
-Pokreni razvojni server:
-bash
-Copy code
+
+Pokrenuti razvojni server:
 ng serve  
+
 Aplikacija će biti dostupna na http://localhost:4200.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+**Pristupni podaci za default korisnika**:  
+- **Korisničko ime**: `fazlicamina02`  
+- **Šifra**: `Amina123!`
