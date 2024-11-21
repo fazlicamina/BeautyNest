@@ -26,6 +26,6 @@ Pokrenuti razvojni server:
 
 Aplikacija će biti dostupna na http://localhost:4200.
 
-**Pristupni podaci za default korisnika**:  
+**Pristupni podaci za default korisnika:**  
 Korisničko ime: `fazlicamina02`  
 Šifra: `Amina123!`
