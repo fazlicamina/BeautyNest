@@ -1,6 +1,6 @@
 # BeautyNest
 
-Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implementacija pokazuje osnovne funkcionalnosti kao što su rukovanje sa **Repository pattern**-om, korištenje API-ja i pisanje backend-a. Iako aplikacija trenutno ne sadrži formu za registraciju korisnika, korisnici se mogu registrovati putem API-ja. Na frontend-u, za funkcionalnosti koje još nisu implementirane, koriste se **placeholder-i**. Aplikacija trenutno nema mnogo funkcionalnosti, ali će biti nadograđena u budućim fazama razvoja, s ciljem implementacije svih predviđenih opcija za klijente, vlasnike i uposlenike salona ljepote.
+Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implementacija pokazuje osnovne funkcionalnosti kao što su rukovanje sa **Repository pattern-om**, korištenje API-ja i pisanje backend-a. Iako aplikacija trenutno ne sadrži formu za registraciju korisnika, korisnici se mogu registrovati putem API-ja. Na frontend-u, za funkcionalnosti koje još nisu implementirane, koriste se **placeholder-i**. Aplikacija trenutno nema mnogo funkcionalnosti, ali će biti nadograđena u budućim fazama razvoja, s ciljem implementacije svih predviđenih opcija za klijente, vlasnike i uposlenike salona ljepote.
 
 # Getting Started
 
