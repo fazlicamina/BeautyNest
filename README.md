@@ -1,20 +1,31 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# BeautyNest
+
+Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implementacija pokazuje osnovne funkcionalnosti kao što su rukovanje sa **Repository pattern-om**, korištenje API-ja i pisanje backend-a. Iako aplikacija trenutno ne sadrži formu za registraciju korisnika, korisnici se mogu registrovati putem API-ja. Na frontend-u, za funkcionalnosti koje još nisu implementirane, koriste se **placeholder-i**. Aplikacija trenutno nema mnogo funkcionalnosti, ali će biti nadograđena u budućim fazama razvoja, s ciljem implementacije svih predviđenih opcija za klijente, vlasnike i uposlenike salona ljepote.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+**Backend (ASP.NET Core):**
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Pokrenuti BeautyNest.sln u Visual Studiu.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Pokrenuti sljedeće komande u Package Manager Console za migracije:
+<br>`Update-Database -Context "ApplicationDbContext"`
+<br>`Update-Database -Context "AuthDbContext"`
+
+Pokrenuti aplikaciju pomoću IIS Express ili Kestrel.
+
+**Frontend (Angular):**
+
+Instalirati Node.js s nodejs.org.
+
+Instalirati potrebne pakete:
+<br>`npm install`  
+
+Pokrenuti razvojni server:
+<br>`ng serve`
+
+Aplikacija će biti dostupna na http://localhost:4200.
+
+**Pristupni podaci za default korisnika:**  
+Korisničko ime: `fazlicamina02`  
+Šifra: `Amina123!`
