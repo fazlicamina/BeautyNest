@@ -61,9 +61,16 @@
   list-style-type: none;
 }
 
+.btn-check + .btn{
+  color: red !important;
+  background-color: rgba(219,174,171,0.15) !important; font-weight: normal; font-size: medium;
+  border: 2px solid rgba(219,174,171,0.30); color: #DBAEAB !important;
+}
+
+
 .btn-check:checked + .btn {
-  background-color: #DBAEAB; /* ili bilo koja druga boja koju želite */
-  color: white; /* boja teksta kada je označeno */
+  background-color: #DBAEAB !important;
+  color: white !important;
 }
 
 

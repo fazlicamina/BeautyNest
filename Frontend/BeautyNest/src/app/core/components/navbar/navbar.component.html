@@ -10,6 +10,7 @@
         <ng-container *ngIf="user!==undefined && user?.roles?.includes('Klijent')">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Rezervacije</a>
+          <a>{{ user.roles }}</a>
         </li>
         </ng-container>
 
@@ -18,7 +19,8 @@
 
       <div class="d-flex">
        <ng-container *ngIf="user===undefined; else showLogout">
-         <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
+         <a [routerLink]="['/login']" class="btn btn-primary me-3">Prijavi se</a>
+         <a [routerLink]="['/registracija']" class="btn btn-primary">Registriraj se</a>
        </ng-container>
         <ng-template #showLogout>
             <div class="d-flex align-items-center">

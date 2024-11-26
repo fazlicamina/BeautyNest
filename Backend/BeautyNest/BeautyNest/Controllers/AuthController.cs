@@ -63,7 +63,7 @@ namespace BeautyNest.Controllers
 
             if (identityResult.Succeeded)
             {
-                identityResult = await userManager.AddToRoleAsync(user, "Klijent");
+                identityResult = await userManager.AddToRoleAsync(user, request.Role);
 
                 if (identityResult.Succeeded )
                 {

@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {User} from '../models/user';
 import {CookieService} from 'ngx-cookie-service';
+import {RegistrationRequest} from '../models/registration-request';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,10 @@ export class AuthService {
     localStorage.clear();
     this.cookieService.delete('Authorization','/');
     this.$user.next(undefined);
+  }
+
+  register(model: RegistrationRequest ): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}api/auth/register`, model);
   }
 
 }
