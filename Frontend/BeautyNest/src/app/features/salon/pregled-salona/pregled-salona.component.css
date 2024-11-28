@@ -51,7 +51,7 @@
 }
 
 .nav-tabs .nav-link:hover {
-  background-color: rgba(219, 174, 171, 0.15); /* Boja na hover */
+  background-color: rgba(219, 174, 171, 0.15);
   color: #555;
   border: none;
   border-radius: 5px;
@@ -61,17 +61,16 @@
   list-style-type: none;
 }
 
-.btn-check + .btn{
-  color: red !important;
-  background-color: rgba(219,174,171,0.15) !important; font-weight: normal; font-size: medium;
-  border: 2px solid rgba(219,174,171,0.30); color: #DBAEAB !important;
-}
-
-
-.btn-check:checked + .btn {
+.pinkbutton{
   background-color: #DBAEAB !important;
   color: white !important;
 }
 
+.pinkbutton:hover{
+  background-color: #e5bcba !important;
+}
 
-
+.list-group-item.selected {
+  border: 3px solid rgba(219, 174, 171, 0.8) !important;
+  border-radius: 5px;
+}

@@ -31,9 +31,6 @@
         </button>
       </div>
 
-      <h1 style="margin-top: 40px">O nama</h1>
-      <p *ngIf="salon$ | async as salon">{{salon.opis}}</p>
-
       <!-- Ovdje ćemo prikazati usluge po kategorijama -->
 
       <h1 style="margin-top: 40px">Naše usluge</h1>
@@ -56,20 +53,32 @@
           <ul>
 
 
+            <!-- Prikaz usluga -->
             <div *ngFor="let usluga of kategorija.usluge">
+              <ul class="list-group" style="width: 100%; margin-left: -33px">
+                <li
+                  class="list-group-item mt-3 d-flex justify-content-between align-items-start"
+                  [ngClass]="{ 'selected': isSelected(usluga) }">
 
-              <ul class="list-group" style="width: 100%; margin-left: -33px" >
-                <li class="list-group-item mt-3 d-flex justify-content-between align-items-start" >
-                  <div >
-                    <div class="fw-bold" >{{ usluga.naziv }}</div>
-                    {{usluga.trajanje}}
-                    <div class="fw-bold">{{usluga.cijena}} KM</div>
+                  <div>
+                    <div><span style="font-weight: bold">{{ usluga.naziv }}</span> ({{ usluga.trajanje.slice(0, 5) }} h)</div>
+                    <div style="color: #DBAEAB; font-size: larger" class="fw-bold">{{ usluga.cijena }} KM</div>
                   </div>
-                  <input type="checkbox" class="btn-check" id="{{ usluga.naziv }}" autocomplete="off">
-                  <label class="btn align-self-center"  for="{{ usluga.naziv }}">Odaberi</label>
+
+                  <input
+                    type="checkbox"
+                    class="btn-check"
+                    id="{{ usluga.naziv }}"
+                    autocomplete="off"
+                    (change)="toggleUsluga({ naziv: usluga.naziv, cijena: usluga.cijena })">
+
+
+                  <label class="btn pinkbutton align-self-center" for="{{ usluga.naziv }}">
+                    {{ isSelected(usluga) ? 'X' : 'Odaberi' }}
+                  </label>
+
                 </li>
               </ul>
-
             </div>
 
 
@@ -89,48 +98,73 @@
       <div class="card fixed-column" style="width: 100%; ">
         <div class="card-body" *ngIf="salon$ | async as salon">
 
-          <h1  style="font-weight: bold; margin-bottom: 10px">{{ salon.naziv }}</h1>
+          <h1  style="font-weight: bold;">{{ salon.naziv }}</h1>
+
+          <div class="d-flex align-items-center mb-3" style="color: #DBAEAB; font-size: x-large;  font-weight: bold; margin-top:-10px">
+            <span class="me-2">5,0</span>
+            <div class="me-2">
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star me-1"></i>
+              <i class="bi bi-star"></i></div>
+          </div>
 
 
-      <span *ngFor="let kategorija of salon.kategorije">
+      <span *ngFor="let kategorija of salon.kategorije" >
        <span class="badge text-bg-secondary me-1 mb-1" style="background-color: rgba(219,174,171,0.15) !important; font-weight: normal; font-size: medium;
        border: 2px solid rgba(219,174,171,0.30); color: #DBAEAB !important;">
          {{ kategorija.naziv }}</span>
       </span>
 
 
-          <div class="d-flex align-items-center mt-2" style="color: #DBAEAB; font-size: large;  font-weight: bold">
-
-            <span class="me-2">{{salon.prosjecnaOcjena}}</span>
-
-            <div class="me-2">
-            <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star"></i></div>
 
 
+          <div style="font-weight: bold" class="mt-3">
+            <p>{{ salon.adresa }},
+              <span style="color: #DBAEAB; font-weight: bold">
+      {{ salon.radnoVrijemeOd.slice(0, 5) }} - {{ salon.radnoVrijemeDo.slice(0, 5) }} h
+    </span>
+            </p>
+          </div>
+
+          <p *ngIf="salon$ | async as salon">{{salon.opis}}</p>
+
+
+          <div class="mt-3" *ngIf="selectedUsluge.length > 0">
+            <hr>
+            <h4>Odabrane usluge</h4>
+            <ul class="list-group">
+              <li  class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let usluga of selectedUsluge"
+                   style=" display: flex; justify-content: space-between; align-items: center;">
+                <span style="flex-grow: 1; font-weight: bold">{{ usluga.naziv }}</span>
+                <div style="display: flex; align-items: center; ">
+                  <span style="font-weight: bold;color: #DBAEAB">{{ usluga.cijena }} KM</span>
+                  <button  class="btn btn-sm remove-btn pinkbutton" (click)="removeUsluga(usluga)" style="margin-left: 20px;!important;">X</button>
+                </div>
+              </li>
+            </ul>
+            <div class="mt-3">
+              <h5>Ukupna cijena: <span style="color: #DBAEAB; font-weight: bold">{{ totalCijena }} KM</span></h5>
+            </div>
+
+            <a href="#" class="btn btn-primary pinkbutton mt-3" style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold">Rezerviši</a>
 
           </div>
 
 
-          <a href="#" class="btn btn-primary mt-3" style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold">Rezerviši</a>
 
-          <hr>
 
-            <div>
-              <i class="bi bi-clock"></i>
-              {{salon.radnoVrijemeOd}} - {{salon.radnoVrijemeDo}}
-            </div>
 
-            <div class="mt-2">
-            <i class="bi bi-geo-alt"></i>
-            {{salon.adresa}}
-            </div>
+
 
         </div>
+
+
       </div>
+
+
+
 
     </div>
 
@@ -141,3 +175,5 @@
 
 
 <div style="margin-bottom: 80px"></div>
+
+<!-- Modal za  login kada se klikne na-->
