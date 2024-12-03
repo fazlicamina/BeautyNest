@@ -56,6 +56,10 @@ export class AuthService {
     this.$user.next(undefined);
   }
 
+  isAuthenticated(): boolean {
+    return !!this.getUser();
+  }
+
   register(model: RegistrationRequest ): Observable<any> {
     return this.http.post<any>(`${environment.apiBaseUrl}api/auth/register`, model);
   }
