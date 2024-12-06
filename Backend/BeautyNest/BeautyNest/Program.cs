@@ -1,4 +1,5 @@
 using BeautyNest.Data;
+using BeautyNest.Models.Domain;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -29,9 +30,7 @@ builder.Services.AddScoped<IUslugaRepository, UslugaRepository>();
 builder.Services.AddScoped<IGradRepository, GradRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 
-builder.Services.AddIdentityCore<IdentityUser>()
-    .AddRoles<IdentityRole>()
-    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("BeautyNest")
+builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>()
     .AddDefaultTokenProviders();
 

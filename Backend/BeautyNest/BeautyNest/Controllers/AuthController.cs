@@ -1,4 +1,5 @@
-﻿using BeautyNest.Models.DTO;
+﻿using BeautyNest.Models.Domain;
+using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,10 @@ namespace BeautyNest.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<User> userManager;
         private readonly ITokenRepository tokenRepository;
 
-        public AuthController(UserManager<IdentityUser> userManager,
+        public AuthController(UserManager<User> userManager,
             ITokenRepository tokenRepository)
         {
             this.userManager = userManager;
@@ -39,7 +40,9 @@ namespace BeautyNest.Controllers
                     {
                         Username=request.Username,
                         Roles=roles.ToList(),
-                        Token=jwtToken
+                        Token=jwtToken,
+                        FirstName = identityUser.FirstName,
+                        LastName = identityUser.LastName
                     };
                     return Ok(response);
                 }
@@ -53,10 +56,12 @@ namespace BeautyNest.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
-            var user = new IdentityUser
+            var user = new User
             {
                 UserName = request.UserName?.Trim(),
-                Email = request.Email?.Trim()
+                Email = request.Email?.Trim(),
+                FirstName = request.FirstName?.Trim(),
+                LastName = request.LastName?.Trim()
             };
 
             var identityResult= await userManager.CreateAsync(user, request.Password);

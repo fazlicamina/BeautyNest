@@ -22,7 +22,9 @@ export class RegistracijaComponent {
       email: '',
       username: '',
       password: '',
-      role: 'Klijent'
+      role: 'Klijent',
+      ime: '',
+      prezime: ''
     };
 
 

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BeautyNest.Models.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeautyNest.Data
 {
-    public class AuthDbContext : IdentityDbContext
+    public class AuthDbContext : IdentityDbContext<User>
     {
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
@@ -47,18 +48,20 @@ namespace BeautyNest.Data
 
             var klijentUserId = "41451580-acf7-422e-81b1-3bab4d8213a6";
 
-            var klijent = new IdentityUser()
+            var klijent = new User()
             {
                 Id = klijentUserId,
                 UserName = "fazlicamina02",
                 Email = "fazlicamina02@gmail.com",
                 NormalizedEmail = "fazlicamina02@gmail.com".ToUpper(),
                 NormalizedUserName = "fazlicamina02".ToUpper(),
+                FirstName = "Amina",
+                LastName = "Fazlić"
             };
 
             klijent.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(klijent, "Amina123!");
 
-            builder.Entity<IdentityUser>().HasData(klijent);
+            builder.Entity<User>().HasData(klijent);
 
             var klijentRoles = new List<IdentityUserRole<string>>()
             {
