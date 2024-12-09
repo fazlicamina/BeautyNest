@@ -1,6 +1,7 @@
 ﻿using BeautyNest.Models.Domain;
 using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +43,8 @@ namespace BeautyNest.Controllers
                         Roles=roles.ToList(),
                         Token=jwtToken,
                         FirstName = identityUser.FirstName,
-                        LastName = identityUser.LastName
+                        LastName = identityUser.LastName,
+    
                     };
                     return Ok(response);
                 }
@@ -98,5 +100,42 @@ namespace BeautyNest.Controllers
 
             return ValidationProblem(ModelState);
         }
+
+        [HttpGet]
+        [Route("mojprofil")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var userName = User.Identity?.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                var claims = User.Claims.Select(c => new { c.Type, c.Value }).ToList();
+                return Unauthorized(new { message = "Niste autentificirani.", claims });
+            }
+
+            var user = await userManager.FindByNameAsync(userName);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "Korisnik nije pronađen." });
+            }
+
+            var roles = await userManager.GetRolesAsync(user);
+
+            var userDto = new UserProfileDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePicture = user.ProfilePicture,
+                Roles = roles.ToList()
+            };
+
+            return Ok(userDto);
+        }
+
+
     }
 }

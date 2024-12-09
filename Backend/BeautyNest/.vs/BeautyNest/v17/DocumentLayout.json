@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RegisterRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\RegisterRequestDto.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\RegisterRequestDto.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\RegisterRequestDto.cs",
-              "RelativeToolTip": "BeautyNest\\Models\\DTO\\RegisterRequestDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T16:10:26.138Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "20241206155939_Prosirenje user modela.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs",
-              "RelativeToolTip": "BeautyNest\\Migrations\\AuthDb\\20241206155939_Prosirenje user modela.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T15:59:39.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Data\\AuthDbContext.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Data\\AuthDbContext.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Data\\AuthDbContext.cs",
-              "RelativeToolTip": "BeautyNest\\Data\\AuthDbContext.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T15:55:09.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Program.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Program.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Program.cs",
               "RelativeToolTip": "BeautyNest\\Program.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAAB0AAAA+AAAA",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAIIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T15:52:57.199Z",
+              "WhenOpened": "2024-12-09T08:09:58.989Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\AuthController.cs",
               "RelativeToolTip": "BeautyNest\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAgwDgAAABYAAAA",
+              "ViewState": "AQIAAHAAAAAAAAAAAAAqwIQAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T09:13:32.193Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UserDto.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\UserDto.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UserDto.cs",
-              "RelativeToolTip": "BeautyNest\\Models\\DTO\\UserDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T09:08:07.46Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\User.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Models\\Domain\\User.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\User.cs",
-              "RelativeToolTip": "BeautyNest\\Models\\Domain\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:49:12.839Z",
               "EditorCaption": ""
             }
           ]

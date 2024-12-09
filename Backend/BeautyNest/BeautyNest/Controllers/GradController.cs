@@ -1,6 +1,7 @@
 ﻿using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,10 @@ namespace BeautyNest.Controllers
             return Ok(response);
            
         }
+
+
+
+
 
     }
 }

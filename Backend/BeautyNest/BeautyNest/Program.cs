@@ -1,4 +1,4 @@
-using BeautyNest.Data;
+﻿using BeautyNest.Data;
 using BeautyNest.Models.Domain;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,29 +37,62 @@ builder.Services.AddIdentity<User, IdentityRole>()
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.Password.RequireDigit=false;
-    options.Password.RequireLowercase=false;
-    options.Password.RequireNonAlphanumeric=false;
-    options.Password.RequireUppercase=false;
-    options.Password.RequiredLength=6;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+
+//logovanje
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddConsole();
+});
+
+
+//builder.Services.AddIdentity<User, IdentityRole>()
+//    .AddEntityFrameworkStores<AuthDbContext>()
+//    .AddDefaultTokenProviders();
+
+//builder.Services.AddIdentityCore<IdentityUser>()
+//    .AddRoles<IdentityRole>()
+//    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("BeautyNest")
+//    .AddEntityFrameworkStores<AuthDbContext>()
+//    .AddDefaultTokenProviders();
+
+//builder.Services.Configure<IdentityOptions>(options =>
+//{
+//    options.Password.RequireDigit=false;
+//    options.Password.RequireLowercase=false;
+//    options.Password.RequireNonAlphanumeric=false;
+//    options.Password.RequireUppercase=false;
+//    options.Password.RequiredLength=6;
+//    options.Password.RequiredUniqueChars = 1;
+//});
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            AuthenticationType = "Jwt",
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey= true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey=new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
 
 
 var app = builder.Build();
@@ -80,12 +114,23 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//app.UseCors(options =>
+//{
+//    options.AllowAnyHeader();
+//    options.AllowAnyOrigin();
+//    options.AllowAnyMethod();
+//});
+
 app.UseCors(options =>
 {
-    options.AllowAnyHeader();
-    options.AllowAnyOrigin();
-    options.AllowAnyMethod();
+    options.WithOrigins("http://localhost:4200")  // Dozvoljava samo pristup sa frontenda na localhost:4200
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowCredentials();  // Omogućava kolačiće
 });
+
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();

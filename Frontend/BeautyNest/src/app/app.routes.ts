@@ -4,6 +4,7 @@ import {PregledSalonaComponent} from './features/salon/pregled-salona/pregled-sa
 import {PretragaComponent} from './features/public/pretraga/pretraga.component';
 import {LoginComponent} from './features/auth/login/login.component';
 import {RegistracijaComponent} from './features/auth/registracija/registracija.component';
+import {MojProfilComponent} from './features/user/moj-profil/moj-profil.component';
 
 
 export const routes: Routes = [
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'saloni/:id', component: PregledSalonaComponent },
   { path: 'pretraga', component: PretragaComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registracija', component: RegistracijaComponent }
+  { path: 'registracija', component: RegistracijaComponent },
+  { path: 'mojprofil', component: MojProfilComponent }
 ];

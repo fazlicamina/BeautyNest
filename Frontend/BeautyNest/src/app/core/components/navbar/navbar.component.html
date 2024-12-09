@@ -10,8 +10,11 @@
         <ng-container *ngIf="user!==undefined && user?.roles?.includes('Klijent')">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Rezervacije</a>
-          <a>{{ user.roles }}</a>
         </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/mojprofil']">{{ user.roles }}</a>
+            <a></a>
+          </li>
         </ng-container>
 
 

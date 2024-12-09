@@ -72,6 +72,9 @@ namespace BeautyNest.Migrations.AuthDb
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -99,7 +102,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "41451580-acf7-422e-81b1-3bab4d8213a6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c381c2eb-d72f-4979-b4fb-4ccb64124f5e",
+                            ConcurrencyStamp = "6ec43eae-5a40-4c89-874a-995e4628b8fd",
                             Email = "fazlicamina02@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Amina",
@@ -107,9 +110,9 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "FAZLICAMINA02@GMAIL.COM",
                             NormalizedUserName = "FAZLICAMINA02",
-                            PasswordHash = "AQAAAAIAAYagAAAAECnG1RAwRAItG3Rws3Kk/igyIX/5K1k5DZSXJYah5gDezsPMryTosBhpK8UdUdOw6A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELC9uRoIjug/SRPtvnslqIIkw0NgiPbRs+s7mqTaTdhhJLmXrcwJYxRUhr6c84r2rQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2d552bf6-e119-42eb-8d40-94ef80fa7f22",
+                            SecurityStamp = "2d54173c-8844-4920-b7c0-2aeff2214e99",
                             TwoFactorEnabled = false,
                             UserName = "fazlicamina02"
                         });

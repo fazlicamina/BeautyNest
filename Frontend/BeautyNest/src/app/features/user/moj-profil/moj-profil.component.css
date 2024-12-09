@@ -1,0 +1,74 @@
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.profile-header {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.profile-image img {
+  max-width: 150px;
+  border: 4px solid #dbaeab; /* Tvoja brand boja */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+  flex-grow: 1;
+}
+
+.profile-details h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-details p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.profile-info h4 {
+  font-size: 1.3rem;
+  color: #dbaeab; /* Tvoja brand boja */
+  border-bottom: 2px solid #dbaeab;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.btn-custom {
+  background-color: #dbaeab; /* Tvoja brand boja */
+  border: none;
+  color: white;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+  background-color: #c59b8a; /* Tamnija nijansa tvoje boje */
+}
+
+.profile-actions {
+  margin-top: 40px;
+}
+
+.alert {
+  margin-top: 20px;
+}
