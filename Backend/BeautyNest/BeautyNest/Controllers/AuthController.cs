@@ -137,5 +137,45 @@ namespace BeautyNest.Controllers
         }
 
 
+        [HttpPut]
+        [Route("editprofile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto request)
+        {
+            var userName = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new { message = "Niste autentificirani." });
+            }
+
+            var user = await userManager.FindByNameAsync(userName);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "Korisnik nije pronađen." });
+            }
+
+            user.FirstName = request.FirstName?.Trim() ?? user.FirstName;
+            user.LastName = request.LastName?.Trim() ?? user.LastName;
+            user.Email = request.Email?.Trim() ?? user.Email;
+            user.ProfilePicture = request.ProfilePicture ?? user.ProfilePicture;
+
+            var result = await userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return ValidationProblem(ModelState);
+            }
+
+            return Ok(new { message = "Profil je uspješno ažuriran." });
+        }
+
+
+
     }
 }

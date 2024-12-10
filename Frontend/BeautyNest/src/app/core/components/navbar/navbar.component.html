@@ -11,10 +11,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Rezervacije</a>
         </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/mojprofil']">{{ user.roles }}</a>
-            <a></a>
-          </li>
         </ng-container>
 
 
@@ -27,8 +23,8 @@
        </ng-container>
         <ng-template #showLogout>
             <div class="d-flex align-items-center">
-              <span style="font-size: large; font-weight: bold; color: white">{{user?.username}}</span>
-              <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+              <button class="btn btn-primary ms-3" [routerLink]="['/mojprofil']" >Moj profil</button>
+              <button class="btn btn-primary ms-3" (click)="onLogout()">Odjavi se</button>
             </div>
         </ng-template>
       </div>

@@ -13,7 +13,6 @@ export class MojProfilService {
 
   getUserProfile(): Observable<UserProfile> {
     const token = this.cookieService.get('Authorization');
-    console.log(token);
     const headers = new HttpHeaders().set('Authorization', `${token}`);
 
 
@@ -22,6 +21,17 @@ export class MojProfilService {
       withCredentials: true // Ovdje šaljemo kolačiće sa zahtjevom
     });
   }
+
+  updateUserProfile(userProfile: UserProfile): Observable<any> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+
+    return this.http.put(`${environment.apiBaseUrl}api/auth/editprofile`, userProfile, {
+      headers,
+      withCredentials: true // Ovdje šaljemo kolačiće sa zahtjevom
+    });
+  }
+
 
 
 }
