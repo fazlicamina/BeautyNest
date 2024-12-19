@@ -2,10 +2,13 @@
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
       <div class="card shadow border-0 rounded-3">
-        <div class="card-body" *ngIf="userProfile; else errorContent">
+        <div class="card-body" *ngIf="userProfile;">
           <div class="profile-header d-flex align-items-center">
             <div class="profile-image">
-              <img src="https://via.placeholder.com/150" alt="Profilna slika" class="img-fluid rounded-circle border-5 border-custom">
+              <img *ngIf="userProfile.profilePictureBase64; else placeholder" [src]="userProfile.profilePictureBase64" alt="Profilna slika" class="img-fluid rounded-circle border-5 border-custom">
+              <ng-template #placeholder>
+                <img src="https://via.placeholder.com/150" alt="Profilna slika" class="img-fluid rounded-circle border-5 border-custom">
+              </ng-template>
             </div>
             <div class="profile-details ms-4">
               <h3 class="mb-0">{{ userProfile.firstName }} {{ userProfile.lastName }}</h3>
@@ -28,6 +31,12 @@
                 <label for="email" class="form-label"><strong>Email:</strong></label>
                 <input type="email" id="email" class="form-control" [(ngModel)]="userProfile.email" name="email" [disabled]="!isEditing">
               </div>
+
+              <div class="mb-3">
+                <label for="profilePicture" class="form-label"><strong>Promijeni profilnu sliku:</strong></label>
+                <input type="file" id="profilePicture" (change)="onFileChange($event)" class="form-control" [disabled]="!isEditing">
+              </div>
+
             </form>
           </div>
 
@@ -40,12 +49,6 @@
           </div>
         </div>
 
-
-        <ng-template #errorContent>
-          <div class="alert alert-danger text-center">
-            <strong>Greška!</strong> Podaci o profilu nisu dostupni.
-          </div>
-        </ng-template>
       </div>
     </div>
   </div>

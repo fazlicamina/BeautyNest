@@ -5,4 +5,6 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   roles: string[];
+  profilePicture?: string;
+  profilePictureBase64?: string;
 }

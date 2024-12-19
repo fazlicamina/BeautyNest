@@ -18,21 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UpdateProfileDto.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
-              "RelativeToolTip": "BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T11:44:47.059Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -41,10 +28,22 @@
               "RelativeDocumentMoniker": "BeautyNest\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\AuthController.cs",
               "RelativeToolTip": "BeautyNest\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAiwJ0AAAAAAAAA",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAAALsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T11:36:36.087Z",
+              "WhenOpened": "2024-12-10T13:40:13.361Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UpdateProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
+              "RelativeToolTip": "BeautyNest\\Models\\DTO\\UpdateProfileDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T11:44:47.059Z"
             }
           ]
         }

@@ -32,18 +32,24 @@ export class MojProfilComponent implements OnInit{
 
   }
 
-
   loadUserProfile(): void {
     this.mojProfilService.getUserProfile().subscribe({
       next: (data) => {
         this.userProfile = data;
         this.roles = data.roles;
+
+
+        if (this.userProfile?.profilePicture) {
+          this.userProfile.profilePictureBase64 = 'data:image/jpeg;base64,' + this.userProfile.profilePicture;
+        }
       },
       error: (err) => {
         this.errorMessage = 'Neuspješno učitavanje profila. Provjerite vašu konekciju.';
       }
     });
   }
+
+
 
   toggleEdit(): void {
     this.isEditing = true;
@@ -54,9 +60,19 @@ export class MojProfilComponent implements OnInit{
     this.loadUserProfile();
   }
 
+
   saveChanges(): void {
     if (this.userProfile) {
-      this.mojProfilService.updateUserProfile(this.userProfile).subscribe({
+      const formData = new FormData();
+      formData.append('firstName', this.userProfile.firstName);
+      formData.append('lastName', this.userProfile.lastName);
+      formData.append('email', this.userProfile.email);
+
+      if (this.userProfile.profilePicture) {
+        formData.append('profilePicture', this.userProfile.profilePicture);
+      }
+
+      this.mojProfilService.updateUserProfile(formData).subscribe({
         next: () => {
           this.isEditing = false;
           alert('Profil uspješno ažuriran.');
@@ -67,5 +83,25 @@ export class MojProfilComponent implements OnInit{
       });
     }
   }
+
+
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0 && this.userProfile) {
+      const file = event.target.files[0];
+
+      this.userProfile.profilePicture = file;
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+
+        if (reader.result && this.userProfile) {
+          this.userProfile.profilePictureBase64 = reader.result as string;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+
 
 }

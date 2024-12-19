@@ -18,17 +18,18 @@ export class MojProfilService {
 
     return this.http.get<UserProfile>(`${environment.apiBaseUrl}api/auth/mojprofil`, {
       headers,
-      withCredentials: true // Ovdje šaljemo kolačiće sa zahtjevom
+      withCredentials: true
     });
   }
 
-  updateUserProfile(userProfile: UserProfile): Observable<any> {
+
+  updateUserProfile(userProfile: FormData): Observable<any> {
     const token = this.cookieService.get('Authorization');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
 
     return this.http.put(`${environment.apiBaseUrl}api/auth/editprofile`, userProfile, {
       headers,
-      withCredentials: true // Ovdje šaljemo kolačiće sa zahtjevom
+      withCredentials: true
     });
   }
 

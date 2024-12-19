@@ -140,7 +140,7 @@ namespace BeautyNest.Controllers
         [HttpPut]
         [Route("editprofile")]
         [Authorize]
-        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto request)
+        public async Task<IActionResult> UpdateProfile([FromForm] UpdateProfileDto request, [FromForm] IFormFile? profilePicture)
         {
             var userName = User.Identity?.Name;
 
@@ -159,7 +159,22 @@ namespace BeautyNest.Controllers
             user.FirstName = request.FirstName?.Trim() ?? user.FirstName;
             user.LastName = request.LastName?.Trim() ?? user.LastName;
             user.Email = request.Email?.Trim() ?? user.Email;
-            user.ProfilePicture = request.ProfilePicture ?? user.ProfilePicture;
+
+            if (profilePicture != null)
+            {
+                // Djelomična validacija za tip slike (ako je potrebno)
+                if (!profilePicture.ContentType.StartsWith("image"))
+                {
+                    return BadRequest(new { message = "Morate uploadovati sliku." });
+                }
+
+                // Spremanje slike kao byte[] u bazu podataka
+                using (var memoryStream = new MemoryStream())
+                {
+                    await profilePicture.CopyToAsync(memoryStream);
+                    user.ProfilePicture = memoryStream.ToArray();
+                }
+            }
 
             var result = await userManager.UpdateAsync(user);
 
@@ -174,6 +189,7 @@ namespace BeautyNest.Controllers
 
             return Ok(new { message = "Profil je uspješno ažuriran." });
         }
+
 
 
 
