@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BeautyNest.Models.Domain
 {
@@ -26,13 +27,20 @@ namespace BeautyNest.Models.Domain
         public bool SubotaRadna { get; set; }
 
         public string NaslovnaFotografija { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public ICollection<Kategorija> Kategorije { get; set; }
 
+        [JsonIgnore]
         public ICollection<KategorijaUsluge> KategorijeUsluga { get; set; } = new List<KategorijaUsluge>();
 
      
         public int? GradId { get; set; }
         public Grad Grad { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
+
 
     }
 }

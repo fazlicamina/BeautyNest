@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeautyNest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eecbc8011229944c59e6a7513c04576fe00d870")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd05978d4620d0ce54b67cb446b8cdaf1abac388")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeautyNest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeautyNest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

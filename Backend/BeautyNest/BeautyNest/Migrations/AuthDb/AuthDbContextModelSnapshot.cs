@@ -102,7 +102,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "41451580-acf7-422e-81b1-3bab4d8213a6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6ec43eae-5a40-4c89-874a-995e4628b8fd",
+                            ConcurrencyStamp = "01d838f4-f995-40a0-a24f-817f9a799249",
                             Email = "fazlicamina02@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Amina",
@@ -110,9 +110,9 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "FAZLICAMINA02@GMAIL.COM",
                             NormalizedUserName = "FAZLICAMINA02",
-                            PasswordHash = "AQAAAAIAAYagAAAAELC9uRoIjug/SRPtvnslqIIkw0NgiPbRs+s7mqTaTdhhJLmXrcwJYxRUhr6c84r2rQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDCrcUaCY4cT5s9ShoLObXwTm0dbQ8GEJaqcX4j2BDishNjWwad2gJZJW0DpjL5UFw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2d54173c-8844-4920-b7c0-2aeff2214e99",
+                            SecurityStamp = "af4868d6-5bff-45bc-8d3c-4df7e9a2c689",
                             TwoFactorEnabled = false,
                             UserName = "fazlicamina02"
                         });

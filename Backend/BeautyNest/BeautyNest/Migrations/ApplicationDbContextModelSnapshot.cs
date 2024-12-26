@@ -82,6 +82,47 @@ namespace BeautyNest.Migrations
                     b.ToTable("KategorijeUsluga");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DatumRezervacije")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("UslugaId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("VrijemePocetka")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("VrijemeZavrsetka")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalonId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UslugaId");
+
+                    b.ToTable("Rezervacije");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
                     b.Property<int>("Id")
@@ -134,6 +175,69 @@ namespace BeautyNest.Migrations
                     b.HasIndex("GradId");
 
                     b.ToTable("Saloni");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
@@ -190,6 +294,33 @@ namespace BeautyNest.Migrations
                     b.Navigation("Salon");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Salon", "Salon")
+                        .WithMany("Rezervacije")
+                        .HasForeignKey("SalonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeautyNest.Models.Domain.User", "User")
+                        .WithMany("Rezervacije")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeautyNest.Models.Domain.Usluga", "Usluga")
+                        .WithMany("Rezervacije")
+                        .HasForeignKey("UslugaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Salon");
+
+                    b.Navigation("User");
+
+                    b.Navigation("Usluga");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
                     b.HasOne("BeautyNest.Models.Domain.Grad", "Grad")
@@ -204,7 +335,7 @@ namespace BeautyNest.Migrations
                     b.HasOne("BeautyNest.Models.Domain.KategorijaUsluge", "KategorijaUsluge")
                         .WithMany("Usluge")
                         .HasForeignKey("KategorijaUslugeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("KategorijaUsluge");
@@ -233,6 +364,18 @@ namespace BeautyNest.Migrations
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
                     b.Navigation("KategorijeUsluga");
+
+                    b.Navigation("Rezervacije");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.User", b =>
+                {
+                    b.Navigation("Rezervacije");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
+                {
+                    b.Navigation("Rezervacije");
                 });
 #pragma warning restore 612, 618
         }

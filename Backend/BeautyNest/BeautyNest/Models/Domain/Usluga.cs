@@ -20,5 +20,7 @@ namespace BeautyNest.Models.Domain
         [ForeignKey("KategorijaUslugeId")]
         public KategorijaUsluge KategorijaUsluge { get; set; }
 
+        public ICollection<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
+
     }
 }
