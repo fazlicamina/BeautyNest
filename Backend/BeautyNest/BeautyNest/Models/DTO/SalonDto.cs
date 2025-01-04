@@ -1,4 +1,7 @@
-﻿namespace BeautyNest.Models.DTO
+﻿using BeautyNest.Models.Domain;
+using System.Text.Json.Serialization;
+
+namespace BeautyNest.Models.DTO
 {
     public class SalonDto
     {
@@ -28,6 +31,10 @@
         public List<KategorijaUslugeDto> KategorijeUsluga { get; set; } = new List<KategorijaUslugeDto>();
 
         public int? GradId { get; set; }
-        public string NazivGrada {  get; set; } = string.Empty; 
+        public string NazivGrada {  get; set; } = string.Empty;
+
+        //galerija slika
+        public List<SalonSlikaDto> Slike { get; set; } = new List<SalonSlikaDto>();
+
     }
 }

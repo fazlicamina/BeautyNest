@@ -20,6 +20,11 @@ namespace BeautyNest.Models.Domain
 
         public string Opis { get; set; } = string.Empty;
 
+        //slike
+        [JsonIgnore]
+        public ICollection<SalonSlika> GalerijaSlika { get; set; } = new List<SalonSlika>();
+
+
         public TimeSpan RadnoVrijemeOd { get; set; }
 
         public TimeSpan RadnoVrijemeDo { get; set; }

@@ -8,5 +8,6 @@ namespace BeautyNest.Repositories.Interface
         Task<IEnumerable<Salon>> GetAllAsync();
         Task<Salon?> DeleteAsync (int id);
         Task<Salon?> GetByIdAsync (int id);
+        //Task<List<Salon>> GetSaloniByIdsAsync(List<int> ids);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BeautyNest.Models.Domain;
 using BeautyNest.Models.DTO;
+using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,12 +16,16 @@ namespace BeautyNest.Controllers
         private readonly UserManager<User> userManager;
         private readonly ITokenRepository tokenRepository;
 
+
         public AuthController(UserManager<User> userManager,
             ITokenRepository tokenRepository)
         {
             this.userManager = userManager;
             this.tokenRepository = tokenRepository;
+
         }
+
+        //login
 
         [HttpPost]
         [Route("login")]

@@ -49,12 +49,21 @@ namespace BeautyNest.Controllers
         public async Task<IActionResult> KreirajRezervaciju(CreateRezervacijaRequestDto dto)
         {
             var salon = await salonRepository.GetByIdAsync(dto.SalonId);
-            var usluga = await uslugaRepository.GetByIdAsync(dto.UslugaId);
+            if (salon == null)
+                return NotFound("Salon nije pronađen.");
 
-            if (salon == null || usluga == null)
-                return NotFound("Salon ili usluga nisu pronađeni.");
+            var usluge = await uslugaRepository.GetByIdsAsync(dto.UslugaIds); // Pretpostavljamo da postoji metoda GetByIdsAsync
 
-            var vrijemeZavrsetka = dto.VrijemePocetka + usluga.Trajanje;
+            if (usluge.Count != dto.UslugaIds.Count)
+                return NotFound("Neke usluge nisu pronađene.");
+
+            // Logika za proveru dostupnosti
+            var vrijemeZavrsetka = dto.VrijemePocetka; // Start time of first service, you can modify this logic as needed
+
+            foreach (var usluga in usluge)
+            {
+                vrijemeZavrsetka = vrijemeZavrsetka + usluga.Trajanje;
+            }
 
             var dostupnost = await rezervacijaRepository.ProvjeriDostupnostAsync(
                 dto.SalonId,
@@ -68,31 +77,48 @@ namespace BeautyNest.Controllers
             var rezervacija = new Rezervacija
             {
                 SalonId = dto.SalonId,
-                UslugaId = dto.UslugaId,
-                UserId = dto.UserId,
                 DatumRezervacije = dto.DatumRezervacije,
                 VrijemePocetka = dto.VrijemePocetka,
                 VrijemeZavrsetka = vrijemeZavrsetka,
                 Status = true
             };
 
+            // Dodavanje usluga u rezervaciju
+            foreach (var usluga in usluge)
+            {
+                rezervacija.UslugeRezervacija.Add(new UslugaRezervacija
+                {
+                    Usluga = usluga
+                });
+            }
+
             var novaRezervacija = await rezervacijaRepository.DodajRezervacijuAsync(rezervacija);
 
-    
+            // Popuni DTO sa uslugama
             var rezervacijaDto = new RezervacijaDto
             {
                 Id = novaRezervacija.Id,
                 SalonId = novaRezervacija.SalonId,
-                UslugaId = novaRezervacija.UslugaId,
-                UserId = novaRezervacija.UserId,
                 DatumRezervacije = novaRezervacija.DatumRezervacije,
                 VrijemePocetka = novaRezervacija.VrijemePocetka,
                 VrijemeZavrsetka = novaRezervacija.VrijemeZavrsetka,
-                Status = novaRezervacija.Status
+                Status = novaRezervacija.Status,
+                Usluge = usluge.Select(u => new UslugaDto
+                {
+                    Id = u.Id,
+                    Naziv = u.Naziv,
+                    Trajanje = u.Trajanje,
+                    Cijena=u.Cijena,
+                    KategorijaUslugeId=u.KategorijaUslugeId,
+                    KategorijaNaziv=u.KategorijaUsluge.Naziv
+                }).ToList()  
             };
 
             return CreatedAtAction(nameof(DohvatiDostupneSlotove), new { salonId = dto.SalonId, datum = dto.DatumRezervacije }, rezervacijaDto);
         }
+
+
+
 
 
 

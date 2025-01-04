@@ -26,12 +26,6 @@ namespace BeautyNest.Migrations.AuthDb
                 table: "AspNetUsers",
                 type: "varbinary(max)",
                 nullable: true);
-
-            migrationBuilder.Sql(@"
-                UPDATE AspNetUsers
-                SET FirstName = 'Amina', LastName = 'Fazlic'
-                WHERE UserName = 'fazlicamina02'
-            ");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

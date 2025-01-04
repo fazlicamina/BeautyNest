@@ -6,6 +6,8 @@ namespace BeautyNest.Repositories.Interface
     {
         Task<Usluga> CreateAsync(Usluga usluga);
         Task<Usluga?> GetByIdAsync(int id);
+        Task<List<Usluga>> GetByIdsAsync(List<int> ids);
+
         Task<List<Usluga>> GetAllAsync();
     }
 }

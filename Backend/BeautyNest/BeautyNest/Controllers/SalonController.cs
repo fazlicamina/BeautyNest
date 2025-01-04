@@ -128,6 +128,11 @@ namespace BeautyNest.Controllers
                         Id = ku.Id,
                         Naziv = ku.Naziv,
                         SalonId = ku.SalonId
+                    }).ToList(),
+                    Slike = salon.GalerijaSlika.Select(slika => new SalonSlikaDto
+                    {
+                        Id = slika.Id,
+                        Url = slika.Url
                     }).ToList()
                 });
             }
@@ -195,6 +200,11 @@ namespace BeautyNest.Controllers
                     Id = ku.Id,
                     Naziv = ku.Naziv,
                     SalonId = ku.SalonId
+                }).ToList(),
+                Slike = salon.GalerijaSlika.Select(slika => new SalonSlikaDto
+                {
+                    Id = slika.Id,
+                    Url = slika.Url
                 }).ToList()
             };
             return Ok(response);

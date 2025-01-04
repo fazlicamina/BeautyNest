@@ -14,20 +14,14 @@ namespace BeautyNest.Models.Domain
         [JsonIgnore]
         public Salon Salon { get; set; }
 
-        [ForeignKey(nameof(Usluga))]
-        public int UslugaId { get; set; }
-        public Usluga Usluga { get; set; }
-
         public DateTime DatumRezervacije { get; set; }
 
         public TimeSpan VrijemePocetka { get; set; }
 
         public TimeSpan VrijemeZavrsetka { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-        public User User { get; set; }
-
         public bool Status { get; set; } = false;
+
+        public ICollection<UslugaRezervacija> UslugeRezervacija { get; set; } = new List<UslugaRezervacija>();
     }
 }

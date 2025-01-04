@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyNest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241224160024_Rezzervacijee model1")]
-    partial class Rezzervacijeemodel1
+    [Migration("20250101090323_Rezervacije fixes i osnovni model")]
+    partial class Rezervacijefixesiosnovnimodel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,12 @@ namespace BeautyNest.Migrations
                     b.Property<DateTime>("DatumRezervacije")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<TimeSpan>("VrijemePocetka")
                         .HasColumnType("time");
 
@@ -103,6 +109,8 @@ namespace BeautyNest.Migrations
                         .HasColumnType("time");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SalonId");
 
                     b.ToTable("Rezervacije");
                 });
@@ -189,6 +197,21 @@ namespace BeautyNest.Migrations
                     b.ToTable("Usluge");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.UslugaRezervacija", b =>
+                {
+                    b.Property<int>("UslugaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RezervacijaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UslugaId", "RezervacijaId");
+
+                    b.HasIndex("RezervacijaId");
+
+                    b.ToTable("UslugeRezervacije");
+                });
+
             modelBuilder.Entity("KategorijaSalon", b =>
                 {
                     b.Property<int>("KategorijeId")
@@ -215,6 +238,17 @@ namespace BeautyNest.Migrations
                     b.Navigation("Salon");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Salon", "Salon")
+                        .WithMany("Rezervacije")
+                        .HasForeignKey("SalonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Salon");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
                     b.HasOne("BeautyNest.Models.Domain.Grad", "Grad")
@@ -229,10 +263,29 @@ namespace BeautyNest.Migrations
                     b.HasOne("BeautyNest.Models.Domain.KategorijaUsluge", "KategorijaUsluge")
                         .WithMany("Usluge")
                         .HasForeignKey("KategorijaUslugeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("KategorijaUsluge");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.UslugaRezervacija", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Rezervacija", "Rezervacija")
+                        .WithMany("UslugeRezervacija")
+                        .HasForeignKey("RezervacijaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("BeautyNest.Models.Domain.Usluga", "Usluga")
+                        .WithMany("UslugeRezervacija")
+                        .HasForeignKey("UslugaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Rezervacija");
+
+                    b.Navigation("Usluga");
                 });
 
             modelBuilder.Entity("KategorijaSalon", b =>
@@ -255,9 +308,21 @@ namespace BeautyNest.Migrations
                     b.Navigation("Usluge");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
+                {
+                    b.Navigation("UslugeRezervacija");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
                     b.Navigation("KategorijeUsluga");
+
+                    b.Navigation("Rezervacije");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
+                {
+                    b.Navigation("UslugeRezervacija");
                 });
 #pragma warning restore 612, 618
         }

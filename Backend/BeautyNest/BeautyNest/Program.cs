@@ -1,7 +1,9 @@
-﻿using BeautyNest.Data;
+﻿using BeautyNest;
+using BeautyNest.Data;
 using BeautyNest.Models.Domain;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
+using BeautyNest.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,16 +13,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllers();
-    //.AddJsonOptions(options =>
-    //{
-    //    // Omogućite ReferenceHandler.Preserve kako biste rešili ciklične zavisnosti
-    //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-    //    // Možete podesiti maksimalnu dubinu ako je potrebno
-    //    options.JsonSerializerOptions.MaxDepth = 64;
-    //})
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -30,6 +25,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BeautyNestConnectionString")));
 
+builder.Services.AddScoped<OmiljeniSalonService>();
+
+
 builder.Services.AddScoped<ISalonRepository, SalonRepository>();
 builder.Services.AddScoped<IKategorijaRepository, KategorijaRepository>();
 builder.Services.AddScoped<IKategorijaUslugeRepository, KategorijaUslugeRepository>();
@@ -37,6 +35,9 @@ builder.Services.AddScoped<IUslugaRepository, UslugaRepository>();
 builder.Services.AddScoped<IGradRepository, GradRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
+
+
+
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>()

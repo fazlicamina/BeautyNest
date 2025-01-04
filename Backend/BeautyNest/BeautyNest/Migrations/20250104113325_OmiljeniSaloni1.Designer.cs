@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyNest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241225121107_Status rezervacija - nova kolona")]
-    partial class Statusrezervacijanovakolona
+    [Migration("20250104113325_OmiljeniSaloni1")]
+    partial class OmiljeniSaloni1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,26 @@ namespace BeautyNest.Migrations
                     b.ToTable("KategorijeUsluga");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.OmiljeniSalon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OmiljeniSaloni");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
                 {
                     b.Property<int>("Id")
@@ -102,13 +122,6 @@ namespace BeautyNest.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("UslugaId")
-                        .HasColumnType("int");
-
                     b.Property<TimeSpan>("VrijemePocetka")
                         .HasColumnType("time");
 
@@ -118,10 +131,6 @@ namespace BeautyNest.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SalonId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UslugaId");
 
                     b.ToTable("Rezervacije");
                 });
@@ -180,67 +189,26 @@ namespace BeautyNest.Migrations
                     b.ToTable("Saloni");
                 });
 
-            modelBuilder.Entity("BeautyNest.Models.Domain.User", b =>
+            modelBuilder.Entity("BeautyNest.Models.Domain.SalonSlika", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.HasIndex("SalonId");
+
+                    b.ToTable("SalonSlike");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
@@ -269,6 +237,21 @@ namespace BeautyNest.Migrations
                     b.HasIndex("KategorijaUslugeId");
 
                     b.ToTable("Usluge");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.UslugaRezervacija", b =>
+                {
+                    b.Property<int>("UslugaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RezervacijaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UslugaId", "RezervacijaId");
+
+                    b.HasIndex("RezervacijaId");
+
+                    b.ToTable("UslugeRezervacije");
                 });
 
             modelBuilder.Entity("KategorijaSalon", b =>
@@ -305,23 +288,7 @@ namespace BeautyNest.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BeautyNest.Models.Domain.User", "User")
-                        .WithMany("Rezervacije")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeautyNest.Models.Domain.Usluga", "Usluga")
-                        .WithMany("Rezervacije")
-                        .HasForeignKey("UslugaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Salon");
-
-                    b.Navigation("User");
-
-                    b.Navigation("Usluga");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
@@ -333,6 +300,17 @@ namespace BeautyNest.Migrations
                     b.Navigation("Grad");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.SalonSlika", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Salon", "Salon")
+                        .WithMany("GalerijaSlika")
+                        .HasForeignKey("SalonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Salon");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
                 {
                     b.HasOne("BeautyNest.Models.Domain.KategorijaUsluge", "KategorijaUsluge")
@@ -342,6 +320,25 @@ namespace BeautyNest.Migrations
                         .IsRequired();
 
                     b.Navigation("KategorijaUsluge");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.UslugaRezervacija", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Rezervacija", "Rezervacija")
+                        .WithMany("UslugeRezervacija")
+                        .HasForeignKey("RezervacijaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("BeautyNest.Models.Domain.Usluga", "Usluga")
+                        .WithMany("UslugeRezervacija")
+                        .HasForeignKey("UslugaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Rezervacija");
+
+                    b.Navigation("Usluga");
                 });
 
             modelBuilder.Entity("KategorijaSalon", b =>
@@ -364,21 +361,23 @@ namespace BeautyNest.Migrations
                     b.Navigation("Usluge");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
+                {
+                    b.Navigation("UslugeRezervacija");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
                 {
+                    b.Navigation("GalerijaSlika");
+
                     b.Navigation("KategorijeUsluga");
 
                     b.Navigation("Rezervacije");
                 });
 
-            modelBuilder.Entity("BeautyNest.Models.Domain.User", b =>
-                {
-                    b.Navigation("Rezervacije");
-                });
-
             modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
                 {
-                    b.Navigation("Rezervacije");
+                    b.Navigation("UslugeRezervacija");
                 });
 #pragma warning restore 612, 618
         }

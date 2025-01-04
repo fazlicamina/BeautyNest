@@ -20,6 +20,14 @@ namespace BeautyNest.Repositories.Implementation
             return usluga;
         }
 
+        public async Task<List<Usluga>> GetByIdsAsync(List<int> ids)
+        {
+            return await dbContext.Usluge
+                .Where(u => ids.Contains(u.Id))
+                .ToListAsync();
+        }
+
+
         public async Task<List<Usluga>> GetAllAsync()
         {
             return await dbContext.Usluge.Include(u => u.KategorijaUsluge).ToListAsync();

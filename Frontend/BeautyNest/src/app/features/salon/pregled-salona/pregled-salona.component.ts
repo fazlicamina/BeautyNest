@@ -15,6 +15,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {ViewEncapsulation } from '@angular/core';
 import {MatCard} from '@angular/material/card';
+import {RezervacijaService} from '../services/rezervacija.service';
+import {RezervacijaRequest} from '../models/rezervacija-request';
 
 @Component({
   selector: 'app-pregled-salona',
@@ -44,6 +46,7 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   paramsSubscription?:Subscription;
   salon$?:Observable<Salon>;
   kategorijeUsluga: KategorijaUsluge[] = [];
+  selectedSalonId: number | null = null;
 
   selectedUsluge: { naziv: string; cijena: number }[] = [];
   totalCijena: number = 0;
@@ -61,45 +64,63 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
 
   constructor(private salonService:SalonService, private route:ActivatedRoute,
               private kategorijaUslugeService : KategorijaUslugeService,
-private authService:AuthService, private cookieService:CookieService){
+private authService:AuthService, private cookieService:CookieService,
+              private rezervacijaService: RezervacijaService){
+  }
+
+  onDateChange(newDate: Date): void {
+    this.selectedDate = newDate;
+    this.loadAvailableTimes();
   }
 
 
-  //rezervacija kalendar funkcije
-  occupiedTimes: { [key: string]: string[] } = {
-    '2024-12-02': ['10:00', '11:00', '14:00'],
-    '2024-12-03': ['09:00', '15:00']
-  };
-
-
-  onDateChange(date: Date): void {
-    this.selectedDate = date;
-    const dateKey = this.formatDateKey(date);
-
-    // Provjera da je occupiedTimes definiran za dateKey
-    const allTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
-    this.availableTimes = allTimes.filter(time => !this.occupiedTimes[dateKey]?.includes(time));
+  loadAvailableTimes(): void {
+    if (this.selectedSalonId != null) {
+      this.rezervacijaService.getDostupniSlotovi(this.selectedSalonId, this.selectedDate).subscribe(
+        (response) => {
+          this.availableTimes = response;
+        },
+        (error) => {
+          console.error('Greška pri dobijanju dostupnih termina:', error);
+        }
+      );
+    }
   }
-
 
   onTimeSelect(time: string): void {
     this.selectedTime = time;
   }
 
 
+  /*createReservation(): void {
+    if (this.selectedSalonId != null && this.selectedTime != null) {
+      const dto: RezervacijaRequest = {
+        salonId: this.selectedSalonId,
+        datumRezervacije: this.selectedDate,
+        vrijemePocetka: this.selectedTime,
+        userId: 1,
+        uslugaIds: [1, 2]
+      };
 
-  confirmReservation(): void {
-    if (this.selectedDate && this.selectedTime) {
-      alert(`Rezervirali ste termin: ${this.selectedTime} na datum: ${this.selectedDate.toLocaleDateString()}`);
+      this.rezervacijaService.kreirajRezervaciju(dto).subscribe(
+        (response) => {
+          console.log('Rezervacija uspješno kreirana:', response);
+          // Ovdje možeš dodati logiku za obavještavanje korisnika o uspjehu
+        },
+        (error) => {
+          console.error('Greška pri kreiranju rezervacije:', error);
+        }
+      );
     }
-  }
+  }*/
+
+
+
 
   private formatDateKey(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
   }
+
 
 
   rezervisi(): void {
@@ -136,6 +157,11 @@ private authService:AuthService, private cookieService:CookieService){
 
   ngOnInit(): void {
 
+    this.route.params.subscribe(params => {
+      this.selectedSalonId = +params['id'];
+      this.loadAvailableTimes();
+    });
+
     this.paramsSubscription = this.route.paramMap
       .subscribe({
         next: (params) => {
@@ -145,6 +171,7 @@ private authService:AuthService, private cookieService:CookieService){
       });
 
     if(this.id){
+      this.selectedSalonId = this.id;
       this.salon$=this.salonService.getSalonById(this.id);
       this.fetchKategorijeUsluga(this.id);
     }

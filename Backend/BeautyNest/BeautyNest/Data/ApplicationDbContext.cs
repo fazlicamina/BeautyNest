@@ -11,14 +11,20 @@ namespace BeautyNest.Data
         {
         }
 
+        public DbSet<OmiljeniSalon> OmiljeniSaloni { get; set; }
+
         public DbSet<Salon> Saloni { get; set; }
-        public DbSet<Kategorija> Kategorije{ get; set; }
+        public DbSet<Kategorija> Kategorije { get; set; }
 
         public DbSet<KategorijaUsluge> KategorijeUsluga { get; set; }
         public DbSet<Usluga> Usluge { get; set; }
 
         public DbSet<Grad> Gradovi { get; set; }
+        public DbSet<SalonSlika> SalonSlike { get; set; }
+
         public DbSet<Rezervacija> Rezervacije { get; set; }
+        public DbSet<UslugaRezervacija> UslugeRezervacije { get; set; }
+
 
         public static void Initialize(IServiceProvider serviceProvider, bool isDevelopment)
         {
@@ -36,26 +42,10 @@ namespace BeautyNest.Data
         {
             base.OnModelCreating(modelBuilder);
 
-          
-            modelBuilder.Entity<User>()
-                .ToTable("User");
-
             modelBuilder.Entity<Rezervacija>()
                 .HasOne(r => r.Salon)
                 .WithMany(s => s.Rezervacije)
                 .HasForeignKey(r => r.SalonId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Rezervacija>()
-                .HasOne(r => r.Usluga)
-                .WithMany(u => u.Rezervacije)
-                .HasForeignKey(r => r.UslugaId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Rezervacija>()
-                .HasOne(r => r.User)
-                .WithMany(u => u.Rezervacije)
-                .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Usluga>()
@@ -63,9 +53,25 @@ namespace BeautyNest.Data
                 .WithMany(k => k.Usluge)
                 .HasForeignKey(u => u.KategorijaUslugeId)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            //usluga rezervacija medjutabela
+
+            modelBuilder.Entity<UslugaRezervacija>()
+        .HasKey(ur => new { ur.UslugaId, ur.RezervacijaId });
+
+        
+            modelBuilder.Entity<UslugaRezervacija>()
+                .HasOne(ur => ur.Usluga)
+                .WithMany(u => u.UslugeRezervacija)
+                .HasForeignKey(ur => ur.UslugaId)
+                .OnDelete(DeleteBehavior.NoAction);  
+
+            modelBuilder.Entity<UslugaRezervacija>()
+                .HasOne(ur => ur.Rezervacija)
+                .WithMany(r => r.UslugeRezervacija)
+                .HasForeignKey(ur => ur.RezervacijaId)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
-
-
-
     }
-}
+    }

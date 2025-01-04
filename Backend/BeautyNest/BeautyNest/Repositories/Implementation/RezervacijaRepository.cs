@@ -21,12 +21,7 @@ namespace BeautyNest.Repositories.Implementation
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Rezervacija>> DohvatiSveRezervacijeKorisnikaAsync(string userId)
-        {
-            return await dbContext.Rezervacije
-                .Where(r => r.UserId == userId)
-                .ToListAsync();
-        }
+  
 
         public async Task<bool> ProvjeriDostupnostAsync(int salonId, DateTime datum, TimeSpan vrijemePocetka, TimeSpan vrijemeZavrsetka)
         {

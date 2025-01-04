@@ -19,4 +19,9 @@ export class SalonService {
     return this.http.get<Salon>(`${environment.apiBaseUrl}api/salon/${id}`);
   }
 
+  toggleOmiljeniSalon(salonId: number): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}api/OmiljeniSaloni/toggle?salonId=${salonId}`, {});
+  }
+
+
 }
