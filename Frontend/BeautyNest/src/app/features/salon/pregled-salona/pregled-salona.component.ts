@@ -160,6 +160,7 @@ private authService:AuthService, private cookieService:CookieService,
     this.route.params.subscribe(params => {
       this.selectedSalonId = +params['id'];
       this.loadAvailableTimes();
+      this.checkFavoriteStatus();
     });
 
     this.paramsSubscription = this.route.paramMap
@@ -175,10 +176,7 @@ private authService:AuthService, private cookieService:CookieService,
       this.salon$=this.salonService.getSalonById(this.id);
       this.fetchKategorijeUsluga(this.id);
     }
-
   }
-
-
 
   setActiveTab(index: number): void {
     this.activeTab = index;
@@ -287,11 +285,38 @@ private authService:AuthService, private cookieService:CookieService,
     }
   }
 
+  //omiljeni
+  isFavorite: boolean = false;
+
+  toggleFavorite(): void {
+    if (this.selectedSalonId != null) {
+      this.salonService.toggleOmiljeniSalon(this.selectedSalonId).subscribe({
+        next: (response: any) => {
+          if (response.message === 'Salon je uspješno dodan u omiljene.') {
+            this.isFavorite = true;
+          } else if (response.message === 'Salon je uklonjen iz omiljenih.') {
+            this.isFavorite = false;
+          }
+        },
+        error: (err) => {
+          console.error('Došlo je do greške prilikom ažuriranja omiljenih:', err);
+        },
+      });
+    }
+  }
+
+  checkFavoriteStatus(): void {
+    if (this.selectedSalonId != null) {
+      this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
+        this.isFavorite = omiljeniSaloni.some(
+          (salon) => salon.id === this.selectedSalonId
+        );
+      });
+    }
+  }
 
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();
-
-
   }
 
   protected readonly close = close;

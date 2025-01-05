@@ -118,3 +118,14 @@
 .bth:hover{
   background-color: #e5bcba !important;
 }
+
+
+.fa {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 22px;
+}
+
+.fa:hover {
+  transform: scale(1.3);
+  color: #DBAEAB !important;
+}

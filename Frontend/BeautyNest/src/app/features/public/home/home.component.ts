@@ -3,7 +3,7 @@ import {Router, RouterOutlet} from '@angular/router';
 import {RouterLinkActive} from '@angular/router';
 import {RouterLink} from '@angular/router';
 import {SalonService} from '../../salon/services/salon.service';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Salon} from '../../salon/models/salon';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {CommonModule} from '@angular/common';
@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit{
   gradovi:Grad[]=[];
   nazivSalona:string | null=null;
 
+  omiljeniSaloniIds: Set<number> = new Set();
+
   selectedKategorijaId: number | null = null;
   selectedGradId: number | null = null;
 
@@ -37,8 +39,28 @@ export class HomeComponent implements OnInit{
               private gradService:GradService, private router:Router) {
   }
 
+
+  toggleOmiljeniSalon(salon: any) {
+    this.salonService.toggleOmiljeniSalon(salon.id).subscribe({
+      next: (response: any) => {
+        if (response.message === 'Salon je uspješno dodan u omiljene.') {
+          salon.jeOmiljeni = true;
+          this.omiljeniSaloniIds.add(salon.id);
+        } else if (response.message === 'Salon je uklonjen iz omiljenih.') {
+          salon.jeOmiljeni = false;
+          this.omiljeniSaloniIds.delete(salon.id);
+        }
+      },
+      error: (err) => {
+        console.error('Došlo je do greške prilikom ažuriranja omiljenih:', err);
+      }
+    });
+  }
+
+
+
   ngOnInit(): void {
-    this.saloni$=this.salonService.getAllSaloni();
+   // this.saloni$=this.salonService.getAllSaloni();
     this.kategorije$=this.kategorijaService.getAllKategorije();
 
     this.gradService.getGradovi().subscribe(
@@ -47,10 +69,20 @@ export class HomeComponent implements OnInit{
       }
     );
 
-  }
+    this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
+      const omiljeniIds = new Set(omiljeniSaloni.map((s) => s.id));
 
-  onGradSelect(): void {
-    console.log('Selected city ID:', this.selectedGradId);
+      // Učitaj sve salone i dodaj `jeOmiljeni`
+      this.saloni$ = this.salonService.getAllSaloni().pipe(
+        map((saloni) =>
+          saloni.map((salon) => ({
+            ...salon,
+            jeOmiljeni: omiljeniIds.has(salon.id), // Dodaj `jeOmiljeni`
+          }))
+        )
+      );
+    });
+
   }
 
   onClickPretrazi(): void {

@@ -1,0 +1,25 @@
+.btn-primary {
+  background-color: rgb(203, 153, 149);
+  border: none;
+  width: 90%;
+  font-size: large;
+}
+
+.btn-primary:hover {
+  background-color: #DBAEAB;
+}
+
+.fa {
+  width: 10%;
+}
+
+/* Stilovi za ikonu srce */
+.fa {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 22px;
+}
+
+.fa:hover {
+  transform: scale(1.3);
+  color: #DBAEAB !important;
+}

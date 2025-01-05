@@ -18,4 +18,5 @@ export interface Salon {
   gradId:number;
   nazivGrada:string;
   slike: { id: number; url: string }[];
+  jeOmiljeni?: boolean;
 }

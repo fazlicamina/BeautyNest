@@ -35,24 +35,27 @@
   <div class="row">
     <div *ngFor="let salon of saloni" class="col-md-3 mb-4">
       <div class="card h-100 d-flex flex-column">
-
         <img [src]="salon.naslovnaFotografija" class="card-img-top" alt="{{ salon.naziv }}" style="height: 200px; object-fit: cover;">
-
         <div class="card-body flex-grow-1">
-
-          <h5 class="card-title">{{salon.naziv}}</h5>
-          <p style="font-weight: bold; color: #DBAEAB">{{salon.nazivGrada}}<span style="font-weight: normal" class="card-text;">, {{salon.adresa}}</span></p>
-
-
+          <h5 class="card-title">{{ salon.naziv }}</h5>
+          <p style="font-weight: bold; color: #DBAEAB">{{ salon.nazivGrada }}, {{ salon.adresa }}</p>
           <p class="card-text">
             {{ salon.opis.length > 200 ? salon.opis.substring(0, salon.opis.substring(0, 150).lastIndexOf(' ')) + '...' : salon.opis }}
           </p>
-
         </div>
-        <div class="card-footer mt-auto">
-          <a href="#" class="btn btn-primary w-100" [routerLink]="['/saloni',salon.id]">Pregledaj</a>
+        <div class="card-footer mt-auto d-flex justify-content-between align-items-center">
+          <a href="#" class="btn pregledaj btn-primary" [routerLink]="['/saloni', salon.id]">Pregledaj</a>
+          <div class="d-flex justify-content-center  align-items-center" style="width: 50px;">
+            <i
+              class="fa"
+              [ngClass]="{'fa-heart': salon.jeOmiljeni, 'fa-heart-o': !salon.jeOmiljeni}"
+              style="cursor: pointer; color: rgb(203, 153, 149);"
+              (click)="toggleOmiljeniSalon(salon)">
+            </i>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>

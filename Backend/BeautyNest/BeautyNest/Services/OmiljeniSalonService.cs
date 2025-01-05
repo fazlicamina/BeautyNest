@@ -46,13 +46,13 @@ namespace BeautyNest.Services
 
             if (omiljeniSalon != null)
             {
-                // Ako već postoji, ukloni ga iz omiljenih
+                
                 applicationDbContext.OmiljeniSaloni.Remove(omiljeniSalon);
                 await applicationDbContext.SaveChangesAsync();
-                return false; // Vraća false ako je uklonjen
+                return false; 
             }
 
-            // Ako ne postoji, dodaj ga u omiljene
+  
             omiljeniSalon = new OmiljeniSalon
             {
                 UserId = userId,
@@ -61,7 +61,7 @@ namespace BeautyNest.Services
 
             await applicationDbContext.OmiljeniSaloni.AddAsync(omiljeniSalon);
             await applicationDbContext.SaveChangesAsync();
-            return true; // Vraća true ako je dodan
+            return true; 
         }
 
 
