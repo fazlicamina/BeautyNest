@@ -10,7 +10,7 @@ namespace BeautyNest.Models.Domain
         public string LastName { get; set; } = string.Empty;
         public byte[]? ProfilePicture { get; set; }
 
-        //uposlenik
+        //ispod atributi se odnose na uposlenika, to je ID salona u kojem radi
         public int? SalonId { get; set; }
 
     }

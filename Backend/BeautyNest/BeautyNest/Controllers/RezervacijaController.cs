@@ -2,8 +2,11 @@
 using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
+using BeautyNest.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BeautyNest.Controllers
 {
@@ -11,148 +14,99 @@ namespace BeautyNest.Controllers
     [ApiController]
     public class RezervacijaController : ControllerBase
     {
-        private readonly IRezervacijaRepository rezervacijaRepository;
-        private readonly ISalonRepository salonRepository;
-        private readonly IUslugaRepository uslugaRepository;
+        private readonly ReservationService reservationService;
 
-        public RezervacijaController(IRezervacijaRepository rezervacijaRepository, ISalonRepository salonRepository, IUslugaRepository uslugaRepository)
+        public RezervacijaController(ReservationService reservationService)
         {
-            this.rezervacijaRepository = rezervacijaRepository;
-            this.salonRepository = salonRepository;
-            this.uslugaRepository = uslugaRepository;
+            this.reservationService = reservationService;
+        }
+
+        [HttpGet("slobodni-termini")]
+        public IActionResult GetSlobodniTermini(int salonId, DateTime datum, [FromQuery] List<int> uslugaIds)
+        {
+            try
+            {
+                var brojUposlenika = reservationService.GetBrojUposlenika(salonId);
+
+                var slobodniTermini = reservationService.GetAvailableTimeSlots(salonId, datum, uslugaIds, brojUposlenika);
+                return Ok(slobodniTermini);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
 
-        [HttpGet]
-        [Route("DostupniSlotovi")]
-        public async Task<IActionResult> DohvatiDostupneSlotove(
-        int salonId,
-            DateTime datum)
-        {
-            var salon = await salonRepository.GetByIdAsync(salonId);
-            if (salon == null)
-                return NotFound("Salon nije pronađen.");
-
-            var rezervacije = await rezervacijaRepository.DohvatiRezervacijeZaSalonAsync(salonId, datum);
-
-            var slotovi = GenerisiSlotove(
-                salon.RadnoVrijemeOd,
-                salon.RadnoVrijemeDo,
-                rezervacije);
-
-            return Ok(slotovi);
-        }
-
-
-
+        //Dodavanje nove rezervacije
         [HttpPost]
-        public async Task<IActionResult> KreirajRezervaciju(CreateRezervacijaRequestDto dto)
+        [Authorize]
+        public IActionResult CreateRezervacija([FromBody] CreateRezervacijaRequestDto request)
         {
-            var salon = await salonRepository.GetByIdAsync(dto.SalonId);
-            if (salon == null)
-                return NotFound("Salon nije pronađen.");
-
-            var usluge = await uslugaRepository.GetByIdsAsync(dto.UslugaIds); // Pretpostavljamo da postoji metoda GetByIdsAsync
-
-            if (usluge.Count != dto.UslugaIds.Count)
-                return NotFound("Neke usluge nisu pronađene.");
-
-            // Logika za proveru dostupnosti
-            var vrijemeZavrsetka = dto.VrijemePocetka; // Start time of first service, you can modify this logic as needed
-
-            foreach (var usluga in usluge)
+            try
             {
-                vrijemeZavrsetka = vrijemeZavrsetka + usluga.Trajanje;
-            }
+                var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
 
-            var dostupnost = await rezervacijaRepository.ProvjeriDostupnostAsync(
-                dto.SalonId,
-                dto.DatumRezervacije,
-                dto.VrijemePocetka,
-                vrijemeZavrsetka);
-
-            if (!dostupnost)
-                return Conflict("Termin nije dostupan.");
-
-            var rezervacija = new Rezervacija
-            {
-                SalonId = dto.SalonId,
-                DatumRezervacije = dto.DatumRezervacije,
-                VrijemePocetka = dto.VrijemePocetka,
-                VrijemeZavrsetka = vrijemeZavrsetka,
-                Status = true
-            };
-
-            // Dodavanje usluga u rezervaciju
-            foreach (var usluga in usluge)
-            {
-                rezervacija.UslugeRezervacija.Add(new UslugaRezervacija
+                if (string.IsNullOrEmpty(userId))
                 {
-                    Usluga = usluga
-                });
-            }
+                    return BadRequest(new { message = "User claim not found." });
+                }
 
-            var novaRezervacija = await rezervacijaRepository.DodajRezervacijuAsync(rezervacija);
+                var rezervacija = reservationService.CreateReservation(
+                    request.SalonId,
+                    request.DatumRezervacije,
+                    request.VrijemePocetka,
+                    request.UslugaIds,
+                    userId
+                );
 
-            // Popuni DTO sa uslugama
-            var rezervacijaDto = new RezervacijaDto
-            {
-                Id = novaRezervacija.Id,
-                SalonId = novaRezervacija.SalonId,
-                DatumRezervacije = novaRezervacija.DatumRezervacije,
-                VrijemePocetka = novaRezervacija.VrijemePocetka,
-                VrijemeZavrsetka = novaRezervacija.VrijemeZavrsetka,
-                Status = novaRezervacija.Status,
-                Usluge = usluge.Select(u => new UslugaDto
+                var response = new RezervacijaDto
                 {
-                    Id = u.Id,
-                    Naziv = u.Naziv,
-                    Trajanje = u.Trajanje,
-                    Cijena=u.Cijena,
-                    KategorijaUslugeId=u.KategorijaUslugeId,
-                    KategorijaNaziv=u.KategorijaUsluge.Naziv
-                }).ToList()  
-            };
+                    Id = rezervacija.Id,
+                    SalonId = rezervacija.SalonId,
+                    DatumRezervacije = rezervacija.DatumRezervacije,
+                    VrijemePocetka = rezervacija.VrijemePocetka,
+                    VrijemeZavrsetka = rezervacija.VrijemeZavrsetka,
+                    Status = rezervacija.Status,
+                    Poruka = rezervacija.Poruka
+                };
 
-            return CreatedAtAction(nameof(DohvatiDostupneSlotove), new { salonId = dto.SalonId, datum = dto.DatumRezervacije }, rezervacijaDto);
-        }
-
-
-
-
-
-
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> ObrisiRezervaciju(int id)
-        {
-            var rezultat = await rezervacijaRepository.ObrisiRezervacijuAsync(id);
-
-            if (!rezultat)
-                return NotFound("Rezervacija nije pronađena.");
-
-            return NoContent();
-        }
-
-        private IEnumerable<TimeSpan> GenerisiSlotove(
-            TimeSpan radnoVrijemeOd,
-            TimeSpan radnoVrijemeDo,
-            IEnumerable<Rezervacija> rezervacije)
-        {
-            var slotovi = new List<TimeSpan>();
-
-            for (var vrijeme = radnoVrijemeOd; vrijeme < radnoVrijemeDo; vrijeme += TimeSpan.FromMinutes(30))
-            {
-                var zauzeto = rezervacije.Any(r =>
-                    vrijeme < r.VrijemeZavrsetka &&
-                    vrijeme + TimeSpan.FromMinutes(30) > r.VrijemePocetka);
-
-                if (!zauzeto)
-                    slotovi.Add(vrijeme);
+                return CreatedAtAction(nameof(GetRezervacijaById), new { id = response.Id }, response);
             }
-
-            return slotovi;
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
+
+
+        //Prihvatanje/odbijanje rezervacije
+        [HttpPut("{id}/status")]
+        [Authorize]
+        public IActionResult UpdateRezervacijaStatus(int id, [FromBody] RezervacijaStatusRequestDto request)
+        {
+            try
+            {
+                reservationService.UpdateReservationStatus(id, request.Status, request.Poruka);  
+                return Ok(new { message = "Status rezervacije ažuriran." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+        // Dohvatanje pojedinačne rezervacije (za CreatedAtAction)
+        [HttpGet("{id}")]
+        public IActionResult GetRezervacijaById(int id)
+        {
+            var rezervacija = reservationService.GetRezervacijaById(id);
+            if (rezervacija == null) return NotFound();
+
+            return Ok(rezervacija);
+        }
+
 
     }
 }

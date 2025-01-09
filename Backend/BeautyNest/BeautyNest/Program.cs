@@ -27,6 +27,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 
 builder.Services.AddScoped<OmiljeniSalonService>();
 
+builder.Services.AddScoped<ReservationService>();
 
 builder.Services.AddScoped<ISalonRepository, SalonRepository>();
 builder.Services.AddScoped<IKategorijaRepository, KategorijaRepository>();

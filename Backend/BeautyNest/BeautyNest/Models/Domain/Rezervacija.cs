@@ -22,6 +22,9 @@ namespace BeautyNest.Models.Domain
 
         public bool Status { get; set; } = false;
 
+        public string Poruka { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public ICollection<UslugaRezervacija> UslugeRezervacija { get; set; } = new List<UslugaRezervacija>();
     }
 }
