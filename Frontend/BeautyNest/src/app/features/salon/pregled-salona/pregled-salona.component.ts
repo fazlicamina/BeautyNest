@@ -17,6 +17,8 @@ import {ViewEncapsulation } from '@angular/core';
 import {MatCard} from '@angular/material/card';
 import {RezervacijaService} from '../services/rezervacija.service';
 import {RezervacijaRequest} from '../models/rezervacija-request';
+import {SlobodniTermin} from '../models/slobodni-termin';
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-pregled-salona',
@@ -48,12 +50,16 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   kategorijeUsluga: KategorijaUsluge[] = [];
   selectedSalonId: number | null = null;
 
-  selectedUsluge: { naziv: string; cijena: number }[] = [];
+  selectedUsluge: { id: number; naziv: string; cijena: number }[] = [];
+
   totalCijena: number = 0;
 
   activeTab: number = 0;
   modalModel = { username: '', password: '' };
   loginErrorMessage: string | null = null;
+
+  minDate: Date = new Date(); // Blokiraj prošle datume
+
 
 
   //rezervacija
@@ -68,17 +74,45 @@ private authService:AuthService, private cookieService:CookieService,
               private rezervacijaService: RezervacijaService){
   }
 
-  onDateChange(newDate: Date): void {
-    this.selectedDate = newDate;
-    this.loadAvailableTimes();
-  }
-
 
   loadAvailableTimes(): void {
-    if (this.selectedSalonId != null) {
-      this.rezervacijaService.getDostupniSlotovi(this.selectedSalonId, this.selectedDate).subscribe(
-        (response) => {
-          this.availableTimes = response;
+    if (this.selectedSalonId != null && this.selectedDate != null) {
+
+      //syncanje timezome sa backendom
+      const utcDate = new Date(Date.UTC(
+        this.selectedDate.getUTCFullYear(),
+        this.selectedDate.getUTCMonth(),
+        this.selectedDate.getUTCDate()
+      ));
+
+      const formattedDate = utcDate.toISOString().split('T')[0];
+
+      const uslugaIds = this.selectedUsluge.map(u => u.id);
+      let params = new HttpParams()
+        .set('salonId', this.selectedSalonId.toString())
+        .set('datum', formattedDate);
+
+      uslugaIds.forEach(id => {
+        params = params.append('uslugaIds', id.toString());
+      });
+
+      this.rezervacijaService.getDostupniSlotovi(this.selectedSalonId, this.selectedDate, uslugaIds).subscribe(
+        (response: any[]) => {
+          console.log('Odgovor sa servera:', response);
+          if (response && response.length > 0) {
+            this.availableTimes = response.map(slot => {
+
+              const [startHours, startMinutes] = slot.start.split(':').map(Number);
+              const [endHours, endMinutes] = slot.end.split(':').map(Number);
+
+              const start = `${startHours.toString().padStart(2, '0')}:${startMinutes.toString().padStart(2, '0')}`;
+              const end = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+
+              return `${start} - ${end}`;
+            });
+          } else {
+            this.availableTimes = [];
+          }
         },
         (error) => {
           console.error('Greška pri dobijanju dostupnih termina:', error);
@@ -87,41 +121,11 @@ private authService:AuthService, private cookieService:CookieService,
     }
   }
 
+
+
   onTimeSelect(time: string): void {
     this.selectedTime = time;
   }
-
-
-  /*createReservation(): void {
-    if (this.selectedSalonId != null && this.selectedTime != null) {
-      const dto: RezervacijaRequest = {
-        salonId: this.selectedSalonId,
-        datumRezervacije: this.selectedDate,
-        vrijemePocetka: this.selectedTime,
-        userId: 1,
-        uslugaIds: [1, 2]
-      };
-
-      this.rezervacijaService.kreirajRezervaciju(dto).subscribe(
-        (response) => {
-          console.log('Rezervacija uspješno kreirana:', response);
-          // Ovdje možeš dodati logiku za obavještavanje korisnika o uspjehu
-        },
-        (error) => {
-          console.error('Greška pri kreiranju rezervacije:', error);
-        }
-      );
-    }
-  }*/
-
-
-
-
-  private formatDateKey(date: Date): string {
-    return date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-  }
-
-
 
   rezervisi(): void {
     if (!this.authService.isAuthenticated()) {
@@ -152,7 +156,10 @@ private authService:AuthService, private cookieService:CookieService,
     }
   }
 
-
+  onDateChange(date: Date | null): void {
+    this.selectedDate = date;
+    this.loadAvailableTimes(); // Poziv tek nakon odabira datuma
+  }
 
 
   ngOnInit(): void {
@@ -199,7 +206,7 @@ private authService:AuthService, private cookieService:CookieService,
     return this.selectedUsluge.some(u => u.naziv === usluga.naziv);
   }
 
-  toggleUsluga(usluga: { naziv: string; cijena: number }): void {
+  toggleUsluga(usluga: { id:number, naziv: string; cijena: number }): void {
     const index = this.selectedUsluge.findIndex(u => u.naziv === usluga.naziv);
 
     if (index !== -1) {

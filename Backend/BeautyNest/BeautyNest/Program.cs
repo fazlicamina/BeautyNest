@@ -35,10 +35,6 @@ builder.Services.AddScoped<IKategorijaUslugeRepository, KategorijaUslugeReposito
 builder.Services.AddScoped<IUslugaRepository, UslugaRepository>();
 builder.Services.AddScoped<IGradRepository, GradRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
-builder.Services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
-
-
-
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>()

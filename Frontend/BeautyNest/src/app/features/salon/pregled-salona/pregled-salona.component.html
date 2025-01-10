@@ -71,7 +71,7 @@
                     class="btn-check"
                     id="{{ usluga.naziv }}"
                     autocomplete="off"
-                    (change)="toggleUsluga({ naziv: usluga.naziv, cijena: usluga.cijena })">
+                    (change)="toggleUsluga({id:usluga.id, naziv: usluga.naziv, cijena: usluga.cijena })">
 
 
                   <label  class="btn pinkbutton align-self-center" for="{{ usluga.naziv }}">
@@ -197,18 +197,15 @@
       </div>
       <div class="modal-body d-flex">
 
-        <!-- Inline Kalendar
-        <div class="flex-shrink-0 me-4">
-          <mat-card class="demo-inline-calendar-card p-2 rounded">
-            <mat-calendar
-              [(selected)]="selectedDate"
-              (selectedChange)="onDateChange($event)"
-            ></mat-calendar>
-          </mat-card>
-        </div>-->
 
+       <div class="flex-shrink-0 me-4">
+         <mat-calendar
+           [(selected)]="selectedDate"
+           (selectedChange)="onDateChange($event)"
+           [minDate]="minDate"
+         ></mat-calendar>
 
-
+       </div>
 
         <!-- Dostupni termini -->
         <div class="flex-grow-1">

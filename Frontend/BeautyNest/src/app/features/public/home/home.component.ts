@@ -58,32 +58,37 @@ export class HomeComponent implements OnInit{
   }
 
 
-
   ngOnInit(): void {
-   // this.saloni$=this.salonService.getAllSaloni();
-    this.kategorije$=this.kategorijaService.getAllKategorije();
+    // Učitaj sve salone odmah
+    this.salonService.getAllSaloni().subscribe((saloni) => {
+      this.saloni$ = new Observable((observer) => observer.next(saloni));
 
-    this.gradService.getGradovi().subscribe(
-      (data) => {
-        this.gradovi = data;
-      }
-    );
+      // Pokušaj učitati omiljene salone ako je korisnik autentifikovan
+      this.salonService.getOmiljeniSaloni().subscribe({
+        next: (omiljeniSaloni) => {
+          const omiljeniIds = new Set(omiljeniSaloni.map((s) => s.id));
 
-    this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
-      const omiljeniIds = new Set(omiljeniSaloni.map((s) => s.id));
-
-      // Učitaj sve salone i dodaj `jeOmiljeni`
-      this.saloni$ = this.salonService.getAllSaloni().pipe(
-        map((saloni) =>
-          saloni.map((salon) => ({
-            ...salon,
-            jeOmiljeni: omiljeniIds.has(salon.id), // Dodaj `jeOmiljeni`
-          }))
-        )
-      );
+          // Dodaj oznaku `jeOmiljeni` salonima
+          saloni.forEach((salon) => {
+            salon.jeOmiljeni = omiljeniIds.has(salon.id);
+          });
+        },
+        error: (err) => {
+          console.warn('Korisnik nije autentifikovan ili je došlo do greške prilikom učitavanja omiljenih salona:', err);
+        }
+      });
     });
 
+    // Učitaj kategorije
+    this.kategorije$ = this.kategorijaService.getAllKategorije();
+
+    // Učitaj gradove
+    this.gradService.getGradovi().subscribe((data) => {
+      this.gradovi = data;
+    });
   }
+
+
 
   onClickPretrazi(): void {
     const queryParams: any = {};

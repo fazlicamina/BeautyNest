@@ -2,6 +2,7 @@
 using BeautyNest.Models.Domain;
 using BeautyNest.Models.DTO;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BeautyNest.Services
 {
@@ -66,6 +67,11 @@ namespace BeautyNest.Services
                     });
                 }
             }
+
+            Console.WriteLine("Primljeni datum: " + date.ToString());
+            Console.WriteLine("Primljeni datum u UTC: " + date.ToUniversalTime().ToString());
+            Console.WriteLine("Current TimeZone: " + TimeZoneInfo.Local.Id);
+
 
             return slobodniTermini;
         }
