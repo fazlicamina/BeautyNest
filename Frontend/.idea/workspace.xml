@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bb6f278-127a-407a-8deb-cc52523d8583" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/FileContentIndex/137800ef-0ecd-4711-95e7-838821e4e829.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/BeautyNest/Repositories/Implementation/RezervacijaRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/BeautyNest/obj/Debug/net8.0/BeautyNest.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/BeautyNest/BeautyNest/obj/Debug/net8.0/BeautyNest.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/BeautyNest/obj/Debug/net8.0/BeautyNest.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/BeautyNest/BeautyNest/obj/Debug/net8.0/BeautyNest.AssemblyInfoInputs.cache" afterDir="false" />
-    </list>
+    <list default="true" id="7bb6f278-127a-407a-8deb-cc52523d8583" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +13,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2rNmzbdqEKSog8FCBgSupAoeX6C" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,7 +26,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/KORISNIK/Desktop/BeautyNest/Frontend/BeautyNest",
+    "last_opened_file_path": "C:/Users/KORISNIK/Desktop/BeautyNest",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -46,6 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736408169345</updated>
       <workItem from="1736408170492" duration="16000" />
+      <workItem from="1736794410616" duration="52000" />
     </task>
     <servers />
   </component>
