@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bb6f278-127a-407a-8deb-cc52523d8583" name="Changes" comment="" />
+    <list default="true" id="7bb6f278-127a-407a-8deb-cc52523d8583" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/BeautyNest/.vs/BeautyNest/v17/DocumentLayout.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +29,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/KORISNIK/Desktop/BeautyNest",
+    "last_opened_file_path": "C:/Users/KORISNIK/Desktop/BeautyNest/Frontend/BeautyNest",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -41,6 +44,7 @@
       <updated>1736408169345</updated>
       <workItem from="1736408170492" duration="16000" />
       <workItem from="1736794410616" duration="52000" />
+      <workItem from="1736794540908" duration="90000" />
     </task>
     <servers />
   </component>

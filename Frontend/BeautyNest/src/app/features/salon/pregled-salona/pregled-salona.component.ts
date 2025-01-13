@@ -140,10 +140,13 @@ private authService:AuthService, private cookieService:CookieService,
       ));
 
       const formattedDate = utcDate.toISOString().split('T')[0];
+      const adjustedDate = new Date(formattedDate);
+      adjustedDate.setDate(adjustedDate.getDate() + 1);
+
 
       const rezervacijaRequest = {
         salonId: this.selectedSalonId,
-        datumRezervacije: formattedDate,
+        datumRezervacije: adjustedDate,
         vrijemePocetka: `${vrijemePocetka[0].toString().padStart(2, '0')}:${vrijemePocetka[1].toString().padStart(2, '0')}:00`,
         uslugaIds: this.selectedUsluge.map(u => u.id),
       };
