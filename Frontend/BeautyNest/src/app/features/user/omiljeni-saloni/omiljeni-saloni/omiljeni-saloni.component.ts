@@ -3,6 +3,7 @@ import {SalonService} from '../../../salon/services/salon.service';
 import {NgClass, NgForOf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {GradService} from '../../../salon/services/grad.service';
+import {ToastserviceService} from '../../../../core/services/toastservice.service';
 
 
 @Component({
@@ -21,18 +22,20 @@ export class OmiljeniSaloniComponent implements OnInit {
   saloni: any[] = [];
   private gradovi: any[] = [];
 
-  constructor(private salonService: SalonService, private gradService:GradService){}
+  constructor(private salonService: SalonService, private gradService:GradService,
+              private toastService:ToastserviceService){}
 
   toggleOmiljeniSalon(salon: any) {
     this.salonService.toggleOmiljeniSalon(salon.id).subscribe((response: any) => {
-      alert(response.message);
 
       if (response.message.includes("dodano")) {
         salon.jeOmiljeni = true;
+        this.toastService.showSuccessToast('Dodano u omiljene!')
       } else {
         salon.jeOmiljeni = false;
         // Ukloni salon sa liste ako je uklonjen iz omiljenih
         this.saloni = this.saloni.filter(s => s.id !== salon.id);
+        this.toastService.showSuccessToast('Uklonjeno iz omiljenih!')
       }
     });
   }

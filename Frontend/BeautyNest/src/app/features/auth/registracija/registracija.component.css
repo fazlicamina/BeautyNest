@@ -1,0 +1,10 @@
+.btn-primary {
+  background-color: rgb(203, 153, 149);
+  border: none;
+  width: 30%;
+  font-size: large;
+}
+
+.btn-primary:hover {
+  background-color: #DBAEAB;
+}

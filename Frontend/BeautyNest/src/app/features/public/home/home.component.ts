@@ -12,6 +12,9 @@ import {KategorijaService} from '../../kategorija/services/kategorija.service';
 import {Grad} from '../../salon/models/grad';
 import {GradService} from '../../salon/services/grad.service';
 import {FormsModule} from '@angular/forms';
+import {User} from '../../auth/models/user';
+import {AuthService} from '../../auth/services/auth.service';
+import {ToastserviceService} from '../../../core/services/toastservice.service';
 
 
 @Component({
@@ -25,6 +28,8 @@ import {FormsModule} from '@angular/forms';
 })
 export class HomeComponent implements OnInit{
 
+  user?:User;
+
   saloni$?:Observable<Salon[]>;
   kategorije$?:Observable<Kategorija[]>;
   gradovi:Grad[]=[];
@@ -36,7 +41,8 @@ export class HomeComponent implements OnInit{
   selectedGradId: number | null = null;
 
   constructor(private salonService:SalonService, private kategorijaService:KategorijaService,
-              private gradService:GradService, private router:Router) {
+              private gradService:GradService, private router:Router, private authService:AuthService,
+              private toastService:ToastserviceService) {
   }
 
 
@@ -46,9 +52,11 @@ export class HomeComponent implements OnInit{
         if (response.message === 'Salon je uspješno dodan u omiljene.') {
           salon.jeOmiljeni = true;
           this.omiljeniSaloniIds.add(salon.id);
+          this.toastService.showSuccessToast('Dodano u omiljene!')
         } else if (response.message === 'Salon je uklonjen iz omiljenih.') {
           salon.jeOmiljeni = false;
           this.omiljeniSaloniIds.delete(salon.id);
+          this.toastService.showSuccessToast('Uklonjeno iz omiljenih!')
         }
       },
       error: (err) => {
@@ -59,6 +67,8 @@ export class HomeComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.user=this.authService.getUser();
+
     // Učitaj sve salone odmah
     this.salonService.getAllSaloni().subscribe((saloni) => {
       this.saloni$ = new Observable((observer) => observer.next(saloni));
@@ -87,7 +97,6 @@ export class HomeComponent implements OnInit{
       this.gradovi = data;
     });
   }
-
 
 
   onClickPretrazi(): void {

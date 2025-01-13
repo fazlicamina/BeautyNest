@@ -35,6 +35,18 @@ export class RezervacijaService {
     });
   }
 
+  createReservation(rezervacija: any): Observable<any> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+
+    console.log('Slanje zahtjeva za kreiranje rezervacije:', rezervacija);
+
+
+    return this.http.post(`${environment.apiBaseUrl}api/rezervacija`, rezervacija, {
+      headers,
+      withCredentials: true,
+    });
+  }
 
 
 

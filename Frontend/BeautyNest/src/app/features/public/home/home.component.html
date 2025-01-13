@@ -45,7 +45,9 @@
         <div class="card-footer mt-auto d-flex justify-content-between align-items-center">
           <a href="#" class="btn pregledaj btn-primary" [routerLink]="['/saloni', salon.id]">Pregledaj</a>
 
-          <div class="d-flex justify-content-center align-items-center" style="width: 50px;">
+          <div
+            *ngIf="user!==undefined && user?.roles?.includes('Klijent')"
+            class="d-flex justify-content-center align-items-center" style="width: 50px;">
             <i
               class="fa"
               [ngClass]="{'fa-heart': salon.jeOmiljeni, 'fa-heart-o': !salon.jeOmiljeni}"
@@ -82,6 +84,6 @@
   </div>
 
 </div>
+</div>
 
-
-<div style="margin-bottom: 200px"></div>
+<div style="padding-bottom: 100px"></div>

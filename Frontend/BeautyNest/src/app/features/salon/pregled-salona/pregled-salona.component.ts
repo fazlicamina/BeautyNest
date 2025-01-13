@@ -16,9 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import {ViewEncapsulation } from '@angular/core';
 import {MatCard} from '@angular/material/card';
 import {RezervacijaService} from '../services/rezervacija.service';
-import {RezervacijaRequest} from '../models/rezervacija-request';
-import {SlobodniTermin} from '../models/slobodni-termin';
 import {HttpParams} from '@angular/common/http';
+import {Toast} from 'bootstrap';
+import {ToastserviceService} from '../../../core/services/toastservice.service';
+import {User} from '../../auth/models/user';
 
 @Component({
   selector: 'app-pregled-salona',
@@ -44,6 +45,8 @@ import {HttpParams} from '@angular/common/http';
 })
 export class PregledSalonaComponent implements OnInit, OnDestroy{
 
+  user?:User;
+
   id:number | null=null;
   paramsSubscription?:Subscription;
   salon$?:Observable<Salon>;
@@ -60,9 +63,6 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
 
   minDate: Date = new Date(); // Blokiraj prošle datume
 
-
-
-  //rezervacija
   selectedDate: Date | null = null;
   selectedTime: string | null = null;
   availableTimes: string[] = [];
@@ -71,7 +71,8 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   constructor(private salonService:SalonService, private route:ActivatedRoute,
               private kategorijaUslugeService : KategorijaUslugeService,
 private authService:AuthService, private cookieService:CookieService,
-              private rezervacijaService: RezervacijaService){
+              private rezervacijaService: RezervacijaService,
+              private toastService: ToastserviceService){
   }
 
 
@@ -121,12 +122,51 @@ private authService:AuthService, private cookieService:CookieService,
     }
   }
 
-
-
   onTimeSelect(time: string): void {
     this.selectedTime = time;
   }
 
+
+  //POPRAVITI METODU potvrdiRezervaciju!!!
+  potvrdiRezervaciju(): void {
+    if (this.selectedSalonId && this.selectedDate && this.selectedTime && this.selectedUsluge.length > 0) {
+      const vrijemePocetkaString = this.selectedTime.split(' - ')[0]; // Uzmemo samo početno vrijeme
+      const vrijemePocetka = vrijemePocetkaString.split(':').map(Number);
+
+      const utcDate = new Date(Date.UTC(
+        this.selectedDate.getUTCFullYear(),
+        this.selectedDate.getUTCMonth(),
+        this.selectedDate.getUTCDate()
+      ));
+
+      const formattedDate = utcDate.toISOString().split('T')[0];
+
+      const rezervacijaRequest = {
+        salonId: this.selectedSalonId,
+        datumRezervacije: formattedDate,
+        vrijemePocetka: `${vrijemePocetka[0].toString().padStart(2, '0')}:${vrijemePocetka[1].toString().padStart(2, '0')}:00`,
+        uslugaIds: this.selectedUsluge.map(u => u.id),
+      };
+
+      this.rezervacijaService.createReservation(rezervacijaRequest).subscribe(
+        (response) => {
+          this.toastService.showSuccessToast('Zahtjev za rezervaciju uspješno poslan!');
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        },
+        (error) => {
+          console.error('Greška prilikom kreiranja rezervacije:', error);
+          this.toastService.showErrorToast('Došlo je do greške prilikom slanja rezervacije. Pokušajte ponovo.');
+        }
+      );
+
+
+    }
+  }
+
+  //ispod je rezervacija ali samo select i toggle
   rezervisi(): void {
     if (!this.authService.isAuthenticated()) {
       const modalElement = document.getElementById('loginModal');
@@ -158,17 +198,18 @@ private authService:AuthService, private cookieService:CookieService,
 
   onDateChange(date: Date | null): void {
     this.selectedDate = date;
-    this.loadAvailableTimes(); // Poziv tek nakon odabira datuma
+    this.loadAvailableTimes();
   }
 
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       this.selectedSalonId = +params['id'];
       this.loadAvailableTimes();
       this.checkFavoriteStatus();
     });
+
+    this.user=this.authService.getUser();
 
     this.paramsSubscription = this.route.paramMap
       .subscribe({
@@ -251,10 +292,8 @@ private authService:AuthService, private cookieService:CookieService,
           roles: response.roles,
         });
 
-
         this.closeLoginModal();
-        this.showModal('Prijava uspješna!');
-
+        this.toastService.showSuccessToast('Prijava uspješna!')
 
 
       },
@@ -264,24 +303,6 @@ private authService:AuthService, private cookieService:CookieService,
 
       },
     });
-  }
-
-  private showModal(message: string): void {
-    const modalBody = document.getElementById('modalBody2');
-    if (modalBody) {
-      modalBody.innerText = message;
-    }
-
-    const modalElement = document.getElementById('loginInfo');
-    if (modalElement) {
-      const bootstrapModal = new Modal(modalElement);
-      bootstrapModal.show();
-
-      setTimeout(() => {
-        bootstrapModal.hide();
-      }, 1500);
-
-    }
   }
 
   closeLoginModal(): void {
@@ -301,8 +322,10 @@ private authService:AuthService, private cookieService:CookieService,
         next: (response: any) => {
           if (response.message === 'Salon je uspješno dodan u omiljene.') {
             this.isFavorite = true;
+            this.toastService.showSuccessToast('Dodano u omiljene!')
           } else if (response.message === 'Salon je uklonjen iz omiljenih.') {
             this.isFavorite = false;
+            this.toastService.showSuccessToast('Uklonjeno iz omiljenih!')
           }
         },
         error: (err) => {

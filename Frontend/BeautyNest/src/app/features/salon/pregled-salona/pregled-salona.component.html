@@ -87,11 +87,7 @@
           </ul>
         </div>
       </div>
-
-
-
     </div>
-
 
 
     <div class="col-4 ">
@@ -120,7 +116,9 @@
       </span>
 
 
-          <div class="d-flex align-items-center mt-3 fav" style="gap: 8px; font-size: 1rem; color: #333;">
+          <div
+            *ngIf="user!==undefined && user?.roles?.includes('Klijent')"
+            class="d-flex align-items-center mt-3 fav" style="gap: 8px; font-size: 1rem; color: #333;">
             <i
               class="fa"
               [ngClass]="{'fa-heart': isFavorite, 'fa-heart-o': !isFavorite}"
@@ -163,14 +161,22 @@
             <div class="mt-3">
               <h5>Ukupna cijena: <span style="color: #DBAEAB; font-weight: bold">{{ totalCijena }} KM</span></h5>
             </div>
-
-            <a
-              id="rezervisiBtn"
-              class="btn btn-primary pinkbutton mt-3"
-              style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold"
-              (click)="rezervisi()">
+            <!-- Prikaz dugmeta ako je korisnik klijent -->
+            <a *ngIf="user !== undefined && user?.roles?.includes('Klijent')"
+               id="rezervisiBtn"
+               class="btn btn-primary pinkbutton mt-3"
+               style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold"
+               (click)="rezervisi()">
               Rezerviši
             </a>
+
+            <!-- Prikaz poruke ako je korisnik uposlenik -->
+            <div *ngIf="user !== undefined && user?.roles?.includes('Uposlenik')"
+                 class="alert alert-light mt-3"
+                 style="text-align: center;">
+              Uposlenik ne može izvršiti rezervaciju!
+            </div>
+
 
 
           </div>
@@ -183,9 +189,6 @@
 
 
 <div style="margin-bottom: 80px"></div>
-
-
-
 
 
 <div class="modal fade" id="rezervacijaModal1" tabindex="-1" aria-labelledby="rezervacijaModal1Label" aria-hidden="true">
@@ -225,14 +228,12 @@
           </div>
 
           <div *ngIf="availableTimes?.length === 0 && selectedDate" class="mt-4">
-            <p class="text-danger">Nema dostupnih termina za odabrani datum.</p>
+            <div class="alert alert-light" role="alert">
+              Nema dostupnih termina za odabrani datum.
+            </div>
           </div>
         </div>
-
-
       </div>
-
-
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
@@ -241,20 +242,11 @@
           style="background-color: #DBAEAB; border: none"
           class="btn btn-primary bth"
           id="nextStepBtn"
-          [disabled]="!selectedTime"
-        >
-          Nastavi
-        </button>
+          [disabled]="!selectedTime">Nastavi</button>
       </div>
-
-
     </div>
   </div>
 </div>
-
-
-
-
 
 
 <!-- Modal rezervacija 2 -->
@@ -275,7 +267,6 @@
 
         </div>
 
-
         <h5>Odabrane usluge</h5>
         <ul class="list-group">
           <li  class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let usluga of selectedUsluge"
@@ -283,7 +274,6 @@
             <span style="flex-grow: 1; font-weight: bold">{{ usluga.naziv }}</span>
             <div style="display: flex; align-items: center; ">
               <span style="font-weight: bold;color: #DBAEAB">{{ usluga.cijena }} KM</span>
-              <button  class="btn btn-sm remove-btn pinkbutton" (click)="removeUsluga(usluga)" style="margin-left: 20px;!important;">X</button>
             </div>
           </li>
         </ul>
@@ -292,19 +282,19 @@
         </div>
 
 
-
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
-        <button type="button" class="btn btn-primary bth" data-bs-dismiss="modal" style="border: none; background-color: #DBAEAB">Potvrdi rezervaciju</button>
+
+        <button type="button" class="btn btn-primary bth" (click)="potvrdiRezervaciju()" style="border: none; background-color: #DBAEAB">
+          Potvrdi rezervaciju
+        </button>
+
+
       </div>
     </div>
   </div>
 </div>
-
-
-
 
 
 <!-- Modal za login kada se klikne na button rezervisi (neprijavljen)-->
@@ -339,15 +329,4 @@
   </div>
 </div>
 
-
-<!-- Modal for successful login or error -->
-<div class="modal fade" id="loginInfo" tabindex="-2" aria-labelledby="loginInfoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body" id="modalBody2">
-        <!-- Message will be dynamically injected here -->
-      </div>
-    </div>
-  </div>
-</div>
-
+<div style="padding-bottom: 80px"></div>

@@ -13,6 +13,9 @@ import {FormsModule} from '@angular/forms';
 import {KategorijaService} from '../../kategorija/services/kategorija.service';
 import {consumerDestroy} from '@angular/core/primitives/signals';
 import {Usluga} from '../../salon/models/usluga';
+import {User} from '../../auth/models/user';
+import {AuthService} from '../../auth/services/auth.service';
+import {ToastserviceService} from '../../../core/services/toastservice.service';
 
 
 @Component({
@@ -32,6 +35,8 @@ import {Usluga} from '../../salon/models/usluga';
 })
 export class PretragaComponent implements OnInit{
 
+  user?:User;
+
   saloni:Salon[]=[];
   gradovi:Grad[]=[];
   kategorije:Kategorija[]=[];
@@ -44,10 +49,14 @@ export class PretragaComponent implements OnInit{
   constructor(private salonService:SalonService,
               private kategorijaUslugeService : KategorijaUslugeService,
               private gradService:GradService, private route: ActivatedRoute,
-              private router:Router, private kategorijaService:KategorijaService) {
+              private router:Router, private kategorijaService:KategorijaService,
+              private  authService: AuthService,
+              private toastService:ToastserviceService) {
   }
 
   ngOnInit(): void {
+    this.user=this.authService.getUser();
+
     this.loadInitialData();
 
     this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
@@ -92,9 +101,11 @@ export class PretragaComponent implements OnInit{
         if (response.message === 'Salon je uspješno dodan u omiljene.') {
           salon.jeOmiljeni = true;
           this.omiljeniSaloniIds.add(salon.id);
+          this.toastService.showSuccessToast('Dodano u omiljene!')
         } else if (response.message === 'Salon je uklonjen iz omiljenih.') {
           salon.jeOmiljeni = false;
           this.omiljeniSaloniIds.delete(salon.id);
+          this.toastService.showSuccessToast('Uklonjeno iz omiljenih!')
         }
       },
       error: (err) => {

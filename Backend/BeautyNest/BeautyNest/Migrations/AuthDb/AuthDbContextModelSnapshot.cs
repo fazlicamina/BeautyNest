@@ -63,9 +63,6 @@ namespace BeautyNest.Migrations.AuthDb
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("OmiljeniSaloniIds")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -108,7 +105,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "41451580-acf7-422e-81b1-3bab4d8213a6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cfa6087b-f8bc-4b73-9338-441e47f7c3c4",
+                            ConcurrencyStamp = "3787a2ca-b3be-4068-9bda-421e4b2c7399",
                             Email = "fazlicamina02@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Amina",
@@ -116,9 +113,9 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "FAZLICAMINA02@GMAIL.COM",
                             NormalizedUserName = "FAZLICAMINA02",
-                            PasswordHash = "AQAAAAIAAYagAAAAENlQMA92gzeBB1HdQFzU/Bn8RVnYQSn5M1dNvlLROYx9N6QYYwKJdTRWnt+ykPtYHA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN51HNm4Ab5FqTnkEb6PHLiOWlY6MWJOSF1cDxT0PfF9PYwkU5tjdpMoT5Qp6nQc1A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d7b3816-34e6-48af-913b-ac910870e550",
+                            SecurityStamp = "983a7e1d-34d8-449e-9de8-f70d4d609750",
                             TwoFactorEnabled = false,
                             UserName = "fazlicamina02"
                         },
@@ -126,7 +123,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "b3b5c3e0-2f78-4f55-badb-d19d328c3240",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a74d4dfb-ae9d-49a0-a3c7-4306fc714e05",
+                            ConcurrencyStamp = "a4620228-5833-4450-90ce-9315bb21f9c9",
                             Email = "adnah@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adna",
@@ -134,10 +131,10 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "ADNAH@GMAIL.COM",
                             NormalizedUserName = "ADNAH",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO53WpsofaD4q6jc4VwWVjl1zmLm/OdirvAFLXA+ObITeu2BrlKmBPIviZWuK0AIag==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMBssM1HlwAAII0PJedF6+vJWU72fR/EqHPzviSIonnxv3WyvnG9XD7jaz8fu+L7XQ==",
                             PhoneNumberConfirmed = false,
                             SalonId = 1,
-                            SecurityStamp = "ae8ca808-1a5a-4a57-aba0-5dc2bfc2c792",
+                            SecurityStamp = "4105ace3-2e21-4b0b-b632-cb904fa98f97",
                             TwoFactorEnabled = false,
                             UserName = "adnah"
                         },
@@ -145,7 +142,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "e2e78953-bb8d-4b62-bb1a-d5e5bcb0af03",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "523930c6-bfc7-4cf6-af23-ecb0f542baae",
+                            ConcurrencyStamp = "51511450-f0fd-463f-b293-41dae84419e9",
                             Email = "anidasabic@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Anida",
@@ -153,10 +150,10 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "ANIDASABIC@GMAIL.COM",
                             NormalizedUserName = "ANIDASABIC",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJjXEq3Gh5u/BCxlGICtzYlBcPWlKiUDCIRsFpa6CrHWe24pHON9Bwy1u/PqX9QW1w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFPrP0MH38HRduHqolpGn3EtP/NjHZOAf6/ZRL0dy37BG8Ys1ibZBzE0zcUar+lfYQ==",
                             PhoneNumberConfirmed = false,
                             SalonId = 1,
-                            SecurityStamp = "eb5ba04b-3c2c-411e-a6f2-38ae66f18a2a",
+                            SecurityStamp = "aee04862-df42-4aea-bbd7-f1f894e030d8",
                             TwoFactorEnabled = false,
                             UserName = "anidasabic"
                         },
@@ -164,7 +161,7 @@ namespace BeautyNest.Migrations.AuthDb
                         {
                             Id = "a9821a5d-6d8c-4b8b-8c68-cc6e52f1a529",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "545b5288-ecb7-4133-89b7-a9f954e321ce",
+                            ConcurrencyStamp = "84dacd11-b89c-4540-9044-85a6bc393dc4",
                             Email = "aldinh@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Aldin",
@@ -172,12 +169,69 @@ namespace BeautyNest.Migrations.AuthDb
                             LockoutEnabled = false,
                             NormalizedEmail = "ALDINH@GMAIL.COM",
                             NormalizedUserName = "ALDINH",
-                            PasswordHash = "AQAAAAIAAYagAAAAENzA5+seZd99drWd30iAfUI04RmeSyNIPs7MF8c/TRfC10U5LBBKfteD1My3qstfvw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIkU0Lv0476KwmUnXXVT013FUeRyYwY9kWiRD1v2Z2WvRXPh7ZJuiFSdJdJLYqveAw==",
                             PhoneNumberConfirmed = false,
                             SalonId = 1,
-                            SecurityStamp = "bd7216b9-4b7d-4a03-9ee2-3764bec40330",
+                            SecurityStamp = "cbee35d4-85fa-4ced-b0c8-e27a024c2563",
                             TwoFactorEnabled = false,
                             UserName = "aldinh"
+                        },
+                        new
+                        {
+                            Id = "375bdc8f-0099-4009-8fe3-a69079ef38cb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0106e17e-8064-4396-9471-bb00095d215e",
+                            Email = "sara@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Sara",
+                            LastName = "Hodžić",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SARA@GMAIL.COM",
+                            NormalizedUserName = "SARA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHV5TcIsh9SvFie+X5WHeTe7Ui40Yh03b5dvQ+ST1i7IGjGoRRudzSjH3ujBvBsaVA==",
+                            PhoneNumberConfirmed = false,
+                            SalonId = 2,
+                            SecurityStamp = "af52556a-dc51-4fd8-a47a-ffab22d907a8",
+                            TwoFactorEnabled = false,
+                            UserName = "sara"
+                        },
+                        new
+                        {
+                            Id = "9b9687c2-256b-43d1-99fb-829bc64bad18",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8c5a8784-cdf4-4c00-be9b-ad23c98405a6",
+                            Email = "azra@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Azra",
+                            LastName = "Hodžić",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "AZRA@GMAIL.COM",
+                            NormalizedUserName = "AZRA",
+                            PasswordHash = "AQAAAAIAAYagAAAAENfjI/3QOACmtlFmlB/nyWeG2LKdSrezkxsMZTIi+Vdwq1+Q4WVUcwAud2yYnl9hhQ==",
+                            PhoneNumberConfirmed = false,
+                            SalonId = 3,
+                            SecurityStamp = "572d5402-73d6-4a72-adec-e276a29c9e9e",
+                            TwoFactorEnabled = false,
+                            UserName = "azra"
+                        },
+                        new
+                        {
+                            Id = "0b4c05f1-06b6-431d-9e3a-3d4272ea3e05",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "25f68d6f-a661-43df-9297-aa9ed86e3567",
+                            Email = "samra@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Samra",
+                            LastName = "Fazlić",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SAMRA@GMAIL.COM",
+                            NormalizedUserName = "SAMRA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKXBmeGKLYJlIqJ7Ce1dGbAEsH624dXwAdXMjcFgcqUGOLnQltyy8uChe4jEr19xpQ==",
+                            PhoneNumberConfirmed = false,
+                            SalonId = 4,
+                            SecurityStamp = "9536492f-10f2-47e8-b6c6-4b844de7edc1",
+                            TwoFactorEnabled = false,
+                            UserName = "samra"
                         });
                 });
 
@@ -336,6 +390,21 @@ namespace BeautyNest.Migrations.AuthDb
                         new
                         {
                             UserId = "a9821a5d-6d8c-4b8b-8c68-cc6e52f1a529",
+                            RoleId = "cbf297f5-0f16-4294-95cb-bd94ba401f0a"
+                        },
+                        new
+                        {
+                            UserId = "9b9687c2-256b-43d1-99fb-829bc64bad18",
+                            RoleId = "cbf297f5-0f16-4294-95cb-bd94ba401f0a"
+                        },
+                        new
+                        {
+                            UserId = "375bdc8f-0099-4009-8fe3-a69079ef38cb",
+                            RoleId = "cbf297f5-0f16-4294-95cb-bd94ba401f0a"
+                        },
+                        new
+                        {
+                            UserId = "0b4c05f1-06b6-431d-9e3a-3d4272ea3e05",
                             RoleId = "cbf297f5-0f16-4294-95cb-bd94ba401f0a"
                         });
                 });

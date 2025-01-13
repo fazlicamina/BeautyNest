@@ -77,11 +77,24 @@ namespace BeautyNest.Data
 
             builder.Entity<IdentityUserRole<string>>().HasData(klijentRoles);
 
-            //seeding 3 uposlenika
+            //seeding uposlenika salon 1
 
             var uposlenikAdna = "b3b5c3e0-2f78-4f55-badb-d19d328c3240";
             var uposlenikAnida = "e2e78953-bb8d-4b62-bb1a-d5e5bcb0af03";
             var uposlenikAldin = "a9821a5d-6d8c-4b8b-8c68-cc6e52f1a529";
+
+            //seeding uposlenika salon 2
+
+            var uposlenikSara = "375bdc8f-0099-4009-8fe3-a69079ef38cb";
+
+            //seeding uposlenika salon 3
+
+            var uposlenikAzra = "9b9687c2-256b-43d1-99fb-829bc64bad18";
+
+            //seeding uposlenika salon 4
+
+            var uposlenikSamra = "0b4c05f1-06b6-431d-9e3a-3d4272ea3e05";
+
 
             var uposlenici = new List<User>
     {
@@ -117,6 +130,39 @@ namespace BeautyNest.Data
             FirstName = "Aldin",
             LastName = "Hodžić",
             SalonId=1
+        },
+        new User
+        {
+            Id = uposlenikSara,
+            UserName = "sara",
+            Email = "sara@gmail.com",
+            NormalizedEmail = "SARA@GMAIL.COM",
+            NormalizedUserName = "SARA",
+            FirstName = "Sara",
+            LastName = "Hodžić",
+            SalonId=2
+        },
+        new User
+        {
+            Id = uposlenikAzra,
+            UserName = "azra",
+            Email = "azra@gmail.com",
+            NormalizedEmail = "AZRA@GMAIL.COM",
+            NormalizedUserName = "AZRA",
+            FirstName = "Azra",
+            LastName = "Hodžić",
+            SalonId=3
+        },
+        new User
+        {
+            Id = uposlenikSamra,
+            UserName = "samra",
+            Email = "samra@gmail.com",
+            NormalizedEmail = "SAMRA@GMAIL.COM",
+            NormalizedUserName = "SAMRA",
+            FirstName = "Samra",
+            LastName = "Fazlić",
+            SalonId=4
         }
     };
 
@@ -131,7 +177,10 @@ namespace BeautyNest.Data
     {
         new() { UserId = uposlenikAdna, RoleId = uposlenikRoleId },
         new() { UserId = uposlenikAnida, RoleId = uposlenikRoleId },
-        new() { UserId = uposlenikAldin, RoleId = uposlenikRoleId }
+        new() { UserId = uposlenikAldin, RoleId = uposlenikRoleId },
+        new() { UserId = uposlenikAzra, RoleId = uposlenikRoleId },
+        new() { UserId = uposlenikSara, RoleId = uposlenikRoleId },
+        new() { UserId = uposlenikSamra, RoleId = uposlenikRoleId }
     };
 
             builder.Entity<IdentityUserRole<string>>().HasData(uposlenikRoles);

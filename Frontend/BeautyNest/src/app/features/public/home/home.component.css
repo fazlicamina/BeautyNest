@@ -71,8 +71,7 @@ select option:disabled {
 
 
 .pregledaj {
-
-  width: 90%;
+  width: 100%;
 }
 
 .pregledaj:hover {
