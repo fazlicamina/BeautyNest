@@ -48,6 +48,7 @@ export class MojeRezervacijeComponent implements OnInit{
 
   confirmCancel() {
     if (this.rezervacijaZaBrisanje !== null) {
+      console.log(this.rezervacijaZaBrisanje);
       this.rezervacijaService.otkaziRezervaciju(this.rezervacijaZaBrisanje).subscribe(
         () => {
           this.rezervacije = this.rezervacije.filter(r => r.id !== this.rezervacijaZaBrisanje);
@@ -70,6 +71,12 @@ export class MojeRezervacijeComponent implements OnInit{
 
   isZavrsena(rezervacija: any): boolean {
     return new Date(rezervacija.datumRezervacije) < this.trenutniDatum;
+  }
+
+  isOtkazivanjeMoguce(rezervacija: any): boolean {
+    const datumRezervacije = new Date(rezervacija.datumRezervacije);
+    const razlikaUDanima = Math.floor((datumRezervacije.getTime() - this.trenutniDatum.getTime()) / (1000 * 60 * 60 * 24));
+    return razlikaUDanima >= 2; // Otkazivanje je moguće ako je razlika 2 ili više dana
   }
 
 }

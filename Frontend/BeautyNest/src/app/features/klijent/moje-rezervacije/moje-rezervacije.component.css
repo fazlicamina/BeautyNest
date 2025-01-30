@@ -33,3 +33,7 @@
 .cbutton:hover{
   background-color: #4b4b4b !important;
 }
+
+.text-danger-p {
+  color: #c99997;
+}

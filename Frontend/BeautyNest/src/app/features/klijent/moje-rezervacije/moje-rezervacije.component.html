@@ -41,8 +41,15 @@
                 <div class="col-md-3 d-flex align-items-center">
                   <button *ngIf="isZavrsena(rezervacija)" class="btn pinkbutton ms-3 me-5 w-100 fw-bold">Ostavi recenziju
                   </button>
-                  <button *ngIf="!isZavrsena(rezervacija)" class="btn cbutton  ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">Otkaži
+
+                  <button *ngIf="!isZavrsena(rezervacija) && isOtkazivanjeMoguce(rezervacija)"  class="btn cbutton ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">
+                    Otkaži
                   </button>
+
+                  <p *ngIf="!isOtkazivanjeMoguce(rezervacija) && !isZavrsena(rezervacija)" class="text-danger-p fw-bold small mb-0">
+                    Nije moguće otkazati 2 dana prije rezervacije!
+                  </p>
+
                 </div>
               </div>
             </div>
@@ -75,9 +82,15 @@
                 </div>
                 <!-- Kolona 4: Otkazivanje -->
                 <div class="col-md-3 d-flex align-items-center">
-                  <button class="btn cbutton ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">
+
+                  <button *ngIf="isOtkazivanjeMoguce(rezervacija)"  class="btn cbutton ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">
                     Otkaži
                   </button>
+
+                  <p *ngIf="!isOtkazivanjeMoguce(rezervacija)" class="text-danger-p small fw-bold mb-0">
+                    Nije moguće otkazati 2 dana prije rezervacije!
+                  </p>
+
                 </div>
               </div>
             </div>
@@ -138,8 +151,8 @@
         Da li ste sigurni da želite otkazati ovu rezervaciju?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
         <button type="button" class="btn pinkbutton" (click)="confirmCancel()" data-bs-dismiss="modal">Obriši</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
       </div>
     </div>
   </div>
