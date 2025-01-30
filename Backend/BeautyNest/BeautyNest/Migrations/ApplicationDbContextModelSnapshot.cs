@@ -36,7 +36,7 @@ namespace BeautyNest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gradovi", (string)null);
+                    b.ToTable("Gradovi");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Kategorija", b =>
@@ -57,7 +57,7 @@ namespace BeautyNest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kategorije", (string)null);
+                    b.ToTable("Kategorije");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.KategorijaUsluge", b =>
@@ -79,7 +79,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("SalonId");
 
-                    b.ToTable("KategorijeUsluga", (string)null);
+                    b.ToTable("KategorijeUsluga");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.OmiljeniSalon", b =>
@@ -99,7 +99,7 @@ namespace BeautyNest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OmiljeniSaloni", (string)null);
+                    b.ToTable("OmiljeniSaloni");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
@@ -112,6 +112,10 @@ namespace BeautyNest.Migrations
 
                     b.Property<DateTime>("DatumRezervacije")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("KlijentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Poruka")
                         .IsRequired()
@@ -133,7 +137,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("SalonId");
 
-                    b.ToTable("Rezervacije", (string)null);
+                    b.ToTable("Rezervacije");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Salon", b =>
@@ -187,7 +191,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("GradId");
 
-                    b.ToTable("Saloni", (string)null);
+                    b.ToTable("Saloni");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.SalonSlika", b =>
@@ -209,7 +213,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("SalonId");
 
-                    b.ToTable("SalonSlike", (string)null);
+                    b.ToTable("SalonSlike");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.Usluga", b =>
@@ -237,7 +241,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("KategorijaUslugeId");
 
-                    b.ToTable("Usluge", (string)null);
+                    b.ToTable("Usluge");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.UslugaRezervacija", b =>
@@ -252,7 +256,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("RezervacijaId");
 
-                    b.ToTable("UslugeRezervacije", (string)null);
+                    b.ToTable("UslugeRezervacije");
                 });
 
             modelBuilder.Entity("KategorijaSalon", b =>
@@ -267,7 +271,7 @@ namespace BeautyNest.Migrations
 
                     b.HasIndex("SaloniId");
 
-                    b.ToTable("KategorijaSalon", (string)null);
+                    b.ToTable("KategorijaSalon");
                 });
 
             modelBuilder.Entity("BeautyNest.Models.Domain.KategorijaUsluge", b =>

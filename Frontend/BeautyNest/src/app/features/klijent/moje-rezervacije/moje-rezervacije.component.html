@@ -1,0 +1,146 @@
+<div class="container mt-4">
+  <h2 class="naslov mt-5 mb-3">Moje rezervacije</h2>
+
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="pills-sve-tab" data-bs-toggle="pill" data-bs-target="#pills-sve" type="button" role="tab" aria-controls="pills-sve" aria-selected="true">Sve</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-nadolazece-tab" data-bs-toggle="pill" data-bs-target="#pills-nadolazece" type="button" role="tab" aria-controls="pills-nadolazece" aria-selected="false">Nadolazeće</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-zavrsene-tab" data-bs-toggle="pill" data-bs-target="#pills-zavrsene" type="button" role="tab" aria-controls="pills-zavrsene" aria-selected="false">Završene</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+
+    <!-- Sve rezervacije -->
+    <div class="tab-pane fade show active" id="pills-sve" role="tabpanel" aria-labelledby="pills-sve-tab" *ngIf="rezervacije.length > 0">
+      <div class="row justify-content-center">
+        <div>
+          <div *ngFor="let rezervacija of rezervacije" class="card mb-3 shadow-sm bg-light border-0">
+            <div class="card-body">
+              <div class="row align-items-center text-center">
+                <!-- Kolona 1: Salon -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.salonNaziv }}</h6>
+                  <p class="text-secondary">{{ rezervacija.salonAdresa }}</p>
+                </div>
+                <!-- Kolona 2: Datum i vrijeme -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.datumRezervacije | date:'dd.MM.yyyy' }}</h6>
+                  <p class="text-secondary">{{ rezervacija.vrijemePocetka }} - {{ rezervacija.vrijemeZavrsetka }}</p>
+                </div>
+                <!-- Kolona 3: Usluge i trajanje -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
+                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+                </div>
+                <!-- Kolona 4: Otkazivanje ili recenzija -->
+                <div class="col-md-3 d-flex align-items-center">
+                  <button *ngIf="isZavrsena(rezervacija)" class="btn pinkbutton ms-3 me-5 w-100 fw-bold">Ostavi recenziju
+                  </button>
+                  <button *ngIf="!isZavrsena(rezervacija)" class="btn cbutton  ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">Otkaži
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nadolazeće rezervacije -->
+    <div class="tab-pane fade" id="pills-nadolazece" role="tabpanel" aria-labelledby="pills-nadolazece-tab" *ngIf="getNadolazeceRezervacije().length > 0">
+      <div class="row justify-content-center">
+        <div>
+          <div *ngFor="let rezervacija of getNadolazeceRezervacije()" class="card mb-3 shadow-sm bg-light border-0">
+            <div class="card-body">
+              <div class="row align-items-center text-center">
+                <!-- Kolona 1: Salon -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.salonNaziv }}</h6>
+                  <p class="text-secondary">{{ rezervacija.salonAdresa }}</p>
+                </div>
+                <!-- Kolona 2: Datum i vrijeme -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.datumRezervacije | date:'dd.MM.yyyy' }}</h6>
+                  <p class="text-secondary">{{ rezervacija.vrijemePocetka }} - {{ rezervacija.vrijemeZavrsetka }}</p>
+                </div>
+                <!-- Kolona 3: Usluge i trajanje -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
+                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+                </div>
+                <!-- Kolona 4: Otkazivanje -->
+                <div class="col-md-3 d-flex align-items-center">
+                  <button class="btn cbutton ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">
+                    Otkaži
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Završene rezervacije -->
+    <div class="tab-pane fade" id="pills-zavrsene" role="tabpanel" aria-labelledby="pills-zavrsene-tab" *ngIf="getZavrseneRezervacije().length > 0">
+      <div class="row justify-content-center">
+        <div>
+          <div *ngFor="let rezervacija of getZavrseneRezervacije()" class="card mb-3 shadow-sm bg-light border-0">
+            <div class="card-body">
+              <div class="row align-items-center text-center">
+                <!-- Kolona 1: Salon -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.salonNaziv }}</h6>
+                  <p class="text-secondary">{{ rezervacija.salonAdresa }}</p>
+                </div>
+                <!-- Kolona 2: Datum i vrijeme -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.datumRezervacije | date:'dd.MM.yyyy' }}</h6>
+                  <p class="text-secondary">{{ rezervacija.vrijemePocetka }} - {{ rezervacija.vrijemeZavrsetka }}</p>
+                </div>
+                <!-- Kolona 3: Usluge i trajanje -->
+                <div class="col-md-3">
+                  <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
+                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+                </div>
+                <!-- Kolona 4: Recenzija -->
+                <div class="col-md-3 d-flex align-items-center">
+                  <button class="btn ms-3 me-5 pinkbutton w-100 fw-bold">
+                    Ostavi recenziju
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="padding-bottom: 50px"></div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Potvrda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
+      </div>
+      <div class="modal-body">
+        Da li ste sigurni da želite otkazati ovu rezervaciju?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+        <button type="button" class="btn pinkbutton" (click)="confirmCancel()" data-bs-dismiss="modal">Obriši</button>
+      </div>
+    </div>
+  </div>
+</div>

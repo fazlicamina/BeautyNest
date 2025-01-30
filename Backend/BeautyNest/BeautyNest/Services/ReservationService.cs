@@ -116,7 +116,12 @@ namespace BeautyNest.Services
                 DatumRezervacije = date,
                 VrijemePocetka = start,
                 VrijemeZavrsetka = krajTermina,
-                Status = false
+                Status = false,
+                KlijentId = userId,
+                UslugeRezervacija = usluge.Select(u => new UslugaRezervacija
+                {
+                    UslugaId = u.Id
+                }).ToList()
             };
 
             applicationDbContext.Rezervacije.Add(rezervacija);
@@ -150,6 +155,62 @@ namespace BeautyNest.Services
         {
             return applicationDbContext.Rezervacije.FirstOrDefault(r => r.Id == rezervacijaId);
         }
+
+        public async Task<List<RezervacijaDto>> GetRezervacijeByUserIdAsync(string userId)
+        {
+            var rezervacije = await applicationDbContext.Rezervacije
+                .Where(r => r.KlijentId == userId)
+                .Include(r => r.Salon)
+                .Include(r => r.UslugeRezervacija)
+                    .ThenInclude(ur => ur.Usluga)
+                .ToListAsync();
+
+            return rezervacije.Select(r => new RezervacijaDto
+            {
+                Id = r.Id,
+                KlijentId = r.KlijentId,
+                SalonId = r.SalonId,
+                SalonNaziv = r.Salon?.Naziv ?? "Nepoznato",
+                SalonAdresa = r.Salon?.Adresa ?? "Nepoznata adresa",
+                DatumRezervacije = r.DatumRezervacije,
+                VrijemePocetka = r.VrijemePocetka,
+                VrijemeZavrsetka = r.VrijemeZavrsetka,
+                Status = r.Status,
+                Poruka = r.Poruka,
+                Usluge = r.UslugeRezervacija.Select(ur => ur.Usluga.Naziv).ToList(),
+                Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes)
+            }).ToList();
+        }
+
+        public async Task CancelRezervacijaAsync(int rezervacijaId)
+        {
+            var rezervacija = await applicationDbContext.Rezervacije.FindAsync(rezervacijaId);
+            if (rezervacija != null)
+            {
+                applicationDbContext.Rezervacije.Remove(rezervacija);
+                await applicationDbContext.SaveChangesAsync();
+            }
+        }
+
+
+        public async Task<bool> OtkaziRezervacijuAsync(int rezervacijaId, string userId)
+        {
+
+            var rezervacija = await applicationDbContext.Rezervacije
+                .Include(r => r.UslugeRezervacija)
+                .FirstOrDefaultAsync(r => r.Id == rezervacijaId && r.KlijentId == userId);
+
+            if (rezervacija == null) return false;
+
+            applicationDbContext.UslugeRezervacije.RemoveRange(rezervacija.UslugeRezervacija);
+
+            applicationDbContext.Rezervacije.Remove(rezervacija);
+            await applicationDbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+
 
 
     }

@@ -1,0 +1,35 @@
+.nav-pills .nav-link.active {
+  background-color: #DBAEAB;
+  border: none;
+  color:white;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: rgba(219, 174, 171, 0.15);
+  color: #555;
+  border: none;
+}
+
+.nav-pills .nav-link {
+  color: #555;
+}
+
+.pinkbutton{
+  background-color: #DBAEAB !important;
+  color: white !important;
+  border: none;
+}
+
+.pinkbutton:hover{
+  background-color: #e5bcba !important;
+}
+
+.cbutton{
+  background-color: #333333 !important;
+  color: white !important;
+  border: none;
+}
+
+.cbutton:hover{
+  background-color: #4b4b4b !important;
+}

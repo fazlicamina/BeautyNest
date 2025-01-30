@@ -71,6 +71,8 @@
   background-color: #e5bcba !important;
 }
 
+
+
 .list-group-item.selected {
   border: 3px solid rgba(219, 174, 171, 0.8) !important;
   border-radius: 5px;

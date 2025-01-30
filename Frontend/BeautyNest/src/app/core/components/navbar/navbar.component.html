@@ -9,7 +9,7 @@
 
         <ng-container *ngIf="user!==undefined && user?.roles?.includes('Klijent')">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Rezervacije</a>
+          <a class="nav-link active" aria-current="page"  [routerLink]="['/moje-rezervacije']">Moje rezervacije</a>
         </li>
 
           <li class="nav-item">

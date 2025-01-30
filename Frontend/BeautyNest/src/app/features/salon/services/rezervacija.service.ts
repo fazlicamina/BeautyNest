@@ -49,5 +49,27 @@ export class RezervacijaService {
   }
 
 
+  getMojeRezervacije(): Observable<any[]> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+
+    return this.http.get<any[]>(`${environment.apiBaseUrl}api/rezervacija/moje-rezervacije`, {
+      headers,
+      withCredentials: true
+    });
+  }
+
+  otkaziRezervaciju(id: number): Observable<any> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+
+    return this.http.delete(`${environment.apiBaseUrl}api/rezervacija/${id}`, {
+      headers,
+      withCredentials: true
+    });
+  }
+
+
+
 
 }

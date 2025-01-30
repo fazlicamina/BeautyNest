@@ -127,7 +127,6 @@ private authService:AuthService, private cookieService:CookieService,
   }
 
 
-  //POPRAVITI METODU potvrdiRezervaciju!!!
   potvrdiRezervaciju(): void {
     if (this.selectedSalonId && this.selectedDate && this.selectedTime && this.selectedUsluge.length > 0) {
       const vrijemePocetkaString = this.selectedTime.split(' - ')[0]; // Uzmemo samo početno vrijeme
@@ -143,9 +142,11 @@ private authService:AuthService, private cookieService:CookieService,
       const adjustedDate = new Date(formattedDate);
       adjustedDate.setDate(adjustedDate.getDate() + 1);
 
+      const user = this.authService.getUser();
 
       const rezervacijaRequest = {
         salonId: this.selectedSalonId,
+        klijentId: user?.id,
         datumRezervacije: adjustedDate,
         vrijemePocetka: `${vrijemePocetka[0].toString().padStart(2, '0')}:${vrijemePocetka[1].toString().padStart(2, '0')}:00`,
         uslugaIds: this.selectedUsluge.map(u => u.id),
@@ -293,6 +294,7 @@ private authService:AuthService, private cookieService:CookieService,
         this.authService.setUser({
           username: response.username,
           roles: response.roles,
+          id:response.id
         });
 
         this.closeLoginModal();

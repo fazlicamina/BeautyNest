@@ -36,7 +36,8 @@ export class LoginComponent {
 
           this.authService.setUser({
             username:response.username,
-            roles:response.roles
+            roles:response.roles,
+            id:response.id
           });
 
           this.router.navigateByUrl('/');

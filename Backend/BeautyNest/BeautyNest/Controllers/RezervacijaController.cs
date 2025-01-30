@@ -52,12 +52,14 @@ namespace BeautyNest.Controllers
                     return BadRequest(new { message = "User claim not found." });
                 }
 
+                request.KlijentId = userId;
+
                 var rezervacija = reservationService.CreateReservation(
                     request.SalonId,
                     request.DatumRezervacije,
                     request.VrijemePocetka,
                     request.UslugaIds,
-                    userId
+                    request.KlijentId
                 );
 
                 var response = new RezervacijaDto
@@ -106,6 +108,32 @@ namespace BeautyNest.Controllers
 
             return Ok(rezervacija);
         }
+
+        [HttpGet("moje-rezervacije")]
+        [Authorize]
+        public async Task<IActionResult> GetMojeRezervacije()
+        {
+            var userId = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var rezervacije = await reservationService.GetRezervacijeByUserIdAsync(userId);
+            return Ok(rezervacije);
+        }
+
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> OtkaziRezervaciju(int id)
+        {
+            var userId = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var success = await reservationService.OtkaziRezervacijuAsync(id, userId);
+            return Ok(new { message = "Rezervacija je uspješno otkazana." });
+        }
+
+
+
 
 
     }

@@ -9,6 +9,8 @@ namespace BeautyNest.Models.Domain
         [Key]
         public int Id { get; set; }
 
+        public string KlijentId { get; set; }
+
         [ForeignKey(nameof(Salon))]
         public int SalonId { get; set; }
         [JsonIgnore]

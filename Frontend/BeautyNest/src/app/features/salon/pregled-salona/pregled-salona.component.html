@@ -162,7 +162,7 @@
               <h5>Ukupna cijena: <span style="color: #DBAEAB; font-weight: bold">{{ totalCijena }} KM</span></h5>
             </div>
             <!-- Prikaz dugmeta ako je korisnik klijent -->
-            <a *ngIf="user !== undefined && user?.roles?.includes('Klijent')"
+            <a 
                id="rezervisiBtn"
                class="btn btn-primary pinkbutton mt-3"
                style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold"

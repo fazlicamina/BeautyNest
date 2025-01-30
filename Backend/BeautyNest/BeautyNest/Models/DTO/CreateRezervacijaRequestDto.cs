@@ -6,5 +6,6 @@
         public DateTime DatumRezervacije { get; set; }
         public TimeSpan VrijemePocetka { get; set; }
         public List<int> UslugaIds { get; set; }
+        public string KlijentId { get; set; }
     }
 }

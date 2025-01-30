@@ -49,7 +49,8 @@ namespace BeautyNest.Controllers
                         Token=jwtToken,
                         FirstName = identityUser.FirstName,
                         LastName = identityUser.LastName,
-    
+                        Id = identityUser.Id
+
                     };
                     return Ok(response);
                 }
