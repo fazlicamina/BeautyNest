@@ -5,7 +5,7 @@
     <div class="col-8">
 
       <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
+        <div class="carousel-indicators" >
           <button *ngFor="let slika of (salon$ | async)?.slike; let i = index"
                   type="button"
                   [attr.data-bs-target]="'#carouselExampleIndicators'"
@@ -14,7 +14,7 @@
                   [attr.aria-label]="'Slide ' + (i + 1)">
           </button>
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="border-radius: 8px">
           <div *ngFor="let slika of (salon$ | async)?.slike; let i = index"
                class="carousel-item"
                [class.active]="i === 0">
@@ -162,7 +162,7 @@
               <h5>Ukupna cijena: <span style="color: #DBAEAB; font-weight: bold">{{ totalCijena }} KM</span></h5>
             </div>
             <!-- Prikaz dugmeta ako je korisnik klijent -->
-            <a 
+            <a
                id="rezervisiBtn"
                class="btn btn-primary pinkbutton mt-3"
                style="width: 100%; background-color:#DBAEAB; border:none; font-size:large; font-weight: bold"
@@ -177,15 +177,53 @@
               Uposlenik ne može izvršiti rezervaciju!
             </div>
 
-
-
           </div>
 
         </div>
       </div>
     </div>
   </div>
+
+
+
+
+
+
+  <h1 class="mb-3" style="margin-top: 40px">Recenzije</h1>
+
+  <div *ngFor="let recenzija of recenzije" class="card p-3 mb-3">
+    <div class="d-flex align-items-center">
+      <img *ngIf="recenzija.klijent && recenzija.klijent.profilePicture"
+           [src]="'data:image/png;base64,' + recenzija.klijent.profilePicture"
+           alt="Profilna slika" class="profilna-slika me-2">
+
+      <div>
+        <p class="mb-0 fw-bold">{{ recenzija.klijent?.firstName }} {{ recenzija.klijent?.lastName }}</p>
+      </div>
+    </div>
+
+    <div class="mt-2">
+    <span *ngFor="let usluga of recenzija.usluge" class="badge br bg-primary me-1"
+    style="background-color: #dbaeab !important;">
+      {{ usluga.naziv }}
+    </span>
+    </div>
+
+    <p class="mt-4"><strong>Ocjena:</strong> {{ recenzija.ocjena }}</p>
+    <p class="text-muted">{{ recenzija.tekst }}</p>
+  </div>
+
+
+
+
+
+
 </div>
+
+
+
+
+
 
 
 <div style="margin-bottom: 80px"></div>
@@ -326,7 +364,9 @@
         </form>
       </div>
     </div>
+
   </div>
 </div>
 
 <div style="padding-bottom: 80px"></div>
+

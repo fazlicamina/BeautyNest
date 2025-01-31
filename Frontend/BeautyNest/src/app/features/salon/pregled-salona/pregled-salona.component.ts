@@ -20,6 +20,8 @@ import {HttpParams} from '@angular/common/http';
 import {Toast} from 'bootstrap';
 import {ToastserviceService} from '../../../core/services/toastservice.service';
 import {User} from '../../auth/models/user';
+import {RecenzijeService} from '../services/recenzije.service';
+import {Recenzija} from '../models/recenzije';
 
 @Component({
   selector: 'app-pregled-salona',
@@ -70,12 +72,15 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   selectedTime: string | null = null;
   availableTimes: string[] = [];
 
+  //recenzihje
+  recenzije: Recenzija[] = [];
 
   constructor(private salonService:SalonService, private route:ActivatedRoute,
               private kategorijaUslugeService : KategorijaUslugeService,
 private authService:AuthService, private cookieService:CookieService,
               private rezervacijaService: RezervacijaService,
-              private toastService: ToastserviceService){
+              private toastService: ToastserviceService,
+              private recenzijaService: RecenzijeService){
   }
 
 
@@ -211,6 +216,10 @@ private authService:AuthService, private cookieService:CookieService,
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedSalonId = +params['id'];
+      if (this.selectedSalonId) {
+        this.fetchRecenzije(this.selectedSalonId);
+        console.log(this.recenzije);
+      }
       this.loadAvailableTimes();
       this.checkFavoriteStatus();
     });
@@ -231,6 +240,31 @@ private authService:AuthService, private cookieService:CookieService,
       this.fetchKategorijeUsluga(this.id);
     }
   }
+
+  fetchRecenzije(salonId: number): void {
+    this.recenzijaService.getRecenzijeZaSalon(salonId).subscribe(
+      (recenzije) => {
+        this.recenzije = recenzije;
+
+        // Iteriramo kroz recenzije i dohvaćamo klijente
+        this.recenzije.forEach((recenzija, index) => {
+          this.recenzijaService.getUserByUsername(recenzija.klijentId).subscribe(
+            (klijent) => {
+              this.recenzije[index].klijent = klijent; // Dodajemo klijenta u recenziju
+            },
+            (error) => console.error('Greška pri dohvaćanju korisnika:', error)
+          );
+        });
+      },
+      (error) => console.error('Greška pri dohvaćanju recenzija:', error)
+    );
+  }
+
+
+  getNaziviUsluga(usluge: { id: number; naziv: string }[] | undefined): string {
+    return usluge && usluge.length > 0 ? usluge.map(u => u.naziv).join(', ') : 'Nema dostupnih usluga';
+  }
+
 
   setActiveTab(index: number): void {
     this.activeTab = index;
