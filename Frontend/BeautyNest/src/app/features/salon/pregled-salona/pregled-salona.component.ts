@@ -61,7 +61,10 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   modalModel = { username: '', password: '' };
   loginErrorMessage: string | null = null;
 
-  minDate: Date = new Date(); // Blokiraj prošle datume
+  //DA UKLJUCUJE DANASNJI DTAUM
+ // minDate: Date = new Date();
+
+  minDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
 
   selectedDate: Date | null = null;
   selectedTime: string | null = null;
@@ -125,7 +128,6 @@ private authService:AuthService, private cookieService:CookieService,
   onTimeSelect(time: string): void {
     this.selectedTime = time;
   }
-
 
   potvrdiRezervaciju(): void {
     if (this.selectedSalonId && this.selectedDate && this.selectedTime && this.selectedUsluge.length > 0) {

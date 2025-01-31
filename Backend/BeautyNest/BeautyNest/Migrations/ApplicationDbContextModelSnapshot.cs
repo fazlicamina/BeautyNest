@@ -102,6 +102,47 @@ namespace BeautyNest.Migrations
                     b.ToTable("OmiljeniSaloni");
                 });
 
+            modelBuilder.Entity("BeautyNest.Models.Domain.Recenzije", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DatumRecenzije")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("KlijentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ocjena")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RezervacijaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Slike")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tekst")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RezervacijaId");
+
+                    b.HasIndex("SalonId");
+
+                    b.ToTable("Recenzije");
+                });
+
             modelBuilder.Entity("BeautyNest.Models.Domain.Rezervacija", b =>
                 {
                     b.Property<int>("Id")
@@ -281,6 +322,25 @@ namespace BeautyNest.Migrations
                         .HasForeignKey("SalonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Salon");
+                });
+
+            modelBuilder.Entity("BeautyNest.Models.Domain.Recenzije", b =>
+                {
+                    b.HasOne("BeautyNest.Models.Domain.Rezervacija", "Rezervacija")
+                        .WithMany()
+                        .HasForeignKey("RezervacijaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeautyNest.Models.Domain.Salon", "Salon")
+                        .WithMany()
+                        .HasForeignKey("SalonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rezervacija");
 
                     b.Navigation("Salon");
                 });

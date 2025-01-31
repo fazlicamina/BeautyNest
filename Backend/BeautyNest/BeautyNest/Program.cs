@@ -26,6 +26,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BeautyNestConnectionString")));
 
 builder.Services.AddScoped<OmiljeniSalonService>();
+builder.Services.AddScoped<RecenzijaService>();
 
 builder.Services.AddScoped<ReservationService>();
 
@@ -58,26 +59,6 @@ builder.Services.AddLogging(logging =>
     logging.AddConsole();
 });
 
-
-//builder.Services.AddIdentity<User, IdentityRole>()
-//    .AddEntityFrameworkStores<AuthDbContext>()
-//    .AddDefaultTokenProviders();
-
-//builder.Services.AddIdentityCore<IdentityUser>()
-//    .AddRoles<IdentityRole>()
-//    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("BeautyNest")
-//    .AddEntityFrameworkStores<AuthDbContext>()
-//    .AddDefaultTokenProviders();
-
-//builder.Services.Configure<IdentityOptions>(options =>
-//{
-//    options.Password.RequireDigit=false;
-//    options.Password.RequireLowercase=false;
-//    options.Password.RequireNonAlphanumeric=false;
-//    options.Password.RequireUppercase=false;
-//    options.Password.RequiredLength=6;
-//    options.Password.RequiredUniqueChars = 1;
-//});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -119,19 +100,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseCors(options =>
-//{
-//    options.AllowAnyHeader();
-//    options.AllowAnyOrigin();
-//    options.AllowAnyMethod();
-//});
 
 app.UseCors(options =>
 {
-    options.WithOrigins("http://localhost:4200")  // Dozvoljava samo pristup sa frontenda na localhost:4200
+    options.WithOrigins("http://localhost:4200") 
            .AllowAnyHeader()
            .AllowAnyMethod()
-           .AllowCredentials();  // Omogućava kolačiće
+           .AllowCredentials(); 
 });
 
 

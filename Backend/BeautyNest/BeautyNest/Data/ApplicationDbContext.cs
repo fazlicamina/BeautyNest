@@ -25,6 +25,7 @@ namespace BeautyNest.Data
         public DbSet<Rezervacija> Rezervacije { get; set; }
         public DbSet<UslugaRezervacija> UslugeRezervacije { get; set; }
 
+        public DbSet<Recenzije> Recenzije { get; set; }
 
         public static void Initialize(IServiceProvider serviceProvider, bool isDevelopment)
         {
