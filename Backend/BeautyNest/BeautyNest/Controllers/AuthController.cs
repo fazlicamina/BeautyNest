@@ -197,6 +197,27 @@ namespace BeautyNest.Controllers
         }
 
 
+        [HttpGet]
+        [Route("user/{username}")]
+        public async Task<IActionResult> GetUserByUsername(string username)
+        {
+            var user = await userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "Korisnik nije pronađen." });
+            }
+
+            var userDto = new
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePicture = user.ProfilePicture != null ? Convert.ToBase64String(user.ProfilePicture) : null
+            };
+
+            return Ok(userDto);
+        }
+
 
 
     }
