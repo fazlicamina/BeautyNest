@@ -3,11 +3,11 @@
     public class RecenzijaResponseDto
     {
         public int Id { get; set; }
-        public int RezervacijaId { get; set; }
+        public string KlijentId { get; set; }
         public int SalonId { get; set; }
+        public int RezervacijaId { get; set; }
         public int Ocjena { get; set; }
         public string Tekst { get; set; }
-        public List<byte[]> Slike { get; set; } = new List<byte[]>();
         public List<UslugaDto> Usluge { get; set; } = new List<UslugaDto>();
     }
 }

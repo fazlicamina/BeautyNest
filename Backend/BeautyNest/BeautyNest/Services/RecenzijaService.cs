@@ -59,6 +59,8 @@ namespace BeautyNest.Services
             return await applicationDbContext.Recenzije
                 .Where(r => r.SalonId == salonId)
                 .Include(r => r.Rezervacija)
+                .ThenInclude(rez => rez.UslugeRezervacija)
+                .ThenInclude(ur => ur.Usluga)
                 .ToListAsync();
         }
 

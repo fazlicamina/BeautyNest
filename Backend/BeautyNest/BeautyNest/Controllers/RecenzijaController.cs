@@ -43,7 +43,28 @@ namespace BeautyNest.Controllers
         public async Task<IActionResult> GetRecenzijeZaSalon(int salonId)
         {
             var recenzije = await recenzijaService.GetRecenzijeZaSalonAsync(salonId);
-            return Ok(recenzije);
+
+            var recenzijeDto = recenzije.Select(r => new RecenzijaResponseDto
+            {
+                Id = r.Id,
+                KlijentId = r.KlijentId,
+                SalonId = r.SalonId,
+                RezervacijaId = r.RezervacijaId,
+                Ocjena = r.Ocjena,
+                Tekst = r.Tekst,
+                Usluge = r.Rezervacija?.UslugeRezervacija?.Select(ur => new UslugaDto
+                {
+                    Id = ur.Usluga.Id,
+                    Naziv = ur.Usluga.Naziv,
+                    Cijena = ur.Usluga.Cijena,
+                    Trajanje = ur.Usluga.Trajanje,
+                    KategorijaUslugeId = ur.Usluga.KategorijaUslugeId,
+                    KategorijaNaziv = ur.Usluga.KategorijaUsluge?.Naziv ?? string.Empty
+                }).ToList() ?? new List<UslugaDto>()
+            }).ToList();
+
+            return Ok(recenzijeDto);
         }
+
     }
 }
