@@ -27,6 +27,18 @@ export class RecenzijeService {
     });
   }
 
+  dodajRecenziju(recenzija: any): Observable<any> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+
+    return this.http.post<any>(`${this.apiUrl}`, recenzija, {
+      headers,
+      withCredentials: true
+    });
+  }
+
+
+
   getUserByUsername(username: string): Observable<Klijent> {
     return this.http.get<Klijent>(`${this.userApiUrl}/${username}`, { withCredentials: true });
   }

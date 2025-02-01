@@ -191,7 +191,7 @@
 
   <h1 class="mb-3" style="margin-top: 40px">Recenzije</h1>
 
-  <div *ngFor="let recenzija of recenzije" class="card p-3 mb-3">
+  <div *ngFor="let recenzija of recenzije" class="card p-3 mb-3" [id]="recenzija.rezervacijaId" >
     <div class="d-flex align-items-center">
       <img *ngIf="recenzija.klijent && recenzija.klijent.profilePicture"
            [src]="'data:image/png;base64,' + recenzija.klijent.profilePicture"
@@ -199,6 +199,7 @@
 
       <div>
         <p class="mb-0 fw-bold">{{ recenzija.klijent?.firstName }} {{ recenzija.klijent?.lastName }}</p>
+        <p class="text-muted" style="font-size: small;">Datum: {{formatirajDatum(recenzija.datumRecenzije)}}</p>
       </div>
     </div>
 
@@ -209,8 +210,8 @@
     </span>
     </div>
 
-    <p class="mt-4"><strong>Ocjena:</strong> {{ recenzija.ocjena }}</p>
-    <p class="text-muted">{{ recenzija.tekst }}</p>
+    <p class="mt-4"><strong>Ocjena: {{ recenzija.ocjena }}</strong></p>
+    <p style="font-style: italic" class="text-muted">{{ recenzija.tekst }}</p>
   </div>
 
 

@@ -36,7 +36,10 @@ namespace BeautyNest.Services
             };
 
             applicationDbContext.Recenzije.Add(recenzija);
+            rezervacija.HasRecenzija = true;
             await applicationDbContext.SaveChangesAsync();
+
+            
 
             // Ažuriranje prosečne ocene salona
             var sveRecenzije = await applicationDbContext.Recenzije

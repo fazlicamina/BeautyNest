@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\domain\\rezervacija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\domain\\rezervacija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\recenzijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\recenzijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\services\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\services\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\recenzijaresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\recenzijaresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\rezervacijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\rezervacijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\services\\recenzijaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\services\\recenzijaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\domain\\rezervacija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\domain\\rezervacija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\recenzijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\recenzijacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\domain\\recenzije.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\domain\\recenzije.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|solutionrelative:beautynest\\models\\dto\\uslugadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96836731-F782-4C31-9E1E-F06D4C6F5D9F}|BeautyNest\\BeautyNest.csproj|c:\\users\\korisnik\\desktop\\beautynest\\backend\\beautynest\\beautynest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +46,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Services\\ReservationService.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Services\\ReservationService.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Services\\ReservationService.cs",
+              "RelativeToolTip": "BeautyNest\\Services\\ReservationService.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAgwHkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T11:03:01.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RezervacijaController.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\RezervacijaController.cs",
+              "RelativeDocumentMoniker": "BeautyNest\\Controllers\\RezervacijaController.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\RezervacijaController.cs",
+              "RelativeToolTip": "BeautyNest\\Controllers\\RezervacijaController.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAkwHcAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T11:00:57.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Controllers\\AuthController.cs",
@@ -59,19 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RecenzijaResponseDto.cs",
-              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\RecenzijaResponseDto.cs",
-              "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\RecenzijaResponseDto.cs",
-              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\RecenzijaResponseDto.cs",
-              "RelativeToolTip": "BeautyNest\\Models\\DTO\\RecenzijaResponseDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T11:53:13.382Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "UslugaDto.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\DTO\\UslugaDto.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Models\\DTO\\UslugaDto.cs",
@@ -83,27 +101,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Rezervacija.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\Rezervacija.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Models\\Domain\\Rezervacija.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\Rezervacija.cs",
               "RelativeToolTip": "BeautyNest\\Models\\Domain\\Rezervacija.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAowB8AAAABAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAiwBQAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T11:46:56.143Z"
+              "WhenOpened": "2025-01-31T11:46:56.143Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Recenzije.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\Recenzije.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Models\\Domain\\Recenzije.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Models\\Domain\\Recenzije.cs",
               "RelativeToolTip": "BeautyNest\\Models\\Domain\\Recenzije.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAADwvxkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T11:43:56.375Z"
+              "WhenOpened": "2025-01-31T11:43:56.375Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -113,13 +133,14 @@
               "RelativeDocumentMoniker": "BeautyNest\\Services\\RecenzijaService.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Services\\RecenzijaService.cs",
               "RelativeToolTip": "BeautyNest\\Services\\RecenzijaService.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAcwDoAAAA3AAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAADwv0kAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T11:42:23.306Z"
+              "WhenOpened": "2025-01-31T11:42:23.306Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Program.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Program.cs",
@@ -131,13 +152,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "RecenzijaController.cs",
               "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\RecenzijaController.cs",
               "RelativeDocumentMoniker": "BeautyNest\\Controllers\\RecenzijaController.cs",
               "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\Controllers\\RecenzijaController.cs",
               "RelativeToolTip": "BeautyNest\\Controllers\\RecenzijaController.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAcwCoAAABJAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwCoAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-31T11:29:32.039Z",
               "EditorCaption": ""

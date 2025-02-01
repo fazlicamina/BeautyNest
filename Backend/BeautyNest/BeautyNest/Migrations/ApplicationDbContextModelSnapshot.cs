@@ -154,6 +154,9 @@ namespace BeautyNest.Migrations
                     b.Property<DateTime>("DatumRezervacije")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("HasRecenzija")
+                        .HasColumnType("bit");
+
                     b.Property<string>("KlijentId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

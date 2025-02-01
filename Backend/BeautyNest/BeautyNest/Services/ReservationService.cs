@@ -1,4 +1,5 @@
 ﻿using BeautyNest.Data;
+using BeautyNest.Migrations;
 using BeautyNest.Models.Domain;
 using BeautyNest.Models.DTO;
 using Microsoft.EntityFrameworkCore;
@@ -118,6 +119,7 @@ namespace BeautyNest.Services
                 VrijemeZavrsetka = krajTermina,
                 Status = false,
                 KlijentId = userId,
+                HasRecenzija = false,
                 UslugeRezervacija = usluge.Select(u => new UslugaRezervacija
                 {
                     UslugaId = u.Id
@@ -178,7 +180,8 @@ namespace BeautyNest.Services
                 Status = r.Status,
                 Poruka = r.Poruka,
                 Usluge = r.UslugeRezervacija.Select(ur => ur.Usluga.Naziv).ToList(),
-                Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes)
+                Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes),
+                HasRecenzija = r.HasRecenzija
             }).ToList();
         }
 

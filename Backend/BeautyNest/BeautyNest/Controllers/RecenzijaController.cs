@@ -52,6 +52,7 @@ namespace BeautyNest.Controllers
                 RezervacijaId = r.RezervacijaId,
                 Ocjena = r.Ocjena,
                 Tekst = r.Tekst,
+                DatumRecenzije=r.DatumRecenzije,
                 Usluge = r.Rezervacija?.UslugeRezervacija?.Select(ur => new UslugaDto
                 {
                     Id = ur.Usluga.Id,

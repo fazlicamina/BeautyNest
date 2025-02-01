@@ -70,7 +70,8 @@ namespace BeautyNest.Controllers
                     VrijemePocetka = rezervacija.VrijemePocetka,
                     VrijemeZavrsetka = rezervacija.VrijemeZavrsetka,
                     Status = rezervacija.Status,
-                    Poruka = rezervacija.Poruka
+                    Poruka = rezervacija.Poruka,
+                    HasRecenzija = rezervacija.HasRecenzija
                 };
 
                 return CreatedAtAction(nameof(GetRezervacijaById), new { id = response.Id }, response);

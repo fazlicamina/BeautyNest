@@ -39,8 +39,7 @@
                 </div>
                 <!-- Kolona 4: Otkazivanje ili recenzija -->
                 <div class="col-md-3 d-flex align-items-center">
-                  <button *ngIf="isZavrsena(rezervacija)" class="btn pinkbutton ms-3 me-5 w-100 fw-bold">Ostavi recenziju
-                  </button>
+
 
                   <button *ngIf="!isZavrsena(rezervacija) && isOtkazivanjeMoguce(rezervacija)"  class="btn cbutton ms-3 me-5 w-100 fw-bold"  (click)="openModal(rezervacija.id)">
                     Otkaži
@@ -49,6 +48,13 @@
                   <p *ngIf="!isOtkazivanjeMoguce(rezervacija) && !isZavrsena(rezervacija)" class="text-danger-p fw-bold small mb-0">
                     Nije moguće otkazati 2 dana prije rezervacije!
                   </p>
+
+                  <button *ngIf="isZavrsena(rezervacija)  && !isOtkazivanjeMoguce(rezervacija)"
+                          (click)="rezervacija.hasRecenzija ? pogledajRecenziju(rezervacija) : openRecenzijaModal(rezervacija.id)"
+                          class="btn pinkbutton ms-3 me-5 w-100 fw-bold">
+                    {{ rezervacija.hasRecenzija ? 'Pogledaj svoju recenziju' : 'Ostavi recenziju' }}
+                  </button>
+
 
                 </div>
               </div>
@@ -123,9 +129,13 @@
                 </div>
                 <!-- Kolona 4: Recenzija -->
                 <div class="col-md-3 d-flex align-items-center">
-                  <button class="btn ms-3 me-5 pinkbutton w-100 fw-bold">
-                    Ostavi recenziju
+                  <button *ngIf="isZavrsena(rezervacija)"
+                          (click)="rezervacija.hasRecenzija ? pogledajRecenziju(rezervacija) : openRecenzijaModal(rezervacija.id)"
+                          class="btn pinkbutton ms-3 me-5 w-100 fw-bold">
+                    {{ rezervacija.hasRecenzija ? 'Pogledaj svoju recenziju' : 'Ostavi recenziju' }}
                   </button>
+
+
                 </div>
               </div>
             </div>
@@ -153,6 +163,45 @@
       <div class="modal-footer">
         <button type="button" class="btn pinkbutton" (click)="confirmCancel()" data-bs-dismiss="modal">Otkaži</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal za ostavljanje recenzije -->
+<div class="modal fade" id="recenzijaModal" tabindex="-1" aria-labelledby="recenzijaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recenzijaModalLabel">Ostavi recenziju</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #recenzijaForm="ngForm">
+          <div class="mb-3">
+            <label for="ocjena" class="form-label">Ocjena</label>
+            <select class="form-select" id="ocjena" [(ngModel)]="recenzija.ocjena" name="ocjena" required>
+              <option *ngFor="let o of [1,2,3,4,5]" [value]="o">{{ o }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="tekst" class="form-label">Vaša recenzija</label>
+            <textarea class="form-control" id="tekst" rows="3" [(ngModel)]="recenzija.tekst" name="tekst"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="slike" class="form-label">Dodajte slike</label>
+            <input type="file" class="form-control" id="slike" (change)="onFileSelected($event)" multiple>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+        <button type="button" class="btn btn-primary" (click)="submitRecenzija()">Pošalji recenziju</button>
       </div>
     </div>
   </div>

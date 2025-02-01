@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, model, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SalonService} from '../services/salon.service';
 import {Observable, Subscription} from 'rxjs';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, RouterLink, Event} from '@angular/router';
 import {Salon} from '../models/salon';
 import {AsyncPipe, CurrencyPipe, DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {KategorijaUslugeService} from '../services/kategorija-usluge.service';
@@ -17,11 +17,13 @@ import {ViewEncapsulation } from '@angular/core';
 import {MatCard} from '@angular/material/card';
 import {RezervacijaService} from '../services/rezervacija.service';
 import {HttpParams} from '@angular/common/http';
-import {Toast} from 'bootstrap';
 import {ToastserviceService} from '../../../core/services/toastservice.service';
 import {User} from '../../auth/models/user';
 import {RecenzijeService} from '../services/recenzije.service';
 import {Recenzija} from '../models/recenzije';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-pregled-salona',
@@ -64,7 +66,7 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   loginErrorMessage: string | null = null;
 
   //DA UKLJUCUJE DANASNJI DTAUM
- // minDate: Date = new Date();
+  //minDate: Date = new Date();
 
   minDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
 
@@ -80,7 +82,13 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
 private authService:AuthService, private cookieService:CookieService,
               private rezervacijaService: RezervacijaService,
               private toastService: ToastserviceService,
-              private recenzijaService: RecenzijeService){
+              private recenzijaService: RecenzijeService,
+              private router: Router){
+  }
+
+  formatirajDatum(datum:string){
+    const datumm=new Date(datum).toISOString().split('T')[0];
+    return datumm;
   }
 
 
@@ -239,12 +247,31 @@ private authService:AuthService, private cookieService:CookieService,
       this.salon$=this.salonService.getSalonById(this.id);
       this.fetchKategorijeUsluga(this.id);
     }
+
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.route.fragment.subscribe(fragment => {
+          if (fragment) {
+            setTimeout(() => {
+              const element = document.getElementById(fragment);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 500);
+          }
+        });
+      }
+    });
+
+
   }
 
   fetchRecenzije(salonId: number): void {
     this.recenzijaService.getRecenzijeZaSalon(salonId).subscribe(
       (recenzije) => {
         this.recenzije = recenzije;
+        console.log(recenzije);
 
         // Iteriramo kroz recenzije i dohvaćamo klijente
         this.recenzije.forEach((recenzija, index) => {
@@ -258,11 +285,6 @@ private authService:AuthService, private cookieService:CookieService,
       },
       (error) => console.error('Greška pri dohvaćanju recenzija:', error)
     );
-  }
-
-
-  getNaziviUsluga(usluge: { id: number; naziv: string }[] | undefined): string {
-    return usluge && usluge.length > 0 ? usluge.map(u => u.naziv).join(', ') : 'Nema dostupnih usluga';
   }
 
 

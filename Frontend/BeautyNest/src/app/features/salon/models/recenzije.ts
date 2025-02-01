@@ -7,4 +7,6 @@ export interface Recenzija {
   tekst: string;
   usluge: { id: number; naziv: string }[];
   klijent?: Klijent;
+  datumRecenzije:string;
+  rezervacijaId:number;
 }

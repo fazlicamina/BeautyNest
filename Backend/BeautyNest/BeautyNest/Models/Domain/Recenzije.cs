@@ -23,6 +23,7 @@ namespace BeautyNest.Models.Domain
         public DateTime DatumRecenzije { get; set; } = DateTime.UtcNow;
 
         public List<byte[]> Slike { get; set; } = new List<byte[]>();
+
     }
 }
 

@@ -28,5 +28,6 @@ namespace BeautyNest.Models.Domain
 
         [JsonIgnore]
         public ICollection<UslugaRezervacija> UslugeRezervacija { get; set; } = new List<UslugaRezervacija>();
+        public bool HasRecenzija { get; set; } = false;
     }
 }

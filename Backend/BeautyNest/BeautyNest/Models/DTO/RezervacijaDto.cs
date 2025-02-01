@@ -16,6 +16,7 @@
         public string SalonAdresa { get; set; }
         public List<string> Usluge { get; set; }
         public int Trajanje { get; set; }
+        public bool HasRecenzija { get; set; }
 
     }
 }
