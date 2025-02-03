@@ -423,6 +423,19 @@ private authService:AuthService, private cookieService:CookieService,
 
   }
 
+  obrisiRecenziju(recenzijaId: number): void {
+    if (!confirm("Da li ste sigurni da želite obrisati recenziju?")) return;
+
+    this.recenzijaService.obrisiRecenziju(recenzijaId).subscribe({
+      next: () => {
+        this.recenzije = this.recenzije.filter(r => r.id !== recenzijaId);
+        this.toastService.showSuccessToast("Recenzija uspješno obrisana.");
+      },
+      error: () => this.toastService.showErrorToast("Došlo je do greške pri brisanju recenzije.")
+    });
+  }
+
+
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();
   }

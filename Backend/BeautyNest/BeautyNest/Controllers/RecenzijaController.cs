@@ -69,5 +69,22 @@ namespace BeautyNest.Controllers
             return Ok(recenzijeDto);
         }
 
+        [HttpDelete("{recenzijaId}")]
+        [Authorize]
+        public async Task<IActionResult> ObrisiRecenziju(int recenzijaId)
+        {
+            var klijentId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(klijentId))
+                return Unauthorized();
+
+            var uspjesnoObrisano = await recenzijaService.ObrisiRecenzijuAsync(recenzijaId);
+
+            if (!uspjesnoObrisano)
+                return Forbid();
+
+            return Ok(new { message = "Recenzija uspješno obrisana" });
+        }
+
+
     }
 }

@@ -1,12 +1,24 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG",
-      "PackagePath": "staticwebassets\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG"
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG",
+      "PackagePath": "staticwebassets\\uploads\\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG"
     },
     {
-      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG",
-      "PackagePath": "staticwebassets\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG"
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG",
+      "PackagePath": "staticwebassets\\uploads\\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG"
+    },
+    {
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG",
+      "PackagePath": "staticwebassets\\uploads\\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG"
+    },
+    {
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG",
+      "PackagePath": "staticwebassets\\uploads\\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG"
+    },
+    {
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG",
+      "PackagePath": "staticwebassets\\uploads\\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BeautyNest.Microsoft.AspNetCore.StaticWebAssets.props",

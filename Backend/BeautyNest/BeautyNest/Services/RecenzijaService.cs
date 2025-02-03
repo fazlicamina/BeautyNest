@@ -94,6 +94,20 @@ namespace BeautyNest.Services
                 .ToListAsync();
         }
 
+        public async Task<bool> ObrisiRecenzijuAsync(int recenzijaId)
+        {
+            var recenzija = await applicationDbContext.Recenzije
+                .FirstOrDefaultAsync(r => r.Id == recenzijaId);
+
+            if (recenzija == null)
+                return false;
+
+            applicationDbContext.Recenzije.Remove(recenzija);
+            await applicationDbContext.SaveChangesAsync();
+
+            return true;
+        }
+
 
     }
 

@@ -227,6 +227,13 @@
            (click)="openModal(slika)">
     </div>
 
+    <button *ngIf="recenzija.klijentId === user?.username"
+            class="btn btn-danger btn-sm mt-2"
+            (click)="obrisiRecenziju(recenzija.id)">
+      Obriši recenziju
+    </button>
+
+
     <!-- Bootstrap Modal za prikaz veće slike -->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
       <div class="modal-dialog">

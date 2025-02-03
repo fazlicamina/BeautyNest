@@ -52,6 +52,14 @@ export class RecenzijeService {
   }
 
 
+  obrisiRecenziju(recenzijaId: number): Observable<void> {
+    const token = this.cookieService.get('Authorization');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.http.delete<void>(`${this.apiUrl}/${recenzijaId}`,{
+      headers,
+      withCredentials: true
+    });
+  }
 
 
   getUserByUsername(username: string): Observable<Klijent> {
