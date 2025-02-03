@@ -20,7 +20,7 @@ namespace BeautyNest.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> DodajRecenziju([FromBody] RecenzijaRequestDto request)
+        public async Task<IActionResult> DodajRecenziju([FromForm] RecenzijaRequestDto request)
         {
             var klijentId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
             if (string.IsNullOrEmpty(klijentId))
@@ -31,6 +31,7 @@ namespace BeautyNest.Controllers
                 var recenzija = await recenzijaService.DodajRecenzijuAsync(
                     klijentId, request.RezervacijaId, request.Ocjena, request.Tekst, request.Slike
                 );
+
                 return Ok(recenzija);
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace BeautyNest.Controllers
                 RezervacijaId = r.RezervacijaId,
                 Ocjena = r.Ocjena,
                 Tekst = r.Tekst,
-                DatumRecenzije=r.DatumRecenzije,
+                DatumRecenzije = r.DatumRecenzije,
                 Usluge = r.Rezervacija?.UslugeRezervacija?.Select(ur => new UslugaDto
                 {
                     Id = ur.Usluga.Id,
@@ -61,7 +62,8 @@ namespace BeautyNest.Controllers
                     Trajanje = ur.Usluga.Trajanje,
                     KategorijaUslugeId = ur.Usluga.KategorijaUslugeId,
                     KategorijaNaziv = ur.Usluga.KategorijaUsluge?.Naziv ?? string.Empty
-                }).ToList() ?? new List<UslugaDto>()
+                }).ToList() ?? new List<UslugaDto>(),
+                Slike = r.Slike?.Split(',').ToList() ?? new List<string>() // Razdvajamo putanje u listu
             }).ToList();
 
             return Ok(recenzijeDto);

@@ -10,5 +10,6 @@
         public string Tekst { get; set; }
         public List<UslugaDto> Usluge { get; set; } = new List<UslugaDto>();
         public DateTime DatumRecenzije { get; set; }
+        public List<string> Slike { get; set; } = new List<string>();
     }
 }

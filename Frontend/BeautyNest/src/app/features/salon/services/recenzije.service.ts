@@ -17,6 +17,9 @@ export class RecenzijeService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
+
+
+
   getRecenzijeZaSalon(salonId: number): Observable<Recenzija[]> {
     const token = this.cookieService.get('Authorization');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
@@ -27,15 +30,27 @@ export class RecenzijeService {
     });
   }
 
-  dodajRecenziju(recenzija: any): Observable<any> {
+  dodajRecenziju(recenzija: any, slike: File[]): Observable<any> {
     const token = this.cookieService.get('Authorization');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
 
-    return this.http.post<any>(`${this.apiUrl}`, recenzija, {
-      headers,
+    const formData = new FormData();
+    formData.append('rezervacijaId', recenzija.rezervacijaId.toString());
+    formData.append('ocjena', recenzija.ocjena.toString());
+    formData.append('tekst', recenzija.tekst);
+
+    if (slike && slike.length > 0) {
+      for (let i = 0; i < slike.length; i++) {
+        formData.append('slike', slike[i], slike[i].name); // Slanje File objekata
+      }
+    }
+
+    return this.http.post<any>(`${this.apiUrl}`, formData, {
+      headers, // Ne postavljamo Content-Type ručno
       withCredentials: true
     });
   }
+
 
 
 

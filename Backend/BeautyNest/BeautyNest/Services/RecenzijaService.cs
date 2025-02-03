@@ -15,7 +15,7 @@ namespace BeautyNest.Services
             this.authDbContext = authDbContext;
         }
 
-        public async Task<Recenzije> DodajRecenzijuAsync(string klijentId, int rezervacijaId, int ocjena, string tekst, List<byte[]> slike)
+        public async Task<Recenzije> DodajRecenzijuAsync(string klijentId, int rezervacijaId, int ocjena, string tekst, List<IFormFile>? slike)
         {
             var rezervacija = await applicationDbContext.Rezervacije
                 .Include(r => r.UslugeRezervacija)
@@ -25,6 +25,34 @@ namespace BeautyNest.Services
             if (rezervacija == null)
                 throw new Exception("Nevažeća rezervacija ili pristup nije dozvoljen.");
 
+            // Čuvanje slika na disku i pravljenje putanja
+            // Čuvanje slika na disku i pravljenje putanja
+            var imagePaths = new List<string>();
+            var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+            if (!Directory.Exists(uploadFolder))
+            {
+                Directory.CreateDirectory(uploadFolder);
+            }
+
+            // Proveravamo da li ima slika pre nego što iteriramo kroz listu
+            if (slike != null && slike.Count > 0)
+            {
+                foreach (var file in slike)
+                {
+                    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+                    var filePath = Path.Combine(uploadFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    imagePaths.Add($"/uploads/{fileName}"); // Čuvamo relativnu putanju u bazi
+                }
+            }
+
+
             var recenzija = new Recenzije
             {
                 KlijentId = klijentId,
@@ -32,14 +60,12 @@ namespace BeautyNest.Services
                 RezervacijaId = rezervacija.Id,
                 Ocjena = ocjena,
                 Tekst = tekst,
-                Slike = slike
+                Slike = imagePaths.Any() ? string.Join(",", imagePaths) : null // Ako nema slika, postavi na null
             };
 
             applicationDbContext.Recenzije.Add(recenzija);
             rezervacija.HasRecenzija = true;
             await applicationDbContext.SaveChangesAsync();
-
-            
 
             // Ažuriranje prosečne ocene salona
             var sveRecenzije = await applicationDbContext.Recenzije
@@ -56,6 +82,7 @@ namespace BeautyNest.Services
 
             return recenzija;
         }
+
 
         public async Task<List<Recenzije>> GetRecenzijeZaSalonAsync(int salonId)
         {

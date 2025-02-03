@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG",
+      "PackagePath": "staticwebassets\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG"
+    },
+    {
+      "Id": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG",
+      "PackagePath": "staticwebassets\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BeautyNest.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BeautyNest.props",
+      "PackagePath": "build\\BeautyNest.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BeautyNest.props",
+      "PackagePath": "buildMultiTargeting\\BeautyNest.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BeautyNest.props",
+      "PackagePath": "buildTransitive\\BeautyNest.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

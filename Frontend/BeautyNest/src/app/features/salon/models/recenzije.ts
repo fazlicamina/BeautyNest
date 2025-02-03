@@ -9,4 +9,5 @@ export interface Recenzija {
   klijent?: Klijent;
   datumRecenzije:string;
   rezervacijaId:number;
+  slike?:string[];
 }

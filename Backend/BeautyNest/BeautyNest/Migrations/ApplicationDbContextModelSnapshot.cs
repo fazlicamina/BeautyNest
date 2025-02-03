@@ -127,7 +127,6 @@ namespace BeautyNest.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Slike")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tekst")

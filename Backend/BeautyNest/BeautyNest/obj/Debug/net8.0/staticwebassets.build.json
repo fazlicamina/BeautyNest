@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "k8UWeS3RN6UKQjHr6V0pLmtjK69u5Y5wxq4gXQWtjjw=",
+  "Hash": "68hyIQVsHfPXbiDW4IOruJbvsXqovhI8n7gAuoaZKmA=",
   "Source": "BeautyNest",
   "BasePath": "_content/BeautyNest",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "BeautyNest\\wwwroot",
+      "Source": "BeautyNest",
+      "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
+      "BasePath": "_content/BeautyNest",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG",
+      "SourceId": "BeautyNest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
+      "BasePath": "_content/BeautyNest",
+      "RelativePath": "uploads/cbd1ef63-bfed-4f86-a28e-58945211b738.JPG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cbd1ef63-bfed-4f86-a28e-58945211b738.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG",
+      "SourceId": "BeautyNest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
+      "BasePath": "_content/BeautyNest",
+      "RelativePath": "uploads/e82ae0fd-c435-4be0-bde2-341337372dd4.JPG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e82ae0fd-c435-4be0-bde2-341337372dd4.JPG"
+    }
+  ]
 }

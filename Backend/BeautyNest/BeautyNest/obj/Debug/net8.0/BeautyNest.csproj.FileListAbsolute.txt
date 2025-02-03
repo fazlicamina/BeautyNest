@@ -143,3 +143,4 @@ C:\Users\KORISNIK\Desktop\BeautyNest\Backend\BeautyNest\BeautyNest\bin\Debug\net
 C:\Users\KORISNIK\Desktop\BeautyNest\Backend\BeautyNest\BeautyNest\obj\Debug\net8.0\BeautyNest.sourcelink.json
 C:\Users\KORISNIK\Desktop\BeautyNest\Backend\BeautyNest\BeautyNest\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\KORISNIK\Desktop\BeautyNest\Backend\BeautyNest\BeautyNest\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\KORISNIK\Desktop\BeautyNest\Backend\BeautyNest\BeautyNest\bin\Debug\net8.0\BeautyNest.staticwebassets.runtime.json

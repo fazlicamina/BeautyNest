@@ -91,6 +91,9 @@ using (var scope = app.Services.CreateScope())
     ApplicationDbContext.Initialize(services, isDevelopment); // Poziv metode Initialize
 }
 
+app.UseStaticFiles();
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

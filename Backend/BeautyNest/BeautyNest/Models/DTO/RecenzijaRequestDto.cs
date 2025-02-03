@@ -12,6 +12,6 @@ namespace BeautyNest.Models.DTO
 
         public string Tekst { get; set; }
 
-        public List<byte[]> Slike { get; set; } = new List<byte[]>();
+        public List<IFormFile>? Slike { get; set; }
     }
 }

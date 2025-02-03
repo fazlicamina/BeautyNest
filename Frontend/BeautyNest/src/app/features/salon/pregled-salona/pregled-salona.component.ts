@@ -408,6 +408,21 @@ private authService:AuthService, private cookieService:CookieService,
     }
   }
 
+  selectedImage: string = '';
+
+  // Funkcija koja otvara modal s velikom slikom
+  openModal(slika: string): void {
+    this.selectedImage = 'https://localhost:7230' + slika;
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.error('Modal element not found');
+    }
+
+  }
+
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();
   }

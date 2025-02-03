@@ -105,21 +105,15 @@ export class MojeRezervacijeComponent implements OnInit{
   }
 
   onFileSelected(event: any) {
-    const files = event.target.files;
+    const files: FileList = event.target.files;
     if (files.length > 0) {
-      this.recenzija.slike = [];
-      for (let file of files) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.recenzija.slike.push(reader.result?.toString().split(',')[1]); // Uklanja 'data:image/...;base64,'
-        };
-      }
+      this.recenzija.slike = Array.from(files); // Čuva File objekte direktno
     }
   }
 
+
   submitRecenzija() {
-    this.recenzijeService.dodajRecenziju(this.recenzija).subscribe({
+    this.recenzijeService.dodajRecenziju(this.recenzija, this.recenzija.slike).subscribe({
       next: () => {
         alert('Recenzija uspješno dodana!');
         this.recenzija = { rezervacijaId: 0, ocjena: 5, tekst: '', slike: [] }; // Reset forme
@@ -136,6 +130,7 @@ export class MojeRezervacijeComponent implements OnInit{
       }
     });
   }
+
 
 
   pogledajRecenziju(rezervacija: any) {
