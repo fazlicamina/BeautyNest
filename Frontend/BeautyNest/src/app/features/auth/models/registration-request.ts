@@ -3,6 +3,6 @@ export interface RegistrationRequest {
   username:string;
   password: string;
   role:string;
-  ime: string;
-  prezime: string;
+  firstName: string;
+  lastName: string;
 }

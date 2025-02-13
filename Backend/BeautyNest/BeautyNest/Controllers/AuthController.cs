@@ -168,13 +168,13 @@ namespace BeautyNest.Controllers
 
             if (profilePicture != null)
             {
-                // Djelomična validacija za tip slike (ako je potrebno)
+        
                 if (!profilePicture.ContentType.StartsWith("image"))
                 {
                     return BadRequest(new { message = "Morate uploadovati sliku." });
                 }
 
-                // Spremanje slike kao byte[] u bazu podataka
+
                 using (var memoryStream = new MemoryStream())
                 {
                     await profilePicture.CopyToAsync(memoryStream);

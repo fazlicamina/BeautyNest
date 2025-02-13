@@ -112,14 +112,24 @@ namespace BeautyNest.Controllers
 
         [HttpGet("moje-rezervacije")]
         [Authorize]
-        public async Task<IActionResult> GetMojeRezervacije()
+        public async Task<IActionResult> GetMojeRezervacije(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 20,
+            [FromQuery] bool? isZavrsena = null)
         {
             var userId = User.FindFirst(ClaimTypes.Name)?.Value;
             if (string.IsNullOrEmpty(userId)) return Unauthorized();
 
-            var rezervacije = await reservationService.GetRezervacijeByUserIdAsync(userId);
-            return Ok(rezervacije);
+            var (rezervacije, totalCount) = await reservationService.GetRezervacijeByUserIdAsync(userId, page, pageSize, isZavrsena);
+
+            return Ok(new
+            {
+                items = rezervacije,
+                totalCount,
+                totalPages = (int)Math.Ceiling((double)totalCount / pageSize)
+            });
         }
+
 
 
         [HttpDelete("{id}")]

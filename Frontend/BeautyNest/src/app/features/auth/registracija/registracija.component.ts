@@ -23,8 +23,8 @@ export class RegistracijaComponent {
       username: '',
       password: '',
       role: 'Klijent',
-      ime: '',
-      prezime: ''
+      firstName: '',
+      lastName: ''
     };
 
 
@@ -34,6 +34,7 @@ export class RegistracijaComponent {
     this.authService.register(this.model)
       .subscribe({
         next: (response) => {
+          console.log(this.model);
           console.log('Registracija uspješna:', response);
           this.router.navigateByUrl('/login');
         },

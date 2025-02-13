@@ -49,15 +49,23 @@ export class RezervacijaService {
   }
 
 
-  getMojeRezervacije(): Observable<any[]> {
+  getMojeRezervacije(page: number, pageSize: number, isZavrsena?: boolean | null): Observable<any> {
     const token = this.cookieService.get('Authorization');
     const headers = new HttpHeaders().set('Authorization', `${token}`);
 
-    return this.http.get<any[]>(`${environment.apiBaseUrl}api/rezervacija/moje-rezervacije`, {
-      headers,
-      withCredentials: true
-    });
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString());
+
+    if (isZavrsena !== null && isZavrsena !== undefined) {
+      params = params.set('isZavrsena', isZavrsena.toString());
+    }
+
+    return this.http.get<any>(`${environment.apiBaseUrl}api/rezervacija/moje-rezervacije`, { headers, params, withCredentials: true });
   }
+
+
+
 
   otkaziRezervaciju(id: number): Observable<any> {
     const token = this.cookieService.get('Authorization');

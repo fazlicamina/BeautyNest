@@ -1,17 +1,4 @@
-.card {
-  border-radius: 20px;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  background-color: #fff;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
 .profile-header {
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -40,7 +27,6 @@
 .profile-info h4 {
   font-size: 1.3rem;
   color: #dbaeab;
-  border-bottom: 2px solid #dbaeab;
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
@@ -48,20 +34,6 @@
 .profile-info p {
   font-size: 1.1rem;
   color: #444;
-}
-
-.btn-custom {
-  background-color: #dbaeab;
-  border: none;
-  color: white;
-  padding: 15px;
-  font-size: 1.2rem;
-  border-radius: 25px;
-  transition: background-color 0.3s;
-}
-
-.btn-custom:hover {
-  background-color: #c59b8a;
 }
 
 .profile-actions {
@@ -73,8 +45,28 @@
 }
 
 .profile-image img {
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.btn-success{
+  background-color: #dbaeab;
+  color:white;
+  border:none;
+}
+
+.btn-success:hover{
+  background-color: #e5bcba;
+}
+
+.btn-danger{
+  background-color: #555;
+  color:white;
+  border:none;
+}
+
+.btn-danger:hover{
+  background-color: #424242;
 }

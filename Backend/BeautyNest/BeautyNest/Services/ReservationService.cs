@@ -158,16 +158,67 @@ namespace BeautyNest.Services
             return applicationDbContext.Rezervacije.FirstOrDefault(r => r.Id == rezervacijaId);
         }
 
-        public async Task<List<RezervacijaDto>> GetRezervacijeByUserIdAsync(string userId)
+        //public async Task<List<RezervacijaDto>> GetRezervacijeByUserIdAsync(string userId)
+        //{
+        //    var rezervacije = await applicationDbContext.Rezervacije
+        //        .Where(r => r.KlijentId == userId)
+        //        .Include(r => r.Salon)
+        //        .Include(r => r.UslugeRezervacija)
+        //            .ThenInclude(ur => ur.Usluga)
+        //        .ToListAsync();
+
+        //    return rezervacije.Select(r => new RezervacijaDto
+        //    {
+        //        Id = r.Id,
+        //        KlijentId = r.KlijentId,
+        //        SalonId = r.SalonId,
+        //        SalonNaziv = r.Salon?.Naziv ?? "Nepoznato",
+        //        SalonAdresa = r.Salon?.Adresa ?? "Nepoznata adresa",
+        //        DatumRezervacije = r.DatumRezervacije,
+        //        VrijemePocetka = r.VrijemePocetka,
+        //        VrijemeZavrsetka = r.VrijemeZavrsetka,
+        //        Status = r.Status,
+        //        Poruka = r.Poruka,
+        //        Usluge = r.UslugeRezervacija.Select(ur => ur.Usluga.Naziv).ToList(),
+        //        Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes),
+        //        HasRecenzija = r.HasRecenzija
+        //    }).ToList();
+        //}
+
+
+        public async Task<(List<RezervacijaDto>, int)> GetRezervacijeByUserIdAsync(string userId, int page, int pageSize, bool? isZavrsena)
         {
-            var rezervacije = await applicationDbContext.Rezervacije
+            var danas = DateTime.Today;
+
+            var query = applicationDbContext.Rezervacije
                 .Where(r => r.KlijentId == userId)
                 .Include(r => r.Salon)
                 .Include(r => r.UslugeRezervacija)
                     .ThenInclude(ur => ur.Usluga)
+                .AsQueryable();
+
+            // Filtriranje na osnovu isZavrsena parametra
+            if (isZavrsena.HasValue)
+            {
+                if (isZavrsena.Value)
+                {
+                    query = query.Where(r => r.DatumRezervacije <= danas);
+                }
+                else
+                {
+                    query = query.Where(r => r.DatumRezervacije > danas);
+                }
+            }
+
+            int totalCount = await query.CountAsync(); // Ukupan broj rezervacija
+
+            var rezervacije = await query
+                .OrderByDescending(r => r.DatumRezervacije) // Sortiranje po datumu
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            return rezervacije.Select(r => new RezervacijaDto
+            var rezervacijeDto = rezervacije.Select(r => new RezervacijaDto
             {
                 Id = r.Id,
                 KlijentId = r.KlijentId,
@@ -183,7 +234,11 @@ namespace BeautyNest.Services
                 Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes),
                 HasRecenzija = r.HasRecenzija
             }).ToList();
+
+            return (rezervacijeDto, totalCount);
         }
+
+
 
         public async Task CancelRezervacijaAsync(int rezervacijaId)
         {

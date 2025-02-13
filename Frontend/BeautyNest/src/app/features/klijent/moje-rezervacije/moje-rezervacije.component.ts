@@ -20,6 +20,9 @@ import {Router} from '@angular/router';
 })
 export class MojeRezervacijeComponent implements OnInit{
 
+  currentPage: number = 1;
+  totalPages: number = 1;
+
   rezervacije: any[] = [];
   trenutniDatum: Date = new Date();
   rezervacijaZaBrisanje: number | null = null;
@@ -33,25 +36,43 @@ export class MojeRezervacijeComponent implements OnInit{
     slike: []
   };
 
+  trenutniFilter: boolean | null = null;
 
   constructor(private rezervacijaService: RezervacijaService,
               private recenzijeService: RecenzijeService,
               private router: Router) {}
 
   ngOnInit(): void {
-    this.ucitajRezervacije();
+    this.ucitajRezervacije(1);
   }
 
-  ucitajRezervacije() {
-    this.rezervacijaService.getMojeRezervacije().subscribe(
+
+  promijeniTab(filter: boolean | null) {
+    this.trenutniFilter = filter;
+    this.ucitajRezervacije(1);
+  }
+
+  ucitajRezervacije(page: number) {
+    const pageSize = 5;
+
+    this.rezervacijaService.getMojeRezervacije(page, pageSize, this.trenutniFilter).subscribe(
       (data) => {
-        this.rezervacije = data;
+        console.log('API odgovor:', data);
+        if (data && data.items) {
+          this.rezervacije = data.items;
+          this.totalPages = data.totalPages;
+          this.currentPage = page;
+        } else {
+          this.rezervacije = [];
+        }
       },
       (error) => {
         console.error('Greška pri dohvaćanju rezervacija:', error);
+        this.rezervacije = [];
       }
     );
   }
+
 
   openModal(id: number) {
     this.rezervacijaZaBrisanje = id;

@@ -25,7 +25,7 @@ namespace BeautyNest.Services
             if (rezervacija == null)
                 throw new Exception("Nevažeća rezervacija ili pristup nije dozvoljen.");
 
-            // Čuvanje slika na disku i pravljenje putanja
+ 
             // Čuvanje slika na disku i pravljenje putanja
             var imagePaths = new List<string>();
             var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
@@ -48,7 +48,7 @@ namespace BeautyNest.Services
                         await file.CopyToAsync(stream);
                     }
 
-                    imagePaths.Add($"/uploads/{fileName}"); // Čuvamo relativnu putanju u bazi
+                    imagePaths.Add($"/uploads/{fileName}"); 
                 }
             }
 
@@ -102,11 +102,20 @@ namespace BeautyNest.Services
             if (recenzija == null)
                 return false;
 
+            var rezervacija = await applicationDbContext.Rezervacije
+                .FirstOrDefaultAsync(r => r.Id == recenzija.RezervacijaId);
+
+            if (rezervacija != null)
+            {
+                rezervacija.HasRecenzija = false;
+            }
+
             applicationDbContext.Recenzije.Remove(recenzija);
             await applicationDbContext.SaveChangesAsync();
 
             return true;
         }
+
 
 
     }

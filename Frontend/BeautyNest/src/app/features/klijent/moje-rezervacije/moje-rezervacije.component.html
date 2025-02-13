@@ -3,13 +3,13 @@
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="pills-sve-tab" data-bs-toggle="pill" data-bs-target="#pills-sve" type="button" role="tab" aria-controls="pills-sve" aria-selected="true">Sve</button>
+      <button class="nav-link active" id="pills-sve-tab" data-bs-toggle="pill" data-bs-target="#pills-sve" type="button" role="tab" aria-controls="pills-sve" aria-selected="true" (click)="promijeniTab(null)">Sve</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-nadolazece-tab" data-bs-toggle="pill" data-bs-target="#pills-nadolazece" type="button" role="tab" aria-controls="pills-nadolazece" aria-selected="false">Nadolazeće</button>
+      <button class="nav-link" id="pills-nadolazece-tab" data-bs-toggle="pill" data-bs-target="#pills-nadolazece" type="button" role="tab" aria-controls="pills-nadolazece" aria-selected="false" (click)="promijeniTab(false)">Nadolazeće</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-zavrsene-tab" data-bs-toggle="pill" data-bs-target="#pills-zavrsene" type="button" role="tab" aria-controls="pills-zavrsene" aria-selected="false">Završene</button>
+      <button class="nav-link" id="pills-zavrsene-tab" data-bs-toggle="pill" data-bs-target="#pills-zavrsene" type="button" role="tab" aria-controls="pills-zavrsene" aria-selected="false" (click)="promijeniTab(true)">Završene</button>
     </li>
   </ul>
 
@@ -60,15 +60,23 @@
               </div>
             </div>
           </div>
+
+          <div class="pagination">
+            <button (click)="ucitajRezervacije(currentPage - 1)" [disabled]="currentPage === 1">Prethodna</button>
+            <span>Strana {{ currentPage }} od {{ totalPages }}</span>
+            <button (click)="ucitajRezervacije(currentPage + 1)" [disabled]="currentPage === totalPages">Sledeća</button>
+          </div>
+
+
         </div>
       </div>
     </div>
 
     <!-- Nadolazeće rezervacije -->
-    <div class="tab-pane fade" id="pills-nadolazece" role="tabpanel" aria-labelledby="pills-nadolazece-tab" *ngIf="getNadolazeceRezervacije().length > 0">
+    <div class="tab-pane fade" id="pills-nadolazece" role="tabpanel" aria-labelledby="pills-nadolazece-tab"  *ngIf="rezervacije.length > 0">
       <div class="row justify-content-center">
         <div>
-          <div *ngFor="let rezervacija of getNadolazeceRezervacije()" class="card mb-3 shadow-sm bg-light border-0">
+          <div *ngFor="let rezervacija of rezervacije" class="card mb-3 shadow-sm bg-light border-0">
             <div class="card-body">
               <div class="row align-items-center text-center">
                 <!-- Kolona 1: Salon -->
@@ -106,10 +114,10 @@
     </div>
 
     <!-- Završene rezervacije -->
-    <div class="tab-pane fade" id="pills-zavrsene" role="tabpanel" aria-labelledby="pills-zavrsene-tab" *ngIf="getZavrseneRezervacije().length > 0">
+    <div class="tab-pane fade" id="pills-zavrsene" role="tabpanel" aria-labelledby="pills-zavrsene-tab"  *ngIf="rezervacije.length > 0">
       <div class="row justify-content-center">
         <div>
-          <div *ngFor="let rezervacija of getZavrseneRezervacije()" class="card mb-3 shadow-sm bg-light border-0">
+          <div *ngFor="let rezervacija of rezervacije" class="card mb-3 shadow-sm bg-light border-0">
             <div class="card-body">
               <div class="row align-items-center text-center">
                 <!-- Kolona 1: Salon -->

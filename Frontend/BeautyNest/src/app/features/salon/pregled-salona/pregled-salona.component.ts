@@ -3,7 +3,7 @@ import {SalonService} from '../services/salon.service';
 import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute, NavigationEnd, RouterLink, Event} from '@angular/router';
 import {Salon} from '../models/salon';
-import {AsyncPipe, CurrencyPipe, DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, CurrencyPipe, DatePipe, DecimalPipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {KategorijaUslugeService} from '../services/kategorija-usluge.service';
 import {KategorijaUsluge} from '../models/kategorija-usluge';
 import Modal from 'bootstrap/js/dist/modal';
@@ -41,7 +41,8 @@ import { Router } from '@angular/router';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatCard
+    MatCard,
+    DecimalPipe
   ],
   templateUrl: './pregled-salona.component.html',
   styleUrl: './pregled-salona.component.css',
@@ -50,6 +51,9 @@ import { Router } from '@angular/router';
 export class PregledSalonaComponent implements OnInit, OnDestroy{
 
   user?:User;
+
+  fullStars: number[] = [];
+  hasHalfStar: boolean = false;
 
   id:number | null=null;
   paramsSubscription?:Subscription;
@@ -231,6 +235,8 @@ private authService:AuthService, private cookieService:CookieService,
       this.loadAvailableTimes();
       this.checkFavoriteStatus();
     });
+
+
 
     this.user=this.authService.getUser();
 

@@ -95,18 +95,13 @@
       <div class="card fixed-column" style="width: 100%; ">
         <div class="card-body" *ngIf="salon$ | async as salon">
 
-          <h1  style="font-weight: bold;">{{ salon.naziv }}</h1>
-
-          <div class="d-flex align-items-center mb-3" style="color: #DBAEAB; font-size: x-large;  font-weight: bold; margin-top:-10px">
-            <span class="me-2">5,0</span>
-            <div class="me-2">
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star me-1"></i>
-              <i class="bi bi-star"></i></div>
-          </div>
-
+          <h2 class="mb-3" style="font-weight: bold;">
+            {{ salon.naziv }}
+            <span *ngIf="salon.prosjecnaOcjena" class="badge"
+                  style="background-color: #dbaeab; font-size: medium; position: relative; top: -5px;">
+    ({{ salon.prosjecnaOcjena ? salon.prosjecnaOcjena.toFixed(1) : '0.0' }})
+  </span>
+          </h2>
 
 
           <span *ngFor="let kategorija of salon.kategorije" >
@@ -189,7 +184,8 @@
 
 
 
-  <h1 class="mb-3" style="margin-top: 40px">Recenzije</h1>
+  <h1  class="mb-3" style="margin-top: 40px">Recenzije</h1>
+  <p *ngIf="recenzije && recenzije.length <= 0">Nema recenzija za ovaj salon!</p>
 
   <div *ngFor="let recenzija of recenzije" class="card p-3 mb-3" [id]="recenzija.rezervacijaId" >
     <div class="d-flex align-items-center">
@@ -203,7 +199,7 @@
       </div>
     </div>
 
-    <p>NOVO TOTALNO</p>
+
 
     <div class="mt-2">
     <span *ngFor="let usluga of recenzija.usluge" class="badge br bg-primary me-1"

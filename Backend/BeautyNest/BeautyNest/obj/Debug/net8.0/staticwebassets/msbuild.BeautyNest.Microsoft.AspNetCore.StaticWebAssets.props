@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>BeautyNest</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BeautyNest</BasePath>
-      <RelativePath>uploads/00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG</RelativePath>
+      <RelativePath>uploads/0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,14 +14,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>BeautyNest</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BeautyNest</BasePath>
-      <RelativePath>uploads/0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG</RelativePath>
+      <RelativePath>uploads/3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -30,14 +30,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG))">
       <SourceType>Package</SourceType>
       <SourceId>BeautyNest</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BeautyNest</BasePath>
-      <RelativePath>uploads/4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG</RelativePath>
+      <RelativePath>uploads/84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -46,14 +46,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG))">
       <SourceType>Package</SourceType>
       <SourceId>BeautyNest</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BeautyNest</BasePath>
-      <RelativePath>uploads/6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG</RelativePath>
+      <RelativePath>uploads/97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -62,14 +62,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG))">
       <SourceType>Package</SourceType>
       <SourceId>BeautyNest</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BeautyNest</BasePath>
-      <RelativePath>uploads/8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG</RelativePath>
+      <RelativePath>uploads/f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -78,7 +78,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

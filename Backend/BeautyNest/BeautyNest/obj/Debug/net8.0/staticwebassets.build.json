@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Oxp7/FmJsf5LQc2P5VUTzPpVo8w8CWtlgyAFrRP7OuA=",
+  "Hash": "szub1Dccclgu9NgNSR7LGonyJ97GEnGdGKIbyV1w3Ok=",
   "Source": "BeautyNest",
   "BasePath": "_content/BeautyNest",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG",
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg",
       "SourceId": "BeautyNest",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
       "BasePath": "_content/BeautyNest",
-      "RelativePath": "uploads/00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG",
+      "RelativePath": "uploads/0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\00fa6c70-0990-4397-b26f-1e9f61bc7c36.JPG"
+      "OriginalItemSpec": "wwwroot\\uploads\\0145e5c0-e465-42fd-a3a7-6ee5017c522d.jpg"
     },
     {
-      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG",
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg",
       "SourceId": "BeautyNest",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
       "BasePath": "_content/BeautyNest",
-      "RelativePath": "uploads/0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG",
+      "RelativePath": "uploads/3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,15 +52,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\0e53d4e7-3f3d-4b49-aa3c-4c32ba6421ec.JPG"
+      "OriginalItemSpec": "wwwroot\\uploads\\3544b4c0-3ac3-43b9-9ba6-cae9e11d3468.jpg"
     },
     {
-      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG",
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG",
       "SourceId": "BeautyNest",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
       "BasePath": "_content/BeautyNest",
-      "RelativePath": "uploads/4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG",
+      "RelativePath": "uploads/84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,15 +71,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\4a56cf02-9f35-41d0-87f1-6d37d2e21457.JPG"
+      "OriginalItemSpec": "wwwroot\\uploads\\84edc942-ddc5-4143-8fe6-e2df68ecd5d1.PNG"
     },
     {
-      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG",
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG",
       "SourceId": "BeautyNest",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
       "BasePath": "_content/BeautyNest",
-      "RelativePath": "uploads/6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG",
+      "RelativePath": "uploads/97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -90,15 +90,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\6e1cd494-17bd-44ac-a766-61b1fbe591b3.JPG"
+      "OriginalItemSpec": "wwwroot\\uploads\\97a2f104-8919-45b5-9ad9-0dde1c48efd8.PNG"
     },
     {
-      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG",
+      "Identity": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\uploads\\f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG",
       "SourceId": "BeautyNest",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\KORISNIK\\Desktop\\BeautyNest\\Backend\\BeautyNest\\BeautyNest\\wwwroot\\",
       "BasePath": "_content/BeautyNest",
-      "RelativePath": "uploads/8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG",
+      "RelativePath": "uploads/f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,7 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\8226166d-d9ae-45ba-97f6-01717f2e8a8f.JPG"
+      "OriginalItemSpec": "wwwroot\\uploads\\f7cdd1d2-5c57-4588-9ea0-5563f31ab4fd.PNG"
     }
   ]
 }

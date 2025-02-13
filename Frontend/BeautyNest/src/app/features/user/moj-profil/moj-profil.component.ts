@@ -5,6 +5,7 @@ import {NgIf} from '@angular/common';
 import {AuthService} from '../../auth/services/auth.service';
 import {User} from '../../auth/models/user';
 import {FormsModule} from '@angular/forms';
+import {ToastserviceService} from '../../../core/services/toastservice.service';
 
 @Component({
   selector: 'app-moj-profil',
@@ -25,7 +26,7 @@ export class MojProfilComponent implements OnInit{
   isEditing: boolean = false;
 
 
-  constructor(private mojProfilService: MojProfilService) {
+  constructor(private mojProfilService: MojProfilService, private toastService: ToastserviceService) {
   }
   ngOnInit(): void {
   this.loadUserProfile();
@@ -75,10 +76,10 @@ export class MojProfilComponent implements OnInit{
       this.mojProfilService.updateUserProfile(formData).subscribe({
         next: () => {
           this.isEditing = false;
-          alert('Profil uspješno ažuriran.');
+          this.toastService.showSuccessToast('Profil je ažuriran!')
         },
         error: (err) => {
-          alert('Došlo je do greške prilikom ažuriranja profila.');
+          this.toastService.showErrorToast('Došlo je do greške prilikom ažuriranja profila.')
         }
       });
     }
