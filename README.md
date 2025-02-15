@@ -18,7 +18,7 @@ Prilikom testiranja registracije (potvrda naloga putem mejla), na backendu, u fa
    <br>  "Port": "587",
    <br>  "Username": "`placeholder@edu.fit.ba`",
    <br>  "Password": "`placeholder`",
-   <br>  "From": "fazlic.amina@edu.fit.ba"
+   <br>  "From": "`placeholder@edu.fit.ba`"
   <br>}
 
 # Getting Started
