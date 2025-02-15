@@ -2,11 +2,24 @@
 
 Projekt je razvijen za potrebe predmeta **RS1** i nije završen. Trenutna implementacija pokazuje osnovne vještine rukovanja sa **Repository pattern-om**, korištenje API-ja i pisanje backend-a. 
 
-Aplikacija omogućava registraciju korisnika s različitim nivoima pristupa. Trenutno smo najviše fokusirani na funkcionalnosti klijenta i neprijavljenog korisnika. Među implementiranim funkcionalnostima su: uređivanje profila, dodavanje profilne slike, pregled i dodavanje omiljenih salona, odabir usluga te kreiranje rezervacija.
+Aplikacija omogućava registraciju korisnika s različitim nivoima pristupa. Trenutno smo najviše fokusirani na funkcionalnosti klijenta i neprijavljenog korisnika. Među implementiranim funkcionalnostima su: uređivanje profila, dodavanje profilne slike, pregled i dodavanje omiljenih salona, odabir usluga, kreiranje i pregled rezervacija, te ostavljanje ocjena i recenzija sa slikama.
 
 Backend sistema za rezervacije osmišljen je tako da optimalno rasporedi zaposlenike u okviru radnog vremena salona, čime se osigurava efikasno upravljanje vremenskim slotovima.
 
-Projekat će se nastaviti razvijati s ciljem unaprjeđenja korisničkog iskustva i proširenja postojećih mogućnosti. Sljedeće funkcionalnosti koje planiramo implementirati uključuju: pregled radnog rasporeda zaposlenika, pregled rezervacija klijenata i upravljanje radnim rasporedom.
+Projekat će se nastaviti razvijati s ciljem unaprjeđenja korisničkog iskustva i proširenja postojećih mogućnosti.
+
+
+# Napomena
+
+Prilikom testiranja registracije (potvrda naloga putem mejla), na backendu, u fajlu **appsettings.json**, zamijeniti "Username" i "Password" polja stvarnim podacima.
+
+  "Email": {
+   <br>  "SmtpServer": "smtp.office365.com",
+   <br>  "Port": "587",
+   <br>  "Username": "`placeholder@edu.fit.ba`",
+   <br>  "Password": "`placeholder`",
+   <br>  "From": "`placeholder@edu.fit.ba`"
+  <br>}
 
 # Getting Started
 
