@@ -11,15 +11,15 @@ Projekat će se nastaviti razvijati s ciljem unaprjeđenja korisničkog iskustva
 
 # Napomena
 
-Prilikom testiranja registracije (potvrda naloga putem mejla), zamijeniti "Username" i "Password" polja stvarnim podacima.
+Prilikom testiranja registracije (potvrda naloga putem mejla), na backendu, u fajlu **appsettings.json**, zamijeniti "Username" i "Password" polja stvarnim podacima.
 
   "Email": {
-    "SmtpServer": "smtp.office365.com",
-    "Port": "587",
-    "Username": "`placeholder@edu.fit.ba`",
-    "Password": "`placeholder`",
-    "From": "fazlic.amina@edu.fit.ba"
-  }
+   <br>  "SmtpServer": "smtp.office365.com",
+   <br>  "Port": "587",
+   <br>  "Username": "`placeholder@edu.fit.ba`",
+   <br>  "Password": "`placeholder`",
+   <br>  "From": "fazlic.amina@edu.fit.ba"
+  <br>}
 
 # Getting Started
 
