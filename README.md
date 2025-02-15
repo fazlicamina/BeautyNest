@@ -8,6 +8,19 @@ Backend sistema za rezervacije osmišljen je tako da optimalno rasporedi zaposle
 
 Projekat će se nastaviti razvijati s ciljem unaprjeđenja korisničkog iskustva i proširenja postojećih mogućnosti. Sljedeće funkcionalnosti koje planiramo implementirati uključuju: pregled radnog rasporeda zaposlenika, pregled rezervacija klijenata i upravljanje radnim rasporedom.
 
+
+# Napomena
+
+Prilikom testiranja registracije (potvrda naloga putem mejla), zamijeniti "Username" i "Password" polja stvarnim podacima.
+
+  "Email": {
+    "SmtpServer": "smtp.office365.com",
+    "Port": "587",
+    "Username": "`placeholder@edu.fit.ba`",
+    "Password": "`placeholder`",
+    "From": "fazlic.amina@edu.fit.ba"
+  }
+
 # Getting Started
 
 **Backend (ASP.NET Core):**
