@@ -54,6 +54,8 @@ export class MojeRezervacijeComponent implements OnInit{
     this.ucitajRezervacije(1);
   }
 
+
+
   ucitajRezervacije(page: number) {
     const pageSize = 5;
 
@@ -171,4 +173,5 @@ export class MojeRezervacijeComponent implements OnInit{
   }
 
 
+  protected readonly Math = Math;
 }

@@ -35,7 +35,14 @@
                 <!-- Kolona 3: Usluge i trajanje -->
                 <div class="col-md-3">
                   <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
-                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+
+
+                  <p class="text-secondary">
+                    {{ rezervacija.trajanje >= 60 ? (Math.floor(rezervacija.trajanje / 60) + 'h ') : '' }}
+                    {{ rezervacija.trajanje % 60 > 0 ? (rezervacija.trajanje % 60) + ' min' : '' }}
+                  </p>
+
+
                 </div>
                 <!-- Kolona 4: Otkazivanje ili recenzija -->
                 <div class="col-md-3 d-flex align-items-center">
@@ -101,7 +108,17 @@
                 <!-- Kolona 3: Usluge i trajanje -->
                 <div class="col-md-3">
                   <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
-                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+
+
+                  <p class="text-secondary">
+                    {{ rezervacija.trajanje >= 60 ? (Math.floor(rezervacija.trajanje / 60) + 'h ') : '' }}
+                    {{ rezervacija.trajanje % 60 > 0 ? (rezervacija.trajanje % 60) + ' min' : '' }}
+                  </p>
+
+
+
+
+
                 </div>
                 <!-- Kolona 4: Otkazivanje -->
                 <div class="col-md-3 d-flex align-items-center">
@@ -158,7 +175,13 @@
                 <!-- Kolona 3: Usluge i trajanje -->
                 <div class="col-md-3">
                   <h6 class="text-dark fw-bold">{{ rezervacija.usluge.join(', ') }}</h6>
-                  <p class="text-secondary">{{ rezervacija.trajanje }} min</p>
+                  <p class="text-secondary">
+                    {{ rezervacija.trajanje >= 60 ? (Math.floor(rezervacija.trajanje / 60) + 'h ') : '' }}
+                    {{ rezervacija.trajanje % 60 > 0 ? (rezervacija.trajanje % 60) + ' min' : '' }}
+                  </p>
+
+
+
                 </div>
                 <!-- Kolona 4: Recenzija -->
                 <div class="col-md-3 d-flex align-items-center">

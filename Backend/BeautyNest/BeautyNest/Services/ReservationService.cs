@@ -204,7 +204,8 @@ namespace BeautyNest.Services
                 Status = r.Status,
                 Poruka = r.Poruka,
                 Usluge = r.UslugeRezervacija.Select(ur => ur.Usluga.Naziv).ToList(),
-                Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes),
+                Trajanje = (int)(r.VrijemeZavrsetka - r.VrijemePocetka).TotalMinutes,
+
                 HasRecenzija = r.HasRecenzija
             }).ToList();
 
