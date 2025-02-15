@@ -41,12 +41,7 @@ namespace BeautyNest.Repositories.Implementation
         }
 
 
-        //public async Task<List<Salon>> GetSaloniByIdsAsync(List<int> ids)
-        //{
-        //    return await dbContext.Saloni
-        //        .Where(salon => ids.Contains(salon.Id))
-        //        .ToListAsync();
-        //}
+      
 
 
     }

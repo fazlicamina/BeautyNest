@@ -55,19 +55,25 @@ export class PretragaComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user=this.authService.getUser();
-
+    this.user = this.authService.getUser();
     this.loadInitialData();
 
-    this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
-      this.omiljeniSaloniIds = new Set(omiljeniSaloni.map((s) => s.id));
-
-      this.route.queryParams.subscribe((params) => {
-        this.selectedGradId = +params['cityId'] || null;
-        this.selectedKategorijaId = +params['kategorijaId'] || null;
-        this.nazivSalona = params['naziv'] || '';
-        this.applyFilters();
+    if (this.user) { // Provjera da li postoji prijavljeni korisnik
+      this.salonService.getOmiljeniSaloni().subscribe((omiljeniSaloni) => {
+        this.omiljeniSaloniIds = new Set(omiljeniSaloni.map((s) => s.id));
+        this.loadSearchParams();
       });
+    } else {
+      this.loadSearchParams();
+    }
+  }
+
+  loadSearchParams(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.selectedGradId = +params['cityId'] || null;
+      this.selectedKategorijaId = +params['kategorijaId'] || null;
+      this.nazivSalona = params['naziv'] || '';
+      this.applyFilters();
     });
   }
 
@@ -80,11 +86,12 @@ export class PretragaComponent implements OnInit{
 
   applyFilters(): void {
     this.salonService.getAllSaloni().subscribe((saloni) => {
+      console.log('Dohvaćeni saloni:', saloni); // Dodajte log za provjeru
+
       this.saloni = saloni
         .filter((salon) => {
           const matchesCity = !this.selectedGradId || salon.gradId === this.selectedGradId;
-          const matchesCategory =
-            !this.selectedKategorijaId || salon.kategorije.some((k) => k.id === this.selectedKategorijaId);
+          const matchesCategory = !this.selectedKategorijaId || salon.kategorije.some((k) => k.id === this.selectedKategorijaId);
           const matchesName = !this.nazivSalona || salon.naziv.toLowerCase().includes(this.nazivSalona.toLowerCase());
           return matchesCity && matchesCategory && matchesName;
         })
@@ -92,8 +99,11 @@ export class PretragaComponent implements OnInit{
           ...salon,
           jeOmiljeni: this.omiljeniSaloniIds.has(salon.id),
         }));
+
+      console.log('Filtrirani saloni:', this.saloni);
     });
   }
+
 
   toggleOmiljeniSalon(salon: any): void {
     this.salonService.toggleOmiljeniSalon(salon.id).subscribe({

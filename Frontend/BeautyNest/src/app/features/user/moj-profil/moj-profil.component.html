@@ -2,6 +2,8 @@
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
 
+
+
         <div class="card-body" *ngIf="userProfile;">
           <div class="profile-header d-flex align-items-center">
             <div class="profile-image">
@@ -20,15 +22,32 @@
             <form #editForm="ngForm">
               <div class="mb-3">
                 <label for="firstName" class="form-label"><strong>Ime:</strong></label>
-                <input type="text" id="firstName" class="form-control" [(ngModel)]="userProfile.firstName" name="firstName" [disabled]="!isEditing">
+                <input type="text" id="firstName" class="form-control" [(ngModel)]="userProfile.firstName"
+                       name="firstName" [disabled]="!isEditing" required pattern="^[A-Za-zšđčćžŠĐČĆŽ\s]+$" #firstName="ngModel">
+                <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                  <small *ngIf="firstName.errors?.['required']">Ime je obavezno.</small>
+                  <small *ngIf="firstName.errors?.['pattern']">Ime ne može sadržavati brojeve.</small>
+                </div>
               </div>
+
               <div class="mb-3">
                 <label for="lastName" class="form-label"><strong>Prezime:</strong></label>
-                <input type="text" id="lastName" class="form-control" [(ngModel)]="userProfile.lastName" name="lastName" [disabled]="!isEditing">
+                <input type="text" id="lastName" class="form-control" [(ngModel)]="userProfile.lastName"
+                       name="lastName" [disabled]="!isEditing" required pattern="^[A-Za-zšđčćžŠĐČĆŽ\s]+$" #lastName="ngModel">
+                <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                  <small *ngIf="lastName.errors?.['required']">Prezime je obavezno.</small>
+                  <small *ngIf="lastName.errors?.['pattern']">Prezime ne može sadržavati brojeve.</small>
+                </div>
               </div>
+
               <div class="mb-3">
                 <label for="email" class="form-label"><strong>Email:</strong></label>
-                <input type="email" id="email" class="form-control" [(ngModel)]="userProfile.email" name="email" [disabled]="!isEditing">
+                <input type="email" id="email" class="form-control" [(ngModel)]="userProfile.email"
+                       name="email" [disabled]="!isEditing" required email #email="ngModel">
+                <div *ngIf="email.invalid && email.touched" class="text-danger">
+                  <small *ngIf="email.errors?.['required']">Email je obavezan.</small>
+                  <small *ngIf="email.errors?.['email']">Unesite ispravan email format.</small>
+                </div>
               </div>
 
               <div class="mb-3">
@@ -36,19 +55,23 @@
                 <input type="file" id="profilePicture" (change)="onFileChange($event)" class="form-control" [disabled]="!isEditing">
               </div>
 
+              <div class="profile-actions mt-4">
+                <button *ngIf="!isEditing" class="btn btn-success w-100" (click)="toggleEdit()">Uredi Profil</button>
+                <div *ngIf="isEditing" class="d-flex gap-3">
+                  <button class="btn btn-success w-100" (click)="saveChanges()" [disabled]="editForm.invalid">Spremi</button>
+                  <button class="btn btn-danger w-100" (click)="cancelEdit()">Otkaži</button>
+                </div>
+              </div>
             </form>
-          </div>
 
-          <div class="profile-actions mt-4">
-            <button *ngIf="!isEditing" class="btn btn-success w-100" (click)="toggleEdit()">Uredi Profil</button>
-            <div *ngIf="isEditing" class="d-flex gap-3">
-              <button class="btn btn-success w-100" (click)="saveChanges()">Spremi</button>
-              <button class="btn btn-danger w-100" (click)="cancelEdit()">Otkaži</button>
-            </div>
           </div>
 
 
       </div>
+
+
+
+
     </div>
   </div>
 </div>

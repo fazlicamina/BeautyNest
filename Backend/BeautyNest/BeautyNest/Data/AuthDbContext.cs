@@ -60,7 +60,8 @@ namespace BeautyNest.Data
                 NormalizedEmail = "fazlicamina02@gmail.com".ToUpper(),
                 NormalizedUserName = "fazlicamina02".ToUpper(),
                 FirstName = "Amina",
-                LastName = "Fazlić"
+                LastName = "Fazlić",
+                EmailConfirmed=true
             };
 
             klijent.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(klijent, "Amina123!");
@@ -107,7 +108,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "ADNAH",
             FirstName = "Adna",
             LastName = "Halilović",
-            SalonId=1
+            SalonId=1,
+            EmailConfirmed=true
         },
         new User
         {
@@ -118,7 +120,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "ANIDASABIC",
             FirstName = "Anida",
             LastName = "Šabić",
-            SalonId=1
+            SalonId=1,
+            EmailConfirmed=true
         },
         new User
         {
@@ -129,7 +132,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "ALDINH",
             FirstName = "Aldin",
             LastName = "Hodžić",
-            SalonId=1
+            SalonId=1,
+            EmailConfirmed=true
         },
         new User
         {
@@ -140,7 +144,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "SARA",
             FirstName = "Sara",
             LastName = "Hodžić",
-            SalonId=2
+            SalonId=2,
+            EmailConfirmed=true
         },
         new User
         {
@@ -151,7 +156,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "AZRA",
             FirstName = "Azra",
             LastName = "Hodžić",
-            SalonId=3
+            SalonId=3,
+            EmailConfirmed=true
         },
         new User
         {
@@ -162,7 +168,8 @@ namespace BeautyNest.Data
             NormalizedUserName = "SAMRA",
             FirstName = "Samra",
             LastName = "Fazlić",
-            SalonId=4
+            SalonId=4,
+            EmailConfirmed=true
         }
     };
 

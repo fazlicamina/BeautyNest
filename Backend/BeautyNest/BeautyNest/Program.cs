@@ -30,6 +30,17 @@ builder.Services.AddScoped<RecenzijaService>();
 
 builder.Services.AddScoped<ReservationService>();
 
+builder.Services.AddScoped<EmailService>();
+
+builder.Services.Configure<BeautyNest.Models.Domain.EmailSettings>(
+    builder.Configuration.GetSection("Email"));
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromHours(3); // Token traje 3 sata
+});
+
+
 builder.Services.AddScoped<ISalonRepository, SalonRepository>();
 builder.Services.AddScoped<IKategorijaRepository, KategorijaRepository>();
 builder.Services.AddScoped<IKategorijaUslugeRepository, KategorijaUslugeRepository>();
@@ -48,7 +59,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
-    options.Password.RequiredUniqueChars = 1;
+    options.Password.RequiredUniqueChars = 0;
 });
 
 

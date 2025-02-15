@@ -28,7 +28,7 @@ export class SalonService {
 
     return this.http.post<any>(`${environment.apiBaseUrl}api/OmiljeniSaloni/toggle?salonId=${salonId}`, {}, {
       headers,
-      withCredentials: true  // Dodajte ovo za slanje kolačića s zahtjevom
+      withCredentials: true
     });
   }
 

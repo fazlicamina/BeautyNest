@@ -8,6 +8,7 @@ import {MojProfilComponent} from './features/user/moj-profil/moj-profil.componen
 import {OmiljeniSaloniComponent} from './features/user/omiljeni-saloni/omiljeni-saloni/omiljeni-saloni.component';
 import {MojeRezervacijeComponent} from './features/klijent/moje-rezervacije/moje-rezervacije.component';
 import {authGuard} from './features/auth/guards/auth.guard';
+import {ActivationComponent} from './features/auth/activation/activation/activation.component';
 
 
 export const routes: Routes = [
@@ -18,5 +19,7 @@ export const routes: Routes = [
   { path: 'registracija', component: RegistracijaComponent },
   { path: 'mojprofil', component: MojProfilComponent, canActivate: [authGuard] },
   { path: 'omiljeni', component: OmiljeniSaloniComponent, canActivate: [authGuard], data: { role: 'Klijent' } },
-  { path: 'moje-rezervacije', component: MojeRezervacijeComponent, canActivate: [authGuard], data: { role: 'Klijent' } }
+  { path: 'moje-rezervacije', component: MojeRezervacijeComponent, canActivate: [authGuard], data: { role: 'Klijent' } },
+  { path: 'activate', component: ActivationComponent }
+
 ];

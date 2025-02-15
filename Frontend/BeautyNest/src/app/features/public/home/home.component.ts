@@ -67,11 +67,16 @@ export class HomeComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.user=this.authService.getUser();
+    this.user = this.authService.getUser();
 
-    // Učitaj sve salone odmah
     this.salonService.getAllSaloni().subscribe((saloni) => {
-      this.saloni$ = new Observable((observer) => observer.next(saloni));
+      // Sortiraj salone po ocjeni (od najveće ka najmanjoj)
+      saloni.sort((a, b) => b.prosjecnaOcjena - a.prosjecnaOcjena);
+
+      // Uzmi samo prva 4 salona
+      const topSaloni = saloni.slice(0, 4);
+
+      this.saloni$ = new Observable((observer) => observer.next(topSaloni));
 
       // Pokušaj učitati omiljene salone ako je korisnik autentifikovan
       this.salonService.getOmiljeniSaloni().subscribe({
@@ -79,7 +84,7 @@ export class HomeComponent implements OnInit{
           const omiljeniIds = new Set(omiljeniSaloni.map((s) => s.id));
 
           // Dodaj oznaku `jeOmiljeni` salonima
-          saloni.forEach((salon) => {
+          topSaloni.forEach((salon) => {
             salon.jeOmiljeni = omiljeniIds.has(salon.id);
           });
         },
@@ -97,6 +102,7 @@ export class HomeComponent implements OnInit{
       this.gradovi = data;
     });
   }
+
 
 
   onClickPretrazi(): void {

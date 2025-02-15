@@ -38,7 +38,6 @@ namespace BeautyNest.Controllers
         }
 
 
-        //Dodavanje nove rezervacije
         [HttpPost]
         [Authorize]
         public IActionResult CreateRezervacija([FromBody] CreateRezervacijaRequestDto request)
@@ -83,7 +82,6 @@ namespace BeautyNest.Controllers
         }
 
 
-        //Prihvatanje/odbijanje rezervacije
         [HttpPut("{id}/status")]
         [Authorize]
         public IActionResult UpdateRezervacijaStatus(int id, [FromBody] RezervacijaStatusRequestDto request)
@@ -100,7 +98,7 @@ namespace BeautyNest.Controllers
         }
 
 
-        // Dohvatanje pojedinačne rezervacije (za CreatedAtAction)
+
         [HttpGet("{id}")]
         public IActionResult GetRezervacijaById(int id)
         {

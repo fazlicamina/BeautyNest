@@ -22,9 +22,7 @@ export class MojProfilComponent implements OnInit{
   userProfile: UserProfile | null = null;
   errorMessage: string | null = null;
   roles: string[] = [];
-
   isEditing: boolean = false;
-
 
   constructor(private mojProfilService: MojProfilService, private toastService: ToastserviceService) {
   }
@@ -50,8 +48,6 @@ export class MojProfilComponent implements OnInit{
     });
   }
 
-
-
   toggleEdit(): void {
     this.isEditing = true;
   }
@@ -61,8 +57,8 @@ export class MojProfilComponent implements OnInit{
     this.loadUserProfile();
   }
 
-
   saveChanges(): void {
+
     if (this.userProfile) {
       const formData = new FormData();
       formData.append('firstName', this.userProfile.firstName);
@@ -85,7 +81,6 @@ export class MojProfilComponent implements OnInit{
     }
   }
 
-
   onFileChange(event: any): void {
     if (event.target.files.length > 0 && this.userProfile) {
       const file = event.target.files[0];
@@ -102,7 +97,6 @@ export class MojProfilComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
-
 
 
 }

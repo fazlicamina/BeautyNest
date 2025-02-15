@@ -13,5 +13,7 @@ namespace BeautyNest.Models.Domain
         //ispod atributi se odnose na uposlenika, to je ID salona u kojem radi
         public int? SalonId { get; set; }
 
+       
+
     }
 }

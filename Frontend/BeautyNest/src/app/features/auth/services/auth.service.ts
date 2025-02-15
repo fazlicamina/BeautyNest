@@ -57,14 +57,16 @@ export class AuthService {
     localStorage.clear();
     this.cookieService.delete('Authorization','/');
     this.$user.next(undefined);
+    window.location.reload();
   }
 
   isAuthenticated(): boolean {
     return !!this.getUser();
   }
 
-  register(model: RegistrationRequest ): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}api/auth/register`, model);
+  register(user: RegistrationRequest) {
+    return this.http.post(`${environment.apiBaseUrl}api/auth/register`, user, { responseType: 'text' });
   }
+
 
 }

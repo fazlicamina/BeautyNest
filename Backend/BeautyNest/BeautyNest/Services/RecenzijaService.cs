@@ -15,8 +15,43 @@ namespace BeautyNest.Services
             this.authDbContext = authDbContext;
         }
 
+
+        //NESTO NIJE OK
+        //public async Task<Recenzije> DodajRecenzijuAsync(string klijentId, int rezervacijaId, int ocjena, string tekst, List<IFormFile>? slike)
+        //{
+        //    if (string.IsNullOrWhiteSpace(tekst))
+        //        throw new ArgumentException("Tekst recenzije ne može biti prazan."); // Provera na backendu
+
+        //    var rezervacija = await applicationDbContext.Rezervacije
+        //        .Include(r => r.UslugeRezervacija)
+        //        .ThenInclude(ur => ur.Usluga)
+        //        .FirstOrDefaultAsync(r => r.Id == rezervacijaId && r.KlijentId == klijentId);
+
+        //    if (rezervacija == null)
+        //        throw new Exception("Nevažeća rezervacija ili pristup nije dozvoljen.");
+
+        //    var recenzija = new Recenzije
+        //    {
+        //        KlijentId = klijentId,
+        //        SalonId = rezervacija.SalonId,
+        //        RezervacijaId = rezervacija.Id,
+        //        Ocjena = ocjena,
+        //        Tekst = tekst,
+        //        Slike = null // Slike se kasnije dodaju
+        //    };
+
+        //    applicationDbContext.Recenzije.Add(recenzija);
+        //    rezervacija.HasRecenzija = true;
+        //    await applicationDbContext.SaveChangesAsync();
+
+        //    return recenzija;
+        //}
+
         public async Task<Recenzije> DodajRecenzijuAsync(string klijentId, int rezervacijaId, int ocjena, string tekst, List<IFormFile>? slike)
         {
+            if (string.IsNullOrWhiteSpace(tekst))
+                throw new ArgumentException("Tekst recenzije ne može biti prazan.");
+
             var rezervacija = await applicationDbContext.Rezervacije
                 .Include(r => r.UslugeRezervacija)
                 .ThenInclude(ur => ur.Usluga)
@@ -25,8 +60,6 @@ namespace BeautyNest.Services
             if (rezervacija == null)
                 throw new Exception("Nevažeća rezervacija ili pristup nije dozvoljen.");
 
- 
-            // Čuvanje slika na disku i pravljenje putanja
             var imagePaths = new List<string>();
             var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
@@ -35,7 +68,6 @@ namespace BeautyNest.Services
                 Directory.CreateDirectory(uploadFolder);
             }
 
-            // Proveravamo da li ima slika pre nego što iteriramo kroz listu
             if (slike != null && slike.Count > 0)
             {
                 foreach (var file in slike)
@@ -48,10 +80,9 @@ namespace BeautyNest.Services
                         await file.CopyToAsync(stream);
                     }
 
-                    imagePaths.Add($"/uploads/{fileName}"); 
+                    imagePaths.Add($"/uploads/{fileName}");
                 }
             }
-
 
             var recenzija = new Recenzije
             {
@@ -60,38 +91,16 @@ namespace BeautyNest.Services
                 RezervacijaId = rezervacija.Id,
                 Ocjena = ocjena,
                 Tekst = tekst,
-                Slike = imagePaths.Any() ? string.Join(",", imagePaths) : null // Ako nema slika, postavi na null
+                Slike = imagePaths.Any() ? string.Join(",", imagePaths) : null
             };
 
             applicationDbContext.Recenzije.Add(recenzija);
             rezervacija.HasRecenzija = true;
             await applicationDbContext.SaveChangesAsync();
 
-            // Ažuriranje prosečne ocene salona
-            var sveRecenzije = await applicationDbContext.Recenzije
-                .Where(r => r.SalonId == rezervacija.SalonId)
-                .ToListAsync();
-
-            var prosjecnaOcjena = sveRecenzije.Average(r => r.Ocjena);
-            var salon = await applicationDbContext.Saloni.FindAsync(rezervacija.SalonId);
-            if (salon != null)
-            {
-                salon.ProsjecnaOcjena = prosjecnaOcjena;
-                await applicationDbContext.SaveChangesAsync();
-            }
+            await AzurirajProsjecnuOcjenuSalona(rezervacija.SalonId);
 
             return recenzija;
-        }
-
-
-        public async Task<List<Recenzije>> GetRecenzijeZaSalonAsync(int salonId)
-        {
-            return await applicationDbContext.Recenzije
-                .Where(r => r.SalonId == salonId)
-                .Include(r => r.Rezervacija)
-                .ThenInclude(rez => rez.UslugeRezervacija)
-                .ThenInclude(ur => ur.Usluga)
-                .ToListAsync();
         }
 
         public async Task<bool> ObrisiRecenzijuAsync(int recenzijaId)
@@ -101,6 +110,8 @@ namespace BeautyNest.Services
 
             if (recenzija == null)
                 return false;
+
+            var salonId = recenzija.SalonId;
 
             var rezervacija = await applicationDbContext.Rezervacije
                 .FirstOrDefaultAsync(r => r.Id == recenzija.RezervacijaId);
@@ -113,7 +124,37 @@ namespace BeautyNest.Services
             applicationDbContext.Recenzije.Remove(recenzija);
             await applicationDbContext.SaveChangesAsync();
 
+            await AzurirajProsjecnuOcjenuSalona(salonId);
+
             return true;
+        }
+
+        private async Task AzurirajProsjecnuOcjenuSalona(int salonId)
+        {
+            var sveRecenzije = await applicationDbContext.Recenzije
+                .Where(r => r.SalonId == salonId)
+                .ToListAsync();
+
+            var prosjecnaOcjena = sveRecenzije.Any() ? sveRecenzije.Average(r => r.Ocjena) : 0;
+
+            var salon = await applicationDbContext.Saloni.FindAsync(salonId);
+            if (salon != null)
+            {
+                salon.ProsjecnaOcjena = prosjecnaOcjena;
+                await applicationDbContext.SaveChangesAsync();
+            }
+        }
+
+
+
+        public async Task<List<Recenzije>> GetRecenzijeZaSalonAsync(int salonId)
+        {
+            return await applicationDbContext.Recenzije
+                .Where(r => r.SalonId == salonId)
+                .Include(r => r.Rezervacija)
+                .ThenInclude(rez => rez.UslugeRezervacija)
+                .ThenInclude(ur => ur.Usluga)
+                .ToListAsync();
         }
 
 

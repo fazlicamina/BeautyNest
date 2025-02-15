@@ -158,33 +158,6 @@ namespace BeautyNest.Services
             return applicationDbContext.Rezervacije.FirstOrDefault(r => r.Id == rezervacijaId);
         }
 
-        //public async Task<List<RezervacijaDto>> GetRezervacijeByUserIdAsync(string userId)
-        //{
-        //    var rezervacije = await applicationDbContext.Rezervacije
-        //        .Where(r => r.KlijentId == userId)
-        //        .Include(r => r.Salon)
-        //        .Include(r => r.UslugeRezervacija)
-        //            .ThenInclude(ur => ur.Usluga)
-        //        .ToListAsync();
-
-        //    return rezervacije.Select(r => new RezervacijaDto
-        //    {
-        //        Id = r.Id,
-        //        KlijentId = r.KlijentId,
-        //        SalonId = r.SalonId,
-        //        SalonNaziv = r.Salon?.Naziv ?? "Nepoznato",
-        //        SalonAdresa = r.Salon?.Adresa ?? "Nepoznata adresa",
-        //        DatumRezervacije = r.DatumRezervacije,
-        //        VrijemePocetka = r.VrijemePocetka,
-        //        VrijemeZavrsetka = r.VrijemeZavrsetka,
-        //        Status = r.Status,
-        //        Poruka = r.Poruka,
-        //        Usluge = r.UslugeRezervacija.Select(ur => ur.Usluga.Naziv).ToList(),
-        //        Trajanje = r.UslugeRezervacija.Sum(ur => ur.Usluga.Trajanje.Minutes),
-        //        HasRecenzija = r.HasRecenzija
-        //    }).ToList();
-        //}
-
 
         public async Task<(List<RezervacijaDto>, int)> GetRezervacijeByUserIdAsync(string userId, int page, int pageSize, bool? isZavrsena)
         {
@@ -236,18 +209,6 @@ namespace BeautyNest.Services
             }).ToList();
 
             return (rezervacijeDto, totalCount);
-        }
-
-
-
-        public async Task CancelRezervacijaAsync(int rezervacijaId)
-        {
-            var rezervacija = await applicationDbContext.Rezervacije.FindAsync(rezervacijaId);
-            if (rezervacija != null)
-            {
-                applicationDbContext.Rezervacije.Remove(rezervacija);
-                await applicationDbContext.SaveChangesAsync();
-            }
         }
 
 

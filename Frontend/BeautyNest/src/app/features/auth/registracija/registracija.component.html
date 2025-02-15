@@ -3,37 +3,57 @@
     <div class="col-12 col-md-6 col-lg-4 mx-auto">
       <h1>Registracija</h1>
 
-      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()" novalidate>
 
         <!-- Ime -->
         <div class="mt-3">
           <label for="ime" class="form-label">Ime</label>
-          <input [(ngModel)]="model.firstName" type="text" class="form-control" id="ime" name="ime" required>
+          <input [(ngModel)]="model.firstName" type="text" class="form-control" id="ime" name="ime" required pattern="^[a-zA-ZčćžšđČĆŽŠĐ]+$" #ime="ngModel">
+          <div *ngIf="ime.invalid && ime.touched" class="text-danger">
+            <span *ngIf="ime.errors?.['required']">Ime je obavezno.</span>
+            <span *ngIf="ime.errors?.['pattern']">Ime može sadržavati samo slova.</span>
+          </div>
         </div>
 
         <!-- Prezime -->
         <div class="mt-3">
           <label for="prezime" class="form-label">Prezime</label>
-          <input [(ngModel)]="model.lastName" type="text" class="form-control" id="prezime" name="prezime" required>
+          <input [(ngModel)]="model.lastName" type="text" class="form-control" id="prezime" name="prezime" required pattern="^[a-zA-ZčćžšđČĆŽŠĐ]+$" #prezime="ngModel">
+          <div *ngIf="prezime.invalid && prezime.touched" class="text-danger">
+            <span *ngIf="prezime.errors?.['required']">Prezime je obavezno.</span>
+            <span *ngIf="prezime.errors?.['pattern']">Prezime može sadržavati samo slova.</span>
+          </div>
         </div>
 
 
         <!-- Email -->
         <div class="mt-3">
           <label for="email" class="form-label">Email</label>
-          <input [(ngModel)]="model.email" type="email" class="form-control" id="email" name="email" required>
+          <input [(ngModel)]="model.email" type="email" class="form-control" id="email" name="email" required email #email="ngModel">
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            <span *ngIf="email.errors?.['required']">Email je obavezan.</span>
+            <span *ngIf="email.errors?.['email']">Email nije u ispravnom formatu.</span>
+          </div>
         </div>
 
         <!-- Username -->
         <div class="mt-3">
           <label for="username" class="form-label">Korisničko ime</label>
-          <input [(ngModel)]="model.username" type="text" class="form-control" id="username" name="username" required>
+          <input [(ngModel)]="model.username" type="text" class="form-control" id="username" name="username" required pattern="^[a-z0-9]+$" #username="ngModel">
+          <div *ngIf="username.invalid && username.touched" class="text-danger">
+            <span *ngIf="username.errors?.['required']">Korisničko ime je obavezno.</span>
+            <span *ngIf="username.errors?.['pattern']">Korisničko ime može sadržavati samo mala slova i brojeve.</span>
+          </div>
         </div>
 
         <!-- Password -->
         <div class="mt-3">
           <label for="password" class="form-label">Lozinka</label>
-          <input [(ngModel)]="model.password" type="password" class="form-control" id="password" name="password" required>
+          <input [(ngModel)]="model.password" type="password" class="form-control" id="password" name="password" required pattern="^[a-z0-9]+$" minlength="6" #password="ngModel">
+          <div *ngIf="password.invalid && password.touched" class="text-danger">
+            <span *ngIf="password.errors?.['required']">Lozinka je obavezna.</span>
+            <span *ngIf="password.errors?.['minlength']">Lozinka mora imati najmanje 6 znakova.</span>
+          </div>
         </div>
 
         <!-- Combobox za Rolu -->
@@ -44,9 +64,19 @@
           </select>
         </div>
 
+        <!-- Poruka o uspješnoj registraciji -->
+        <div *ngIf="obavijest" class="alert alert-success mt-3" role="alert">
+          Registracija uspješna! Link za potvrdu naloga je poslan na Vašu e-mail adresu!
+        </div>
+
+        <!-- Poruka o greškama pri registraciji -->
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+          {{ errorMessage }}
+        </div>
+
         <!-- Submit Button -->
         <div class="mt-3">
-          <button type="submit" class="btn btn-primary">Registracija</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Registracija</button>
         </div>
 
       </form>
@@ -54,6 +84,4 @@
   </div>
 </div>
 
-<div style="padding-bottom: 100px">
-
-</div>
+<div style="padding-bottom: 100px"></div>

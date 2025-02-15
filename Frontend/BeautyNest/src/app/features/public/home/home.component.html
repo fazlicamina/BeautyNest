@@ -25,7 +25,9 @@
 
 
 <div class="container">
-  <h2 class="naslov mt-5 mb-3">Saloni ljepote</h2>
+  <h2 class="naslov mt-5 mb-3">Najbolje ocijenjeni saloni ljepote</h2>
+
+
   <div class="row">
 
     <div *ngFor="let salon of saloni$ | async" class="col-md-3 mb-4">
@@ -33,7 +35,7 @@
         <img [src]="salon.naslovnaFotografija" class="card-img-top" alt="{{ salon.naziv }}" style="height: 200px; object-fit: cover;">
 
         <div class="card-body flex-grow-1">
-          <h5 class="card-title">{{ salon.naziv }}</h5>
+          <h5 class="card-title">{{ salon.naziv }}<span class="ms-2" style="color: #dbaeab">({{salon.prosjecnaOcjena}})</span></h5>
           <p style="font-weight: bold; color: #DBAEAB">
             {{salon.nazivGrada}}<span style="font-weight: normal" class="card-text;">, {{salon.adresa}}</span>
           </p>
@@ -86,4 +88,13 @@
 </div>
 </div>
 
-<div style="padding-bottom: 100px"></div>
+
+<div style="padding-bottom: 50px"></div>
+
+<div class="cta-banner">
+  <div class="container text-center mb-5">
+    <h2>Jeste li vlasnik salona ljepote?</h2>
+    <p>Registrujte svoj salon na našoj platformi i povećajte svoju vidljivost među klijentima!</p>
+    <a href="/registracija-salona" class="btn btn-primary">Registrujte salon</a>
+  </div>
+</div>

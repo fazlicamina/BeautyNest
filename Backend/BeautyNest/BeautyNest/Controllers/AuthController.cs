@@ -2,10 +2,13 @@
 using BeautyNest.Models.DTO;
 using BeautyNest.Repositories.Implementation;
 using BeautyNest.Repositories.Interface;
+using BeautyNest.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
+using System.Web;
 
 namespace BeautyNest.Controllers
 {
@@ -15,50 +18,82 @@ namespace BeautyNest.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly ITokenRepository tokenRepository;
+        private readonly EmailService emailService;
 
 
         public AuthController(UserManager<User> userManager,
-            ITokenRepository tokenRepository)
+            ITokenRepository tokenRepository, EmailService emailService)
         {
             this.userManager = userManager;
             this.tokenRepository = tokenRepository;
-
+            this.emailService = emailService;
         }
 
-        //login
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
-            var identityUser=await userManager.FindByNameAsync(request.Username);
+            var identityUser = await userManager.FindByNameAsync(request.Username);
 
-            if(identityUser is not null)
+            if (identityUser != null)
             {
+
                 var checkPasswordResult = await userManager.CheckPasswordAsync(identityUser, request.Password);
 
                 if (checkPasswordResult)
                 {
-                    var roles= await userManager.GetRolesAsync(identityUser);
+                    if (!await userManager.IsEmailConfirmedAsync(identityUser))
+                    {
+                        ModelState.AddModelError("", "Molimo vas da aktivirate svoj email prije nego što se prijavite!"!);
+                        return ValidationProblem(ModelState);
+                    }
 
-                   var jwtToken= tokenRepository.CreateJwtToken(identityUser, roles.ToList());
+                    var roles = await userManager.GetRolesAsync(identityUser);
+                    var jwtToken = tokenRepository.CreateJwtToken(identityUser, roles.ToList());
+
                     var response = new LoginResponseDto()
                     {
-                        Username=request.Username,
-                        Roles=roles.ToList(),
-                        Token=jwtToken,
+                        Username = request.Username,
+                        Roles = roles.ToList(),
+                        Token = jwtToken,
                         FirstName = identityUser.FirstName,
                         LastName = identityUser.LastName,
                         Id = identityUser.Id
-
                     };
+
                     return Ok(response);
                 }
             }
 
-            ModelState.AddModelError("", "Email or Password incorrect");
+            ModelState.AddModelError("", "Korisničko ime ili lozinka nisu tačni.");
             return ValidationProblem(ModelState);
         }
+
+
+
+        [HttpPost]
+        [Route("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailDto request)
+        {
+            var user = await userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+                return NotFound("Korisnik nije pronađen.");
+
+            if (await userManager.IsEmailConfirmedAsync(user))
+                return BadRequest("Email je već potvrđen.");
+
+            string decodedToken = HttpUtility.UrlDecode(request.Token);
+            var result = await userManager.ConfirmEmailAsync(user, decodedToken);
+
+          
+
+            if (result.Succeeded)
+                return Ok("Email je uspješno potvrđen!");
+
+            return BadRequest("Token nije validan ili je već iskorišten.");
+        }
+
 
         [HttpPost]
         [Route("register")]
@@ -72,40 +107,32 @@ namespace BeautyNest.Controllers
                 LastName = request.LastName?.Trim()
             };
 
-            var identityResult= await userManager.CreateAsync(user, request.Password);
+            var identityResult = await userManager.CreateAsync(user, request.Password);
 
             if (identityResult.Succeeded)
             {
                 identityResult = await userManager.AddToRoleAsync(user, request.Role);
+                var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                var encodedToken = HttpUtility.UrlEncode(token);
 
-                if (identityResult.Succeeded )
-                {
-                    return Ok();
-                }
-                else
-                {
-                    if (identityResult.Errors.Any())
-                    {
-                        foreach (var error in identityResult.Errors)
-                        {
-                            ModelState.AddModelError("", error.Description);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (identityResult.Errors.Any())
-                {
-                    foreach (var error in identityResult.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                }
+                var confirmationLink = $"http://localhost:4200/activate?email={user.Email}&token={encodedToken}";
+                var emailBody = $@"
+            <h2>Dobrodošli u BeautyNest!</h2>
+            <p>Hvala vam što ste se registrovali. Kako biste nastavili s korištenjem platforme, potrebno je potvrditi vaš nalog.</p>
+            <p>Kliknite na sljedeći link da aktivirate svoj nalog:</p>
+            <p><a href='{HtmlEncoder.Default.Encode(confirmationLink)}'>Aktiviraj nalog</a></p>
+            <p>Ukoliko niste vi izvršili registraciju, slobodno zanemarite ovaj email.</p>
+            <p>Srdačan pozdrav,<br>Beauty Nest tim</p>";
+
+                await emailService.SendEmailAsync(user.Email, "Dobrodošli u BeautyNest – Potvrdite svoj nalog", emailBody);
+
+                return Ok("Registracija uspješna! Provjerite email za aktivaciju naloga.");
             }
 
-            return ValidationProblem(ModelState);
+            return BadRequest(identityResult.Errors);
         }
+
+
 
         [HttpGet]
         [Route("mojprofil")]

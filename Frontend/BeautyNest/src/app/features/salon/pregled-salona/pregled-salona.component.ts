@@ -52,9 +52,6 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
 
   user?:User;
 
-  fullStars: number[] = [];
-  hasHalfStar: boolean = false;
-
   id:number | null=null;
   paramsSubscription?:Subscription;
   salon$?:Observable<Salon>;
@@ -70,7 +67,7 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   loginErrorMessage: string | null = null;
 
   //DA UKLJUCUJE DANASNJI DTAUM
-  //minDate: Date = new Date();
+ // minDate: Date = new Date();
 
   minDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
 
@@ -78,8 +75,10 @@ export class PregledSalonaComponent implements OnInit, OnDestroy{
   selectedTime: string | null = null;
   availableTimes: string[] = [];
 
-  //recenzihje
   recenzije: Recenzija[] = [];
+
+  selectedRecenzijaId: number | null = null; // Čuva ID recenzije za brisanje
+  private deleteModal: Modal | null = null;
 
   constructor(private salonService:SalonService, private route:ActivatedRoute,
               private kategorijaUslugeService : KategorijaUslugeService,
@@ -148,7 +147,7 @@ private authService:AuthService, private cookieService:CookieService,
 
   potvrdiRezervaciju(): void {
     if (this.selectedSalonId && this.selectedDate && this.selectedTime && this.selectedUsluge.length > 0) {
-      const vrijemePocetkaString = this.selectedTime.split(' - ')[0]; // Uzmemo samo početno vrijeme
+      const vrijemePocetkaString = this.selectedTime.split(' - ')[0];
       const vrijemePocetka = vrijemePocetkaString.split(':').map(Number);
 
       const utcDate = new Date(Date.UTC(
@@ -279,11 +278,11 @@ private authService:AuthService, private cookieService:CookieService,
         this.recenzije = recenzije;
         console.log(recenzije);
 
-        // Iteriramo kroz recenzije i dohvaćamo klijente
+
         this.recenzije.forEach((recenzija, index) => {
           this.recenzijaService.getUserByUsername(recenzija.klijentId).subscribe(
             (klijent) => {
-              this.recenzije[index].klijent = klijent; // Dodajemo klijenta u recenziju
+              this.recenzije[index].klijent = klijent;
             },
             (error) => console.error('Greška pri dohvaćanju korisnika:', error)
           );
@@ -429,17 +428,34 @@ private authService:AuthService, private cookieService:CookieService,
 
   }
 
-  obrisiRecenziju(recenzijaId: number): void {
-    if (!confirm("Da li ste sigurni da želite obrisati recenziju?")) return;
+  // Otvara modal i postavlja ID recenzije koju želimo da obrišemo
+  openDeleteModal(recenzijaId: number): void {
+    this.selectedRecenzijaId = recenzijaId;
+    const modalElement = document.getElementById('confirmDeleteModal');
+    if (modalElement) {
+      this.deleteModal = new Modal(modalElement);
+      this.deleteModal.show();
+    }
+  }
 
-    this.recenzijaService.obrisiRecenziju(recenzijaId).subscribe({
+  // Potvrđuje brisanje recenzije nakon što korisnik klikne obrisi
+  potvrdiBrisanje(): void {
+    if (this.selectedRecenzijaId === null) return;
+
+    this.recenzijaService.obrisiRecenziju(this.selectedRecenzijaId).subscribe({
       next: () => {
-        this.recenzije = this.recenzije.filter(r => r.id !== recenzijaId);
+        this.recenzije = this.recenzije.filter(r => r.id !== this.selectedRecenzijaId);
         this.toastService.showSuccessToast("Recenzija uspješno obrisana.");
+        this.selectedRecenzijaId = null;
+        this.deleteModal?.hide(); // Zatvaranje modala
+        window.location.reload();
       },
-      error: () => this.toastService.showErrorToast("Došlo je do greške pri brisanju recenzije.")
+      error: () => {
+        this.toastService.showErrorToast("Došlo je do greške pri brisanju recenzije.");
+      }
     });
   }
+
 
 
   ngOnDestroy(): void {

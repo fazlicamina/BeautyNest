@@ -5,6 +5,7 @@ import Modal from 'bootstrap/js/dist/modal';
 import {FormsModule} from '@angular/forms';
 import {RecenzijeService} from '../../salon/services/recenzije.service';
 import {Router} from '@angular/router';
+import {ToastserviceService} from '../../../core/services/toastservice.service';
 
 @Component({
   selector: 'app-moje-rezervacije',
@@ -40,7 +41,8 @@ export class MojeRezervacijeComponent implements OnInit{
 
   constructor(private rezervacijaService: RezervacijaService,
               private recenzijeService: RecenzijeService,
-              private router: Router) {}
+              private router: Router,
+              private toastService : ToastserviceService) {}
 
   ngOnInit(): void {
     this.ucitajRezervacije(1);
@@ -97,14 +99,6 @@ export class MojeRezervacijeComponent implements OnInit{
     }
   }
 
-  getNadolazeceRezervacije(): any[] {
-    return this.rezervacije.filter(rezervacija => new Date(rezervacija.datumRezervacije) > this.trenutniDatum);
-  }
-
-  getZavrseneRezervacije(): any[] {
-    return this.rezervacije.filter(rezervacija => new Date(rezervacija.datumRezervacije) < this.trenutniDatum);
-  }
-
   isZavrsena(rezervacija: any): boolean {
     return new Date(rezervacija.datumRezervacije) < this.trenutniDatum;
   }
@@ -128,26 +122,34 @@ export class MojeRezervacijeComponent implements OnInit{
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
     if (files.length > 0) {
-      this.recenzija.slike = Array.from(files); // Čuva File objekte direktno
+      this.recenzija.slike = Array.from(files);
     }
   }
 
 
   submitRecenzija() {
+    if (!this.recenzija.tekst.trim()) {
+      alert("Recenzija ne može biti prazna.");
+      return;
+    }
+
     this.recenzijeService.dodajRecenziju(this.recenzija, this.recenzija.slike).subscribe({
       next: () => {
-        alert('Recenzija uspješno dodana!');
-        this.recenzija = { rezervacijaId: 0, ocjena: 5, tekst: '', slike: [] }; // Reset forme
+        this.toastService.showSuccessToast("Uspješno ste dodali recenziju!");
         const modalElement = document.getElementById('recenzijaModal');
         if (modalElement) {
           const modalInstance = Modal.getInstance(modalElement);
           modalInstance?.hide();
-          window.location.reload();
+
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
         }
       },
       error: (error) => {
         console.error('Greška prilikom slanja recenzije:', error);
-        alert('Došlo je do greške prilikom dodavanja recenzije.');
+        this.toastService.showErrorToast("Došlo je do greške. Pokušajte ponovo!");
       }
     });
   }
@@ -164,7 +166,7 @@ export class MojeRezervacijeComponent implements OnInit{
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 500); // Sačekaj malo da se sadržaj učita
+      }, 500);
     });
   }
 

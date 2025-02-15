@@ -62,10 +62,19 @@
           </div>
 
           <div class="pagination">
-            <button (click)="ucitajRezervacije(currentPage - 1)" [disabled]="currentPage === 1">Prethodna</button>
-            <span>Strana {{ currentPage }} od {{ totalPages }}</span>
-            <button (click)="ucitajRezervacije(currentPage + 1)" [disabled]="currentPage === totalPages">Sledeća</button>
+            <button class="btn pinkbutton btn-primary me-2"
+                    (click)="ucitajRezervacije(currentPage - 1)"
+                    [disabled]="currentPage === 1">
+              Prethodna
+            </button>
+            <span class="fw-bold">Strana {{ currentPage }} od {{ totalPages }}</span>
+            <button class="btn pinkbutton btn-primary ms-2"
+                    (click)="ucitajRezervacije(currentPage + 1)"
+                    [disabled]="currentPage === totalPages">
+              Sljedeća
+            </button>
           </div>
+
 
 
         </div>
@@ -109,6 +118,22 @@
               </div>
             </div>
           </div>
+
+          <div class="pagination">
+            <button class="btn pinkbutton btn-primary me-2"
+                    (click)="ucitajRezervacije(currentPage - 1)"
+                    [disabled]="currentPage === 1">
+              Prethodna
+            </button>
+            <span class="fw-bold">Strana {{ currentPage }} od {{ totalPages }}</span>
+            <button class="btn pinkbutton btn-primary ms-2"
+                    (click)="ucitajRezervacije(currentPage + 1)"
+                    [disabled]="currentPage === totalPages">
+              Sljedeća
+            </button>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -148,6 +173,22 @@
               </div>
             </div>
           </div>
+
+          <div class="pagination">
+            <button class="btn pinkbutton btn-primary me-2"
+                    (click)="ucitajRezervacije(currentPage - 1)"
+                    [disabled]="currentPage === 1">
+              Prethodna
+            </button>
+            <span class="fw-bold">Strana {{ currentPage }} od {{ totalPages }}</span>
+            <button class="btn pinkbutton btn-primary ms-2"
+                    (click)="ucitajRezervacije(currentPage + 1)"
+                    [disabled]="currentPage === totalPages">
+              Sljedeća
+            </button>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -178,7 +219,6 @@
 
 
 
-
 <!-- Modal za ostavljanje recenzije -->
 <div class="modal fade" id="recenzijaModal" tabindex="-1" aria-labelledby="recenzijaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -188,7 +228,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form #recenzijaForm="ngForm">
+        <form #recenzijaForm="ngForm" novalidate>
           <div class="mb-3">
             <label for="ocjena" class="form-label">Ocjena</label>
             <select class="form-select" id="ocjena" [(ngModel)]="recenzija.ocjena" name="ocjena" required>
@@ -198,7 +238,12 @@
 
           <div class="mb-3">
             <label for="tekst" class="form-label">Vaša recenzija</label>
-            <textarea class="form-control" id="tekst" rows="3" [(ngModel)]="recenzija.tekst" name="tekst"></textarea>
+            <textarea class="form-control" id="tekst" rows="3" [(ngModel)]="recenzija.tekst" name="tekst" required #tekst="ngModel"></textarea>
+
+
+            <div *ngIf="tekst.invalid && tekst.touched" class="text-danger">
+              Recenzija ne može biti prazna.
+            </div>
           </div>
 
           <div class="mb-3">
@@ -209,7 +254,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-        <button type="button" class="btn btn-primary" (click)="submitRecenzija()">Pošalji recenziju</button>
+
+        <button type="button" class="btn pinkbutton btn-primary" (click)="submitRecenzija()" [disabled]="recenzijaForm.invalid">
+          Pošalji recenziju
+        </button>
       </div>
     </div>
   </div>
